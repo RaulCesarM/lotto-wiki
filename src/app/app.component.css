@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.main-container {
+
+  flex-direction: column;
+  height: 100%;
+}
+
+.content-wrapper {
+  display: flex;
+  flex: 1;
+}
+
+.ranking-content {
+  width: 100%;
+  flex: 2;
+  padding: 10px;
+  margin: 0px;
+}

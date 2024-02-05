@@ -1,0 +1,122 @@
+<div class="container-fluid">
+  <div class="row ">
+
+
+
+
+      <nav class="side-nav ">
+        <fieldset>
+          <button mat-button class="nav-button">
+            <span > <img src="assets/pena.png" width="22px"></span>
+          </button>
+
+          <button mat-button class="nav-button">
+            <span > <img src="assets/peso.png" width="22px"></span>
+
+          </button>
+          <button mat-button class="nav-button">
+            <p><i class="fa-solid fa-person-walking-arrow-loop-left fa-lg"></i></p>
+          </button>
+        </fieldset>
+      </nav>
+
+
+
+
+
+
+      <fieldset class="left-fieldset">
+        <div class="chart-container">
+          <canvas id="canvas" width="870px" height="550px">{{chart}}</canvas>
+        </div>
+        <div>
+          <fieldset>
+            <button mat-button (click)="mostrarOriginal()"><i class="fa-solid fa-chart-column"></i></button>
+            <button mat-button (click)="ordenar()"><i class="fa-solid fa-chart-gantt fa-flip-horizontal"></i></button>
+            <button mat-button (click)="toggleMedia()"><span class="material-icons">query_stats </span></button>
+            <button mat-button (click)="toggleTendencia()"><i class="fa-solid fa-arrow-trend-up"></i></button>
+          </fieldset>
+        </div>
+      </fieldset>
+
+
+
+      <fieldset class="right-fieldset">
+        <legend>O que são os dados de ranking</legend>
+        <div class="text-container">
+          <p>
+            <b> Os dados são divididos em categorias:</b>
+          </p>
+          <p>
+            <span > <img src="assets/pena.png" width="22px"></span>
+            <b> Os mais atrasados</b>
+          </p>
+          <p>
+            Os mais atrasados, são nuermos que estão por um determinado periodo sem cair.
+            Usando uma forma simples de amostragem, em valor X de corcursos.
+            Pode se dizer que são as bolinhas mais leves;
+          </p>
+          <p>
+            <span > <img src="assets/peso.png" width="22px"></span>
+            <b> Os que mais caem</b>
+          </p>
+          <p>Os que mais caem são numeros que possuem uma presença mais elevada por N concursos,
+            dando a sensação de peso, mesmo que imaginario remete a bolinhas mais pesadas.
+
+          </p>
+          <p>
+            <i class="fa-solid fa-person-walking-arrow-loop-left fa-lg"></i>
+            <b> Os Reinciadentes</b>
+          </p>
+          <p>
+            Os numeros reicidentes são numeros que incistem em cair, ou seja diferente dos que mais caem,
+            os reincidentes são mostrados quantas ocorrencia seguida por um intervalo,porem diferente dos que mais caem,
+            embora serão nostrados nos graficos dos que mais caem, neste grafico mostra quantas vezes estão caindo em relação ao concurso atual
+          </p>
+          <b>
+            Amostragem de dados
+          </b>
+          <p></p>
+          <i class="fa-solid fa-chart-column"></i>
+          <b> Padrão</b>
+          <p>
+
+           <p> Nos exemplos de código fornecidos, a referência a
+            "dados originais" se relaciona
+            aos valores iniciais dos conjuntos de dados que são utilizados para criar o gráfico.
+          </p>
+          <i class="fa-solid fa-chart-gantt fa-flip-horizontal"></i><b> Ordenar</b>
+          <p>
+            reorganizando os dados no gráfico com base no critério especificado(do menor para o maior).
+            Os dados são ordenados com base nos valores do conjunto de dados em ordem crescente.
+          </p>
+          <span class="material-icons">query_stats </span><b> Média</b>
+          <p>
+            A média é uma medida estatística que representa o valor típico
+            ou central de um conjunto de números. Ela é calculada somando
+            todos os valores e dividindo o resultado pelo número total de elementos no conjunto.
+            A média fornece uma representação equilibrada do conjunto de dados, tornando-a uma medida útil para resumir
+            e comparar conjuntos numéricos.
+          </p>
+          <br>
+
+            <div id="media"> </div>
+            <br>
+
+            <i class="fa-solid fa-arrow-trend-up"></i><b> Linha de tendencia</b>
+          <p>
+            Uma linha de tendência é uma representação gráfica
+            que visa mostrar a direção geral em que os dados de um conjunto estão se movendo.
+            Ela é frequentemente utilizada em gráficos para destacar padrões,
+            tendências ou relações em dados ao longo do tempo. Uma linha de tendência pode ser linear,
+            exponencial,
+            polinomial,
+            entre outros tipos, dependendo da natureza dos dados e do comportamento esperado.
+          </p>
+
+        </div>
+        <div id="linhaTendenciaFormula"></div>
+      </fieldset>
+
+  </div>
+</div>
