@@ -1,21 +1,14 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import {  Component,  ElementRef,  OnInit} from '@angular/core';
 import Chart from 'chart.js/auto';
-import * as katex from 'katex';
+import { KatexService } from 'src/app/katex-module/katex.service';
+
 @Component({
   selector: 'app-charts-rankings',
   templateUrl: './charts-rankings.component.html',
   styleUrls: ['./charts-rankings.component.css'],
 })
-export class ChartsRankingsComponent implements OnInit, AfterViewInit {
+export class ChartsRankingsComponent implements OnInit{
 
-  @ViewChild('mathContainer', { static: true })
-  mathContainer!: ElementRef;
   title = 'ng-chart';
   chart: any = [];
   isOrdenado: boolean = false;
@@ -24,21 +17,12 @@ export class ChartsRankingsComponent implements OnInit, AfterViewInit {
   isCalcularLinhaTendencia: boolean = false;
   originalData: any[] | undefined;
   originalLabels: any[] | undefined;
-  renderMathExpression(expression: string, element: string) {
-    const mathContainer = document.getElementById(element);
-    katex.render(expression, mathContainer as HTMLElement);
-  }
 
-  mediaFormula: string =
-    '\\text{Média} = \\frac{x_1 + x_2 + \\ldots + x_{25}}{25}';
+  constructor(
+    private elRef: ElementRef,
+    private katexService : KatexService,
 
-  linhaTendenciaFormula: string = `
-    y = ae^{bx}, \\quad
-    b = \\frac{{\\ln\\left(\\frac{{\\text{{data}}[\\text{{data.length}} - 1]}}{{a}}\\right)}}{{\\text{{data.length}} - 1}}, \\quad
-    \\text{{tl-exp}}[i] = a \\cdot e^{b \\cdot i}
-  `;
-
-  constructor(private elRef: ElementRef) {}
+    ) {}
 
   ngAfterViewInit() {
 
@@ -51,11 +35,14 @@ export class ChartsRankingsComponent implements OnInit, AfterViewInit {
     }
   }
   ngOnInit() {
-    this.renderMathExpression(this.mediaFormula, 'media');
-    this.renderMathExpression(
-      this.linhaTendenciaFormula,
-      'linhaTendenciaFormula'
-    );
+
+    const mediaExpression = this.katexService.getMediaFormula();
+    const tendencyExpression = this.katexService.getLinhaTendenciaFormula();
+    this.katexService.renderMathExpression(mediaExpression, 'media');
+    this.katexService.renderMathExpression(tendencyExpression, 'linhaTendenciaFormula');
+
+
+
     this.chart = new Chart('canvas', {
       type: 'bar',
       data: {
