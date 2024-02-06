@@ -1,58 +1,49 @@
 <div class="container-fluid">
   <div class="row">
 
+ 
+    <div class="col-sm-auto">
+  
+      <div class="row">
 
     <nav class="side-nav ">
       <fieldset>
         <button mat-button class="nav-button">
           <span> <img src="assets/matrix.png" width="22px"></span>
         </button>
-
         <button mat-button class="nav-button">
           <span> <img src="assets/correlation.png" width="22px"></span>
         </button>
         <button mat-button class="nav-button">
           <span> <img src="assets/logistic-regression.png" width="22px"></span>
         </button>
-
-
-        <button mat-button class="nav-button" >
+        <button mat-button class="nav-button">
           <span> <img src="assets/configuracoes.png" width="22px"></span>
         </button>
-
-
       </fieldset>
     </nav>
 
 
-
-
-
-
-    <div class="col">
-
+    
       <fieldset class="left-fieldset">
-
         <div style="overflow: auto;">
           <table>
             <thead></thead>
             <tbody>
-              <tbody>
-                <ng-container *ngFor="let rowNumber of indexRow.reverse(); let rowIndex = index">
-                  <tr>
-                    <th style="font-weight: bold;">
-                      {{ rowNumber }}
-                    </th>
-                    <ng-container *ngFor="let cellNumber of cells[rowIndex]; let cellIndex = index">
-                      <td [ngStyle]="{'background-color': getCellColor(cellNumber)}">
-                        {{ cellNumber }}
-                      </td>
-                    </ng-container>
-                  </tr>
-                </ng-container>
-              </tbody>
-
-
+            <tbody>
+              <ng-container *ngFor="let rowNumber of indexRow.reverse(); let rowIndex = index">
+                <tr>
+                  <th style="font-weight: bold;">
+                    {{ rowNumber }}
+                  </th>
+                  <ng-container *ngFor="let cellNumber of cells[rowIndex]; let cellIndex = index">
+                    <td [ngStyle]="{'background-color': getCellColor(cellNumber)}">
+                      {{ cellNumber }}
+                    </td>
+                  </ng-container>
+                </tr>
+              </ng-container>
+            </tbody>
             <tfoot>
               <tr>
                 <th></th>
@@ -63,35 +54,30 @@
                 </ng-container>
               </tr>
             </tfoot>
-
           </table>
         </div>
-
         <fieldset>
-          <button mat-button><i >Media : {{ media }}</i></button>
-          <button mat-button><i >Minimo : {{ min }}</i></button>
-          <button mat-button><i >Maximo  :{{ max }}</i></button>
-
+          <button mat-button><i>Media : {{ media }}</i></button>
+          <button mat-button><i>Minimo : {{ min }}</i></button>
+          <button mat-button><i>Maximo :{{ max }}</i></button>
         </fieldset>
-
-
-
-
       </fieldset>
     </div>
-    <div class="col">
+  </div>
 
+
+    <div class="col">
       <fieldset class="right-fieldset">
         <legend>O que são os dados de correlação</legend>
         <div class="text-container">
           <p>A correlação entre duas variáveis é uma medida estatística que descreve a relação estatística entre elas.
-            Em outras palavras, a correlação avalia a tendência de mudança em uma variável em relação à mudança na
+            Em outras palavras, a correlação avalia a tehfskhcgfhjsgfchjdgfcgdhjsgcvhjgdvhjgdhfjgvhjghjjjjjjjj
+            jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+            jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjndência de mudança em uma variável em relação à mudança na
             outra. Existem diferentes tipos de correlação, sendo a mais comum a correlação linear.</p>
-
           <p>A correlação é frequentemente expressa por um coeficiente de correlação, como o coeficiente de correlação
             de Pearson. Este coeficiente varia de -1 a 1, indicando a direção e a força da relação entre as variáveis:
           </p>
-
           <ul>
             <li><strong>Correlação Positiva (r > 0):</strong> Indica que à medida que uma variável aumenta, a outra
               também tende a aumentar. Quanto mais próximo de +1, mais forte é a correlação positiva.</li>
@@ -101,26 +87,20 @@
               entanto, é importante notar que a falta de correlação linear não implica necessariamente na ausência de
               relação entre as variáveis.</li>
           </ul>
-
           <p>É importante destacar que correlação não implica causalidade. Dois eventos podem estar correlacionados, mas
             isso não significa que um cause o outro. A correlação apenas indica a relação estatística entre as
             variáveis, não necessariamente uma relação de causa e efeito.</p>
-
           <p>Para calcular a correlação, são utilizadas fórmulas específicas, sendo a fórmula de Pearson uma das mais
             amplamente utilizadas para variáveis com distribuição linear. Outros métodos, como a correlação de Spearman
             ou a correlação de Kendall, são aplicáveis a dados que não seguem uma distribuição linear.</p>
-
           <p>Em resumo, a correlação entre duas variáveis é uma medida estatística que avalia a relação entre elas,
             ajudando a entender como elas variam conjuntamente. Essa análise é crucial em diversas áreas, como
             estatística, ciências sociais, economia e muitas outras, para identificar padrões e compreender a
             interconexão entre diferentes fenômenos.
           </p>
-        <div  id="correlation"> </div>
-
-
+          <div id="correlation"> </div>
         </div>
       </fieldset>
     </div>
   </div>
-
 </div>

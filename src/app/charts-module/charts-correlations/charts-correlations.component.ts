@@ -65,7 +65,7 @@ export class ChartsCorrelationsComponent implements OnInit {
 
 
     if (cellNumber === max) {
-      return 'rgb(255, 0, 0)';
+      return 'rgb(255, 165, 165)';
     } else if (cellNumber === min) {
       return 'rgb(255, 255, 0)';
     } else {

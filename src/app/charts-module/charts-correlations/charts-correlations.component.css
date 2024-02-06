@@ -56,7 +56,7 @@ td:hover {
 
 
 .left-fieldset {
-  flex:1;
+  flex:2;
   margin-right: 20px;
   max-width: 800px;
   max-height: 650px;
@@ -64,13 +64,14 @@ td:hover {
   overflow-x: hidden;
 }
 .right-fieldset {
-  flex: 3;
+  flex: 2;
   border: 1px solid #ebe0e0;
   padding: 10px;
-  overflow-y: scroll;
+  
   margin-right: 20px;
-  max-width: 800px;
-  max-height: 550px;
+  max-width: 500px;
+  max-height: 650px;
+  overflow: auto;
 }
 .right-fieldset legend {
   text-align: center;
