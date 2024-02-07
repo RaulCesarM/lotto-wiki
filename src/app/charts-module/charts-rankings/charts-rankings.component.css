@@ -9,10 +9,6 @@
   height: 100%;
 }
 
-.container-fluid {
-  padding: 5px;
-}
-
 .chart-container {
   width: 100%;
   height: auto;
@@ -24,11 +20,29 @@
 }
 
 .left-fieldset {
-  flex: 1.5;
+  flex:2;
   margin-right: 20px;
-  width: 100vh;
-  height: 75vh;
+  width: 80vh;
+
+  /* max-width: 50%;*/
+  max-height: 700px;
+  overflow-y: hidden;
+  overflow-x: hidden;
   border: 1px solid #ebe0e0;
+}
+
+
+
+.right-fieldset { 
+  flex: 2;
+  border: 1px solid #ebe0e0;
+  padding: 10px;  
+  margin-right: 20px;
+  width: 80vh;
+  height: 700px;
+  /* max-width: 30%;*/
+  max-height: 657px; 
+  overflow: auto;
 }
 
 fieldset{
@@ -37,14 +51,15 @@ fieldset{
   margin: 5px;
 }
 
-.right-fieldset {
+/* .right-fieldset {
   flex: 1;
   max-width: 450px;
   max-height: 75vh;
   border: 1px solid #ebe0e0;
   padding: 10px;
+  overflow: auto;
   
-}
+} */
 
 .right-fieldset legend {
   text-align: center;
@@ -65,5 +80,11 @@ fieldset{
 /* .text-container{
   font-size:medium;
 } */
+
+row{
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+}
 
 

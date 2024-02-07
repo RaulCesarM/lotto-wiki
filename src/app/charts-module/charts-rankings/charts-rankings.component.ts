@@ -18,6 +18,8 @@ export class ChartsRankingsComponent implements OnInit{
   originalData: any[] | undefined;
   originalLabels: any[] | undefined;
 
+  showOutliers: boolean = true;
+
   constructor(
     private elRef: ElementRef,
     private katexService : KatexService,
@@ -36,8 +38,8 @@ export class ChartsRankingsComponent implements OnInit{
   }
   ngOnInit() {
 
-    const mediaExpression = this.katexService.getMediaFormula();
-    const tendencyExpression = this.katexService.getLinhaTendenciaFormula();
+    const mediaExpression = this.katexService.getSimpleArithmethicMeanFormula();
+    const tendencyExpression = this.katexService.getExponentialTrendLineFormula();
     this.katexService.renderMathExpression(mediaExpression, 'media');
     this.katexService.renderMathExpression(tendencyExpression, 'linhaTendenciaFormula');
 
@@ -173,16 +175,21 @@ export class ChartsRankingsComponent implements OnInit{
     this.chart.data.datasets[2].data = [];
     this.chart.update();
   }
+
+  // ja no serviço
   private adicionarMedia() {
     const data = this.chart.data.datasets[0].data;
     const media = this.calcularMedia(data);
     this.chart.data.datasets[1].data = Array(data.length).fill(media);
     this.chart.update();
   }
+  // ja no serviço
   private removerMedia() {
     this.chart.data.datasets[1].data = [];
     this.chart.update();
   }
+
+ // ja no serviço
   private calcularLinhaTendencia(data: number[]) {
     this.isCalcularLinhaTendencia = true;
     const trendLine = [];
@@ -193,15 +200,8 @@ export class ChartsRankingsComponent implements OnInit{
     }
     return trendLine;
   }
-  // private calcularLinhaTendencia(data: number[]) {
-  //   this.isCalcularLinhaTendencia = true;
-  //   const trendLine = [];
-  //   const slope = (data[data.length - 1] - data[0]) / (data.length - 1);
-  //   for (let i = 0; i < data.length; i++) {
-  //     trendLine.push(data[0] + slope * i);
-  //   }
-  //   return trendLine;
-  // }
+ 
+   // ja no serviço
   private calcularMedia(data: number[]) {
     return data.reduce((acc, value) => acc + value, 0) / data.length;
   }

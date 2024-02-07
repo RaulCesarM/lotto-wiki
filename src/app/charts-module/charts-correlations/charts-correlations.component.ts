@@ -35,12 +35,10 @@ export class ChartsCorrelationsComponent implements OnInit {
     this.calcularMedia();
     this.calcularMax();
     this.calcularMin();
-
-    const correlationExpression = this.katexService.getCorrelation();
+    const correlationExpression = this.katexService.getCorrelationFormula();
     this.katexService.renderMathExpression(correlationExpression, 'correlation');
 
   }
-
 
 
   calcularMedia(): void {

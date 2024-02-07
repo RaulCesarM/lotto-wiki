@@ -1,69 +1,64 @@
 <div class="container-fluid">
   <div class="row">
 
- 
     <div class="col-sm-auto">
-  
       <div class="row">
+        <nav class="side-nav ">
+          <fieldset>
+            <button mat-button class="nav-button">
+              <span> <img src="assets/matrix.png" width="22px"></span>
+            </button>
+            <button mat-button class="nav-button">
+              <span> <img src="assets/correlation.png" width="22px"></span>
+            </button>
+            <button mat-button class="nav-button">
+              <span> <img src="assets/logistic-regression.png" width="22px"></span>
+            </button>
+            <button mat-button class="nav-button">
+              <span> <img src="assets/configuracoes.png" width="22px"></span>
+            </button>
+          </fieldset>
+        </nav>
 
-    <nav class="side-nav ">
-      <fieldset>
-        <button mat-button class="nav-button">
-          <span> <img src="assets/matrix.png" width="22px"></span>
-        </button>
-        <button mat-button class="nav-button">
-          <span> <img src="assets/correlation.png" width="22px"></span>
-        </button>
-        <button mat-button class="nav-button">
-          <span> <img src="assets/logistic-regression.png" width="22px"></span>
-        </button>
-        <button mat-button class="nav-button">
-          <span> <img src="assets/configuracoes.png" width="22px"></span>
-        </button>
-      </fieldset>
-    </nav>
-
-
-    
-      <fieldset class="left-fieldset">
-        <div style="overflow: auto;">
-          <table>
-            <thead></thead>
-            <tbody>
-            <tbody>
-              <ng-container *ngFor="let rowNumber of indexRow.reverse(); let rowIndex = index">
+        <fieldset class="left-fieldset">
+          <div style="overflow: auto;">
+            <table>
+              <thead></thead>
+              <tbody>
+              <tbody>
+                <ng-container *ngFor="let rowNumber of indexRow.reverse(); let rowIndex = index">
+                  <tr>
+                    <th style="font-weight: bold;">
+                      {{ rowNumber }}
+                    </th>
+                    <ng-container *ngFor="let cellNumber of cells[rowIndex]; let cellIndex = index">
+                      <td [ngStyle]="{'background-color': getCellColor(cellNumber)}">
+                        {{ cellNumber }}
+                      </td>
+                    </ng-container>
+                  </tr>
+                </ng-container>
+              </tbody>
+              <tfoot>
                 <tr>
-                  <th style="font-weight: bold;">
-                    {{ rowNumber }}
-                  </th>
-                  <ng-container *ngFor="let cellNumber of cells[rowIndex]; let cellIndex = index">
-                    <td [ngStyle]="{'background-color': getCellColor(cellNumber)}">
-                      {{ cellNumber }}
-                    </td>
+                  <th></th>
+                  <ng-container *ngFor="let header of headers; let i = index">
+                    <th style="font-weight: bold; ">
+                      {{ header }}
+                    </th>
                   </ng-container>
                 </tr>
-              </ng-container>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th></th>
-                <ng-container *ngFor="let header of headers; let i = index">
-                  <th style="font-weight: bold; ">
-                    {{ header }}
-                  </th>
-                </ng-container>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-        <fieldset>
-          <button mat-button><i>Media : {{ media }}</i></button>
-          <button mat-button><i>Minimo : {{ min }}</i></button>
-          <button mat-button><i>Maximo :{{ max }}</i></button>
+              </tfoot>
+            </table>
+          </div>
+          <fieldset>
+            <button mat-button><i>Media : {{ media }}</i></button>
+            <button mat-button><i>Minimo : {{ min }}</i></button>
+            <button mat-button><i>Maximo :{{ max }}</i></button>
+          </fieldset>
         </fieldset>
-      </fieldset>
+      </div>
     </div>
-  </div>
 
 
     <div class="col">
@@ -71,9 +66,7 @@
         <legend>O que são os dados de correlação</legend>
         <div class="text-container">
           <p>A correlação entre duas variáveis é uma medida estatística que descreve a relação estatística entre elas.
-            Em outras palavras, a correlação avalia a tehfskhcgfhjsgfchjdgfcgdhjsgcvhjgdvhjgdhfjgvhjghjjjjjjjj
-            jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-            jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjndência de mudança em uma variável em relação à mudança na
+            Em outras palavras, a correlação avalia a tendência de mudança em uma variável em relação à mudança na
             outra. Existem diferentes tipos de correlação, sendo a mais comum a correlação linear.</p>
           <p>A correlação é frequentemente expressa por um coeficiente de correlação, como o coeficiente de correlação
             de Pearson. Este coeficiente varia de -1 a 1, indicando a direção e a força da relação entre as variáveis:

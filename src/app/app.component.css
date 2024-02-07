@@ -6,7 +6,6 @@
 }
 
 .main-container {
-
   flex-direction: column;
   height: 100%;
 }
@@ -22,3 +21,13 @@
   padding: 10px;
   margin: 0px;
 }
+
+.container-fluid{
+  padding: 0px;
+  margin: 0px;
+}
+
+p{
+  font-size: 5px;
+}
+
