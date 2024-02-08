@@ -7,9 +7,7 @@ export class EquationsSeviceService {
 
   constructor() { }
 
-
-   calculateExponentialTrendLine(data: number[]) {
-  //  this.isCalcularLinhaTendencia = true;
+   calculateExponentialTrendLine(data: number[]):number [] {
     const trendLine = [];
     const a = data[0]; 
     const b = Math.log(data[data.length - 1] / a) / (data.length - 1);
@@ -19,48 +17,45 @@ export class EquationsSeviceService {
     return trendLine;
   }
 
-  calculateArithmeticTrendLine(data: number[]) {
-  //   this.isCalcularLinhaTendencia = true;
-  //   const trendLine = [];
-  //   const slope = (data[data.length - 1] - data[0]) / (data.length - 1);
-  //   for (let i = 0; i < data.length; i++) {
-  //     trendLine.push(data[0] + slope * i);
-  //   }
-  //   return trendLine;
+
+
+
+
+
+
+  calculateArithmeticTrendLine(data: number[]) { 
+    const trendLine = [];
+    const slope = (data[data.length - 1] - data[0]) / (data.length - 1);
+    for (let i = 0; i < data.length; i++) {
+      trendLine.push(data[0] + slope * i);
+    }
+    return trendLine;
   }
 
   calculateLogarirmicTrendLine(data: number[]){
 
   }
 
-  sortUp() {
-    // const data = this.chart.data.datasets[0].data;
-    // const labels = this.chart.data.labels;
-    // const dataWithLabels = [];
-    // for (let i = 0; i < data.length; i++) {
-    //   dataWithLabels.push({
-    //     data: data[i],
-    //     label: labels[i],
-    //   });
+  sort( dataParam: any, LabelParam: any) {
+    let data = dataParam ;
+    let labels = LabelParam;
+    let dataWithLabels = [] ;
+    for (let i = 0; i < data.length; i++) {
+      dataWithLabels.push({
+        data: data[i],
+        label: labels[i],
+      });
     }
-
-     removeAverage() {
-      // this.chart.data.datasets[1].data = [];
-      // this.chart.update();
+    dataWithLabels.sort((first: any, second: any) => first.data - second.data);
+    for (let i = 0; i < dataWithLabels.length; i++) {
+      data[i] = dataWithLabels[i].data;
+      labels[i] = dataWithLabels[i].label;
     }
+    return dataWithLabels    
+  }
 
-    addAverage() {
-      // const data = this.chart.data.datasets[0].data;
-      // const media = this.calcularMedia(data);
-      // this.chart.data.datasets[1].data = Array(data.length).fill(media);
-      // this.chart.update();
-    }
 
-    removeAvarege(){
-
-    }
-
-    calaculateAvarege(data: number[]) {
+    calculateAvarege(data: number[]) {
       return data.reduce((acc, value) => acc + value, 0) / data.length;
     }
 
@@ -78,10 +73,6 @@ export class EquationsSeviceService {
     }
 
     
-
-  private zScore(){
-    // estudar algoritmos de z-core
-  }
 
 
 

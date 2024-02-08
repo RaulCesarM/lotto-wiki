@@ -1,6 +1,7 @@
 import {  Component,  ElementRef,  OnInit} from '@angular/core';
 import Chart from 'chart.js/auto';
 import { KatexService } from 'src/app/katex-module/katex.service';
+import { EquationsSeviceService } from 'src/app/math-modules/equations-sevice.service';
 
 @Component({
   selector: 'app-charts-rankings',
@@ -11,18 +12,23 @@ export class ChartsRankingsComponent implements OnInit{
 
   title = 'ng-chart';
   chart: any = [];
-  isOrdenado: boolean = false;
-  isMediaVisible: boolean = false;
-  isTendenciaVisible: boolean = false;
-  isCalcularLinhaTendencia: boolean = false;
+
+  
+  isSorted: boolean = false;
+  isAvaregeShow: boolean = false; 
+  isExponentialTrendLineShow: boolean = false;
+  isOutliersShow: boolean = true;
+
+  
   originalData: any[] | undefined;
   originalLabels: any[] | undefined;
 
-  showOutliers: boolean = true;
+
 
   constructor(
     private elRef: ElementRef,
     private katexService : KatexService,
+    private mathService : EquationsSeviceService
 
     ) {}
 
@@ -70,7 +76,7 @@ export class ChartsRankingsComponent implements OnInit{
             borderWidth: 1,
           },
           {
-            label: 'Linha de Tendência',
+            label: 'Linha de Tendência Exponencial',
             data: [],
             type: 'line',
             fill: false,
@@ -78,6 +84,15 @@ export class ChartsRankingsComponent implements OnInit{
             pointRadius: 2,
             borderWidth: 2,
           },
+          {
+            label: 'Linha de Tendência Aritmetica',
+            data: [],
+            type: 'line',
+            fill: false,
+            borderColor: 'blue',
+            pointRadius: 2,
+            borderWidth: 2,
+          }
         ],
       },
       options: {
@@ -99,110 +114,120 @@ export class ChartsRankingsComponent implements OnInit{
         },
       },
     });
-    this.originalData = JSON.parse(
-      JSON.stringify(this.chart.data.datasets[0].data)
+    this.originalData = JSON.parse( JSON.stringify(this.chart.data.datasets[0].data)
     );
     this.originalLabels = JSON.parse(JSON.stringify(this.chart.data.labels));
   }
+
+//////////////////////////////////////////////// toggles
+
   toggleOrdenado() {
-    this.isOrdenado = !this.isOrdenado;
-    if (this.isOrdenado) {
+    this.isSorted = !this.isSorted;
+    if (this.isSorted) {
       this.ordenar();
     } else {
       this.mostrarOriginal();
     }
   }
+
+
   toggleMedia() {
-    this.isMediaVisible = !this.isMediaVisible;
-    if (this.isMediaVisible) {
+    this.isAvaregeShow = !this.isAvaregeShow;
+    if (this.isAvaregeShow) {
       this.adicionarMedia();
     } else {
       this.removerMedia();
     }
     this.chart.update();
   }
-  toggleTendencia() {
-    this.isTendenciaVisible = !this.isTendenciaVisible;
-    if (this.isTendenciaVisible) {
-      this.adicionarLinhaTendencia();
+
+
+
+  toggleTendenciaExponencial() {
+    this.isExponentialTrendLineShow = !this.isExponentialTrendLineShow;
+    if (this.isExponentialTrendLineShow) {
+      this.adicionarLinhaTendenciaExponencial();
     } else {
-      this.removerLinhaTendencia();
+      this.removerLinhaTendenciaExponencial();
     }
     this.chart.update();
   }
+
+
+
+
+
+////////////////////////////////////////////ordenação//////////////////////////
+
+
+
+
+
+
+
   ordenar() {
-    const data = this.chart.data.datasets[0].data;
+    let data = this.chart.data.datasets[0].data;
     const labels = this.chart.data.labels;
-    const dataWithLabels = [];
-    for (let i = 0; i < data.length; i++) {
-      dataWithLabels.push({
-        data: data[i],
-        label: labels[i],
-      });
-    }
-    dataWithLabels.sort((a, b) => a.data - b.data);
-    for (let i = 0; i < dataWithLabels.length; i++) {
-      data[i] = dataWithLabels[i].data;
-      labels[i] = dataWithLabels[i].label;
-    }
+    let dataWithLabels = [];   
+    dataWithLabels = this.mathService.sort(data, labels )
     this.chart.update();
-    if (this.isCalcularLinhaTendencia === true) {
-      this.adicionarLinhaTendencia();
+    if (this.isExponentialTrendLineShow === true) {
+      this.adicionarLinhaTendenciaExponencial();
     }
   }
+
   mostrarOriginal() {
-    this.chart.data.datasets[0].data = JSON.parse(
-      JSON.stringify(this.originalData)
-    );
+    this.chart.data.datasets[0].data = JSON.parse(JSON.stringify(this.originalData));    
     this.chart.data.labels = JSON.parse(JSON.stringify(this.originalLabels));
-    if (this.isCalcularLinhaTendencia === true) {
-      this.adicionarLinhaTendencia();
+
+    if (this.isExponentialTrendLineShow === true) {
+      this.adicionarLinhaTendenciaExponencial();
       this.chart.update();
     }
     this.chart.update();
   }
-  private adicionarLinhaTendencia() {
-    if (this.isOrdenado === true) {
+
+
+
+
+/////////////////////////////////linha de tendencia exponencial
+
+
+
+
+  private adicionarLinhaTendenciaExponencial() {
+    if (this.isSorted === true) {
       this.chart.update();
     }
     const data = this.chart.data.datasets[0].data;
-    const trendLineData = this.calcularLinhaTendencia(data);
+    this.isExponentialTrendLineShow = true;
+    const trendLineData = this.mathService.calculateExponentialTrendLine(data)
     this.chart.data.datasets[2].data = trendLineData;
     this.chart.update();
   }
-  private removerLinhaTendencia() {
-    this.isCalcularLinhaTendencia = false;
+
+
+  private removerLinhaTendenciaExponencial() {
+    this.isExponentialTrendLineShow = false;
     this.chart.data.datasets[2].data = [];
     this.chart.update();
   }
 
-  // ja no serviço
+
+
+  ////////////////////////////media///////////////////////////
+
+ 
   private adicionarMedia() {
     const data = this.chart.data.datasets[0].data;
-    const media = this.calcularMedia(data);
+    const media = this.mathService.calculateAvarege(data)
     this.chart.data.datasets[1].data = Array(data.length).fill(media);
     this.chart.update();
   }
-  // ja no serviço
+
   private removerMedia() {
     this.chart.data.datasets[1].data = [];
     this.chart.update();
   }
 
- // ja no serviço
-  private calcularLinhaTendencia(data: number[]) {
-    this.isCalcularLinhaTendencia = true;
-    const trendLine = [];
-    const a = data[0]; // coeficiente inicial
-    const b = Math.log(data[data.length - 1] / a) / (data.length - 1);
-    for (let i = 0; i < data.length; i++) {
-      trendLine.push(a * Math.exp(b * i));
-    }
-    return trendLine;
-  }
- 
-   // ja no serviço
-  private calcularMedia(data: number[]) {
-    return data.reduce((acc, value) => acc + value, 0) / data.length;
-  }
 }
