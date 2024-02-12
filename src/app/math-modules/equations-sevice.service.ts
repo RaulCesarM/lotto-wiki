@@ -17,17 +17,18 @@ export class EquationsSeviceService {
     return trendLine;
   }
 
-
-
-
-
-
-
-  calculateArithmeticTrendLine(data: number[]) { 
+  calculateArithmeticTrendLine(data: number[]): number[] { 
     const trendLine = [];
-    const slope = (data[data.length - 1] - data[0]) / (data.length - 1);
+    let media = 0;
+ 
     for (let i = 0; i < data.length; i++) {
-      trendLine.push(data[0] + slope * i);
+      media = media + data[i]      
+    }
+    media = (media / data.length)
+    for (let i = 0; i < data.length; i++) { 
+     
+    
+      trendLine.push(data[i] / i* media );
     }
     return trendLine;
   }
@@ -55,18 +56,37 @@ export class EquationsSeviceService {
   }
 
 
-    calculateAvarege(data: number[]) {
+    calculateAverage(data: number[]) {
       return data.reduce((acc, value) => acc + value, 0) / data.length;
     }
 
 
     private removeOutLier(data: number []){
-      // this.showOutliers = !this.showOutliers;
-      // let initialData: number[];
-      // let media: number;
-      // let mediana: number;
-      // let maior: number;
-      // let segundoMaior:number; 
+      const outliersRemoved = [];
+    
+      // Calcular a média
+      let sum = 0;
+      for (let i = 0; i < data.length; i++) {
+          sum += data[i];
+      }
+      const mean = sum / data.length;
+  
+      // Calcular o desvio padrão
+      let variance = 0;
+      for (let i = 0; i < data.length; i++) {
+          variance += Math.pow(data[i] - mean, 2);
+      }
+      const stdDev = Math.sqrt(variance / data.length);
+  
+      // Remover outliers
+      const threshold = 2; // Limiar de 2 desvios padrão
+      for (let i = 0; i < data.length; i++) {
+          if (Math.abs(data[i] - mean) <= threshold * stdDev) {
+              outliersRemoved.push(data[i]);
+          }
+      }
+  
+      return outliersRemoved;
   
   
       

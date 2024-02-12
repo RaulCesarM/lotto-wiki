@@ -17,6 +17,9 @@ export class ChartsRankingsComponent implements OnInit{
   isSorted: boolean = false;
   isAvaregeShow: boolean = false; 
   isExponentialTrendLineShow: boolean = false;
+  isArithmeticTrendLineShow: boolean = false;
+
+
   isOutliersShow: boolean = true;
 
   
@@ -59,9 +62,7 @@ export class ChartsRankingsComponent implements OnInit{
         datasets: [
           {
             label: 'Normal',
-            data: [
-              12, 19, 43, 5, 2, 3, 19, 31, 5, 21, 13, 19, 3, 5, 12, 23, 19, 23,52, 2, 23, 19, 33, 25, 8,
-            ],
+            data: [ 12, 19, 43, 5, 2, 3, 19, 31, 5, 21, 13, 19, 3, 5, 12, 23, 19, 23,52, 2, 23, 19, 33, 25, 8,],
             backgroundColor:  'rgba(55, 169, 245,0.7)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1,
@@ -80,7 +81,7 @@ export class ChartsRankingsComponent implements OnInit{
             data: [],
             type: 'line',
             fill: false,
-            borderColor: 'orange',
+            borderColor: 'blue',
             pointRadius: 2,
             borderWidth: 2,
           },
@@ -89,7 +90,7 @@ export class ChartsRankingsComponent implements OnInit{
             data: [],
             type: 'line',
             fill: false,
-            borderColor: 'blue',
+            borderColor: 'Orange',
             pointRadius: 2,
             borderWidth: 2,
           }
@@ -143,15 +144,6 @@ export class ChartsRankingsComponent implements OnInit{
 
 
 
-  toggleTendenciaExponencial() {
-    this.isExponentialTrendLineShow = !this.isExponentialTrendLineShow;
-    if (this.isExponentialTrendLineShow) {
-      this.adicionarLinhaTendenciaExponencial();
-    } else {
-      this.removerLinhaTendenciaExponencial();
-    }
-    this.chart.update();
-  }
 
 
 
@@ -159,9 +151,39 @@ export class ChartsRankingsComponent implements OnInit{
 
 ////////////////////////////////////////////ordenação//////////////////////////
 
+toggleTendenciaExponencial() {
+  this.isExponentialTrendLineShow = !this.isExponentialTrendLineShow;
+  if (this.isExponentialTrendLineShow) {
+    this.adicionarLinhaTendenciaExponencial();
+  } else {
+    this.removerLinhaTendenciaExponencial();
+  }
+  this.chart.update();
+}
 
 
 
+toggleTendenciaArithmetic() {
+  this.isArithmeticTrendLineShow = !this.isArithmeticTrendLineShow;
+  if (this.isArithmeticTrendLineShow) {
+    this.adicionarLinhaTendenciaAritmetica();
+  } else {
+    this.removerLinhaTendenciaAritmetica();
+  }
+  this.chart.update();
+}
+
+
+
+
+private removerLinhaTendenciaAritmetica() {
+  this.isArithmeticTrendLineShow = false;
+  this.chart.data.datasets[2].data = [];
+  this.chart.update();
+}
+
+
+//////////////////////////////////////////////////////////////////
 
 
 
@@ -172,8 +194,14 @@ export class ChartsRankingsComponent implements OnInit{
     dataWithLabels = this.mathService.sort(data, labels )
     this.chart.update();
     if (this.isExponentialTrendLineShow === true) {
-      this.adicionarLinhaTendenciaExponencial();
+      this.adicionarLinhaTendenciaExponencial();     
+      this.chart.update();
     }
+    if(this.isArithmeticTrendLineShow === true){
+      this.adicionarLinhaTendenciaAritmetica();
+      this.chart.update();
+    }
+    this.chart.update();
   }
 
   mostrarOriginal() {
@@ -181,7 +209,11 @@ export class ChartsRankingsComponent implements OnInit{
     this.chart.data.labels = JSON.parse(JSON.stringify(this.originalLabels));
 
     if (this.isExponentialTrendLineShow === true) {
-      this.adicionarLinhaTendenciaExponencial();
+      this.adicionarLinhaTendenciaExponencial();     
+      this.chart.update();
+    }
+    if(this.isArithmeticTrendLineShow === true){
+      this.adicionarLinhaTendenciaAritmetica();
       this.chart.update();
     }
     this.chart.update();
@@ -193,23 +225,34 @@ export class ChartsRankingsComponent implements OnInit{
 /////////////////////////////////linha de tendencia exponencial
 
 
+private adicionarLinhaTendenciaAritmetica() {
+  // if (this.isSorted === true) {
+  //   this.chart.update();
+  // }
+  const data = this.chart.data.datasets[0].data;
+  this.isArithmeticTrendLineShow = true;
+  const trendLineData = this.mathService.calculateArithmeticTrendLine(data)
+  this.chart.data.datasets[2].data = trendLineData;
+  this.chart.update();
+}
+
 
 
   private adicionarLinhaTendenciaExponencial() {
-    if (this.isSorted === true) {
-      this.chart.update();
-    }
+    // if (this.isSorted === true) {
+    //   this.chart.update();
+    // }
     const data = this.chart.data.datasets[0].data;
     this.isExponentialTrendLineShow = true;
-    const trendLineData = this.mathService.calculateExponentialTrendLine(data)
-    this.chart.data.datasets[2].data = trendLineData;
+    const trendExponetialLineData = this.mathService.calculateExponentialTrendLine(data)
+    this.chart.data.datasets[3].data = trendExponetialLineData;
     this.chart.update();
   }
 
 
   private removerLinhaTendenciaExponencial() {
     this.isExponentialTrendLineShow = false;
-    this.chart.data.datasets[2].data = [];
+    this.chart.data.datasets[3].data = [];
     this.chart.update();
   }
 
@@ -220,7 +263,7 @@ export class ChartsRankingsComponent implements OnInit{
  
   private adicionarMedia() {
     const data = this.chart.data.datasets[0].data;
-    const media = this.mathService.calculateAvarege(data)
+    const media = this.mathService.calculateAverage(data)
     this.chart.data.datasets[1].data = Array(data.length).fill(media);
     this.chart.update();
   }
@@ -229,5 +272,73 @@ export class ChartsRankingsComponent implements OnInit{
     this.chart.data.datasets[1].data = [];
     this.chart.update();
   }
+
+  toggleOutliers() {
+    this.isOutliersShow = !this.isOutliersShow;
+    if (this.isOutliersShow) {
+        this.removerOutliers();
+    } else {
+        this.mostrarOriginal();
+    }
+    this.chart.update();
+}
+
+
+
+
+
+
+
+
+
+
+
+removerOutliers() {
+  let originalData: number[] = this.originalData || []; 
+  const dataWithoutOutliers = this.removeOutliers(originalData);
+  this.chart.data.datasets[0].data = dataWithoutOutliers;
+  this.chart.update();
+}
+private removeOutliers(data: number[]) {
+  let sum = 0;
+    for (let i = 0; i < data.length; i++) {
+        sum += data[i];
+    }
+    const mean = sum / data.length;
+
+   
+    let variance = 0;
+    for (let i = 0; i < data.length; i++) {
+        variance += Math.pow(data[i] - mean, 2);
+    }
+    const stdDev = Math.sqrt(variance / data.length);
+
+   
+    const threshold = 3; 
+
+    
+    const outliersRemoved = data.filter(value => Math.abs(value - mean) <= threshold * stdDev);
+
+    return outliersRemoved;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

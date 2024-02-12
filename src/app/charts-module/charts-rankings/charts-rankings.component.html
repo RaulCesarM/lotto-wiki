@@ -25,9 +25,10 @@
           <fieldset>
             <button mat-button (click)="mostrarOriginal()"><i class="fa-solid fa-chart-column"></i></button>
             <button mat-button (click)="ordenar()"><i class="fa-solid fa-chart-gantt fa-flip-horizontal"></i></button>
-            <button mat-button (click)="toggleMedia()"><span class="material-icons">query_stats </span></button>
-            <button mat-button (click)="toggleTendenciaExponencial()"><i class="fa-solid fa-arrow-trend-up"></i></button>
-            <button mat-button ><i><img src="assets/science.png" width="22px"></i></button>
+            <button mat-button (click)="toggleMedia()"><i><img src="assets/media.png" width="22px"></i></button>
+            <button mat-button (click)="toggleTendenciaExponencial()"><i><img src="assets/grafico.png" width="22px"></i></button>
+            <button mat-button (click)="toggleTendenciaArithmetic()" ><i><img src="assets/crescimento.png" width="22px"></i></button>
+            <button mat-button (click)="toggleOutliers()" ><i><img src="assets/outlier.png" width="22px"></i></button>
           </fieldset>
         </div>
       </fieldset>
