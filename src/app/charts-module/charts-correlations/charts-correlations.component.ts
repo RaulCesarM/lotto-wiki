@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { KatexService } from 'src/app/katex-module/katex.service';
-import { CorrelationsServiceService } from 'src/app/services-module/correlations-service.service';
+import { CorrelationsService } from 'src/app/services-module/correlations.service';
 
 
 
@@ -26,7 +26,7 @@ export class ChartsCorrelationsComponent implements OnInit {
   cells: number[][] = this.correlationsService.getData();
 
   constructor(
-     private correlationsService: CorrelationsServiceService,
+     private correlationsService: CorrelationsService,
      private katexService : KatexService,
 
      ) {  }

@@ -28,6 +28,7 @@ import { FormsModule } from '@angular/forms';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { FormsModule } from '@angular/forms';
     DataRankingsRepositoryComponent,
     DataFormulasRepositoryComponent,
     ExplanationRankingsComponent,
+
   ],
   imports: [
     CommonModule,
@@ -62,12 +64,6 @@ import { FormsModule } from '@angular/forms';
     MatListModule,
     MatIconModule,
     MatButtonModule,
-
-
-
-
-
-
 
   ],
   providers: [

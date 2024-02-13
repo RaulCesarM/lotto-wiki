@@ -7,7 +7,7 @@
 
 .main-container {
   flex-direction: column;
-  height: 100%;
+  height: 90%;
 }
 
 .content-wrapper {
@@ -16,7 +16,7 @@
 }
 
 .ranking-content {
-  width: 100%;
+  width: 90%;
   flex: 2;
   padding: 10px;
   margin: 0px;
@@ -25,9 +25,11 @@
 .container-fluid{
   padding: 0px;
   margin: 0px;
+  line-height: 13px;
 }
 
 p{
   font-size: 5px;
 }
+
 
