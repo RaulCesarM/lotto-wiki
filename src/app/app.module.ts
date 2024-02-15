@@ -23,10 +23,12 @@ import { DataMoonsRepositoryComponent } from './data-module/data-moons-repositor
 import { DataMapsRepositoryComponent } from './data-module/data-maps-repository/data-maps-repository.component';
 import { DataRankingsRepositoryComponent } from './data-module/data-rankings-repository/data-rankings-repository.component';
 import { DataFormulasRepositoryComponent } from './data-module/data-formulas-repository/data-formulas-repository.component';
-import { ExplanationRankingsComponent } from './explination-module/explanation-rankings/explanation-rankings.component';
+
 import { FormsModule } from '@angular/forms';
-
-
+import { ExplanationRankingsComponent } from './explanations-module/explanation-rankings/explanation-rankings.component';
+import { ExplanationCorrelationsComponent } from './explanations-module/explanation-correlations/explanation-correlations.component';
+import { PagesHomeComponent } from './pages-module/pages-home/pages-home.component';
+import { PagesFormulaComponent } from './pages-module/pages-formula/pages-formula.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { FormsModule } from '@angular/forms';
     DataRankingsRepositoryComponent,
     DataFormulasRepositoryComponent,
     ExplanationRankingsComponent,
-
+    ExplanationCorrelationsComponent,
+    PagesHomeComponent,
+    PagesFormulaComponent  
   ],
   imports: [
     CommonModule,

@@ -13,10 +13,11 @@
   height: auto;
 }
 
-.left-fieldset {
+/* .left-fieldset {
   flex:2;
   margin-right: 20px;
   width:600px;
+  max-width:600px;
   max-height: 600px;
   overflow-y: hidden;
   overflow-x: hidden;
@@ -28,11 +29,32 @@
   border: 1px solid #ebe0e0;
   padding: 10px;
   margin-right: 20px;
-  width: 70vh;
+  width: 500px;
   height: 600px;
-  max-height: 657px;
+  max-width: 500px;
+  max-height: 500px;
+  overflow: auto;
+} */
+
+.left-fieldset {
+  flex:2;
+  margin-right: 20px;
+  max-width: 80vw;
+  max-height: 80vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.right-fieldset {
+  flex: 2;
+  border: 1px solid #ebe0e0;
+  padding: 10px;
+  margin-right: 20px;
+  text-align: left;
+  max-width: 50vw;
+  max-height: 70vh;
   overflow: auto;
 }
+
 
 fieldset{
   border: 1px solid #ebe0e0;

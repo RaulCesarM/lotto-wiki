@@ -79,6 +79,25 @@ export class EquationsSeviceService {
     return dataWithLabels
   }
 
+  unSort(dataParam: any, LabelParam: any) {
+    let data = dataParam;
+    let labels = LabelParam;
+    let dataWithLabels = [];
+    for (let i = 0; i < data.length; i++) {
+      dataWithLabels.push({
+        data: data[i],
+        label: labels[i],
+      });
+    }
+    dataWithLabels.sort((first: any, second: any) => first.label - second.label);
+    for (let i = 0; i < dataWithLabels.length; i++) {
+      data[i] = dataWithLabels[i].data;
+      labels[i] = dataWithLabels[i].label;
+    }
+    return dataWithLabels
+  }
+
+
   calculateAverage(data: number[]) {
     return data.reduce((acc, value) => acc + value, 0) / data.length;
   }

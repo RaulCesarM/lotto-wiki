@@ -6,14 +6,16 @@
           <button mat-button (click)="updateDataSourceBasedOnEvent('base')"><span> <img src="assets/ver-lista.png" width="22px"></span> </button>
         <button mat-button (click)="updateDataSourceBasedOnEvent('light')"><span> <img src="assets/pena.png" width="22px"></span> </button>
         <button mat-button (click)="updateDataSourceBasedOnEvent('heavy')"> <span> <img src="assets/peso.png" width="22px"></span></button>
-        <button mat-button (click)="updateDataSourceBasedOnEvent('repeated')"><p><i class="fa-solid fa-person-walking-arrow-loop-left fa-lg"></i></p> </button>
+        <button mat-button (click)="updateDataSourceBasedOnEvent('repeated')"><span><img src="assets/atrasado.png" width="25px"></span></button>
+        <button mat-button (click)="configurationsChart()"> <span> <img src="assets/configuracoes.png" width="22px"></span>
+        </button>
       </fieldset>
 
       </fieldset>
     </nav>
     <fieldset class="left-fieldset">
       <div class="chart-container">
-        <canvas id="canvas" width="700px" height="600px">{{chart}}</canvas>
+        <canvas id="canvas" width="600px" height="400px">{{chart}}</canvas>
       </div>
       <div class="fieldset-container">
 
@@ -28,8 +30,8 @@
         </fieldset>
 
         <fieldset class="fieldset-inline">
-          <button mat-button (click)="toggleMedia()"><i><img src="assets/arithmetic-mean.png" width="20px"></i></button>
-          <button mat-button (click)="toggleMedia()"><i><img src="assets/mendelevio.png" width="18px"></i></button>
+          <button mat-button (click)="toggleMedia()"><i><img src="assets/arithmetic-mean.png" width="35px"></i></button>
+         
         </fieldset>
 
         <fieldset class="fieldset-inline">
@@ -41,8 +43,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="right-fieldset">
-      <legend>O que são os dados de ranking</legend>
+    <fieldset class="right-fieldset">     
       <div class="text-container">
         <app-explanation-rankings></app-explanation-rankings>
       </div>
