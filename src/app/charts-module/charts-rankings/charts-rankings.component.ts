@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import * as bootstrap from 'bootstrap';
 import Chart from 'chart.js/auto';
 import { KatexService } from 'src/app/katex-module/katex.service';
 import { EquationsSeviceService } from 'src/app/math-modules/equations-sevice.service';
@@ -10,6 +11,8 @@ import { RankingService } from 'src/app/services-module/ranking.service';
   styleUrls: ['./charts-rankings.component.css'],
 })
 export class ChartsRankingsComponent implements OnInit {
+  @ViewChild('exampleModal')
+  exampleModal!: ElementRef;
 
   title = 'ng-chart';
   chart: any = [];
@@ -31,6 +34,8 @@ export class ChartsRankingsComponent implements OnInit {
   originalLabels: any[] | undefined;
   originalDataSource: number[] | undefined;
   outliersData: number[] | undefined;
+
+  selectedColor: string = '#0000';
 
   constructor(
     private elRef: ElementRef,
@@ -74,6 +79,13 @@ export class ChartsRankingsComponent implements OnInit {
     this.isBaseActive = true;
     this.originalDataSource = [...this.rankingService.baseDataSource];
     this.showChart();
+
+    const myModal = new bootstrap.Modal(this.exampleModal.nativeElement);
+    myModal.show();
+
+
+
+
   }
 
   showChart() {

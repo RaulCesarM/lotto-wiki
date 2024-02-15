@@ -29,6 +29,7 @@ import { ExplanationRankingsComponent } from './explanations-module/explanation-
 import { ExplanationCorrelationsComponent } from './explanations-module/explanation-correlations/explanation-correlations.component';
 import { PagesHomeComponent } from './pages-module/pages-home/pages-home.component';
 import { PagesFormulaComponent } from './pages-module/pages-formula/pages-formula.component';
+import { ConfigurationsChartsRankingsComponent } from './configurations-module/configurations-charts-rankings/configurations-charts-rankings.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { PagesFormulaComponent } from './pages-module/pages-formula/pages-formul
     ExplanationRankingsComponent,
     ExplanationCorrelationsComponent,
     PagesHomeComponent,
-    PagesFormulaComponent  
+    PagesFormulaComponent,
+    ConfigurationsChartsRankingsComponent  
   ],
   imports: [
     CommonModule,
@@ -60,14 +62,16 @@ import { PagesFormulaComponent } from './pages-module/pages-formula/pages-formul
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
+    MatSidenavModule,  
     MatListModule,
     FormsModule,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    
+
+
 
   ],
   providers: [
