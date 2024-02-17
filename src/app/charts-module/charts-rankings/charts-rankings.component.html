@@ -1,24 +1,33 @@
 <div class="container-fluid">
   <div class="row ">
-   
-      <fieldset>
-       
-         <button mat-button (click)="updateDataSourceBasedOnEvent('base')"><span> <img src="assets/ver-lista.png" width="22px"></span> </button>
-        <button mat-button (click)="updateDataSourceBasedOnEvent('light')"><span> <img src="assets/pena.png" width="22px"></span> </button>
-        <button mat-button (click)="updateDataSourceBasedOnEvent('heavy')"> <span> <img src="assets/peso.png" width="22px"></span></button>
-        <button mat-button (click)="updateDataSourceBasedOnEvent('repeated')"><span><img src="assets/atrasado.png" width="25px"></span></button>
-        <button mat-button data-bs-toggle="modal" data-bs-target="#exampleModal"><span> <img src="assets/configuracoes.png" width="22px"></span> </button>
 
-          <button mat-button (click)="toggleOrdenado()"><span><img src="assets/ordenar.png" width="18px"></span></button>
-          <button mat-button (click)="toggleOutliers()"><span><img src="assets/data-out.png" width="18px"></span></button>
-          <button mat-button (click)="toggleMedia()"><span><img src="assets/arithmetic-mean.png" width="35px"></span></button>
-          <button mat-button (click)="toggleTendenciaExponencial()"><span><img src="assets/grafico.png" width="18px"></span></button>
-          <button mat-button (click)="toggleTendenciaArithmetic()"><span><img src="assets/crescimento.png" width="18px"></span></button>
-          <button mat-button (click)="toggleTendenciaLogarithm()"><span><img src="assets/outlier.png" width="18px"></span></button>      
-      </fieldset>
+    <fieldset>
+
+      <button mat-button (click)="updateDataSourceBasedOnEvent('base')"><span> <img src="assets/ver-lista.png"
+            width="22px"></span> </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('light')"><span> <img src="assets/pena.png"
+            width="22px"></span> </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('heavy')"> <span> <img src="assets/peso.png"
+            width="22px"></span></button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('repeated')"><span><img src="assets/atrasado.png"
+            width="25px"></span></button>
+      <button mat-button data-bs-toggle="modal" data-bs-target="#exampleModal"><span> <img
+            src="assets/configuracoes.png" width="22px"></span> </button>
+
+      <button mat-button (click)="toggleOrdenado()"><span><img src="assets/ordenar.png" width="18px"></span></button>
+      <button mat-button (click)="toggleOutliers()"><span><img src="assets/data-out.png" width="18px"></span></button>
+      <button mat-button (click)="toggleMedia()"><span><img src="assets/arithmetic-mean.png"
+            width="35px"></span></button>
+      <button mat-button (click)="toggleTendenciaExponencial()"><span><img src="assets/grafico.png"
+            width="18px"></span></button>
+      <button mat-button (click)="toggleTendenciaArithmetic()"><span><img src="assets/crescimento.png"
+            width="18px"></span></button>
+      <button mat-button (click)="toggleTendenciaLogarithm()"><span><img src="assets/outlier.png"
+            width="18px"></span></button>
+    </fieldset>
 
 
-   
+
     <fieldset class="left-fieldset">
       <div class="chart-container">
         <canvas id="canvas" width="600px" height="400px">{{chart}}</canvas>
@@ -27,11 +36,11 @@
 
         <fieldset class="fieldset-inline">
 
-      </fieldset>
+        </fieldset>
       </div>
     </fieldset>
 
-    <fieldset class="right-fieldset">     
+    <fieldset class="right-fieldset">
       <div class="text-container">
         <app-explanation-rankings></app-explanation-rankings>
       </div>
@@ -42,22 +51,28 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ 
   <div class="modal-dialog">
+   
     <div class="modal-content">
+      <fieldset>
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Configurações</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        <button mat-button  data-bs-dismiss="modal" aria-label="Fechar"></button>
       </div>
       <div class="modal-body">
-       <p>Cor</p>
-       <p>Borda</p>
-       <p>Cor</p>
+        <p>Cor</p>
+        <p>Borda</p>
+        <p>Cor</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar mudanças</button>
+        <button mat-button type="button" data-bs-dismiss="modal">Fechar</button>
+        <button mat-button type="button" >Salvar mudanças</button>
       </div>
+    </fieldset>
     </div>
+ 
   </div>
+
 </div>
