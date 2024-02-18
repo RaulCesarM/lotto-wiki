@@ -17,6 +17,16 @@ export class ChartsRankingsComponent implements OnInit {
   title = 'ng-chart';
   chart: any = [];
 
+  
+
+  bar: string = '#37A9F5';
+  bordeBar: string = '#37A9F5';
+
+  barRGBA: string ='';
+  borderRGBA: string ='';
+
+  tipoGraficoSelecionado: string = '';
+
   isSorted: boolean = false;
   isAvaregeShow: boolean = false;
   isExponentialTrendLineShow: boolean = false;
@@ -28,6 +38,9 @@ export class ChartsRankingsComponent implements OnInit {
   isRepeatedActive = false;
   isBaseActive = false;
 
+
+  showGaussianChart: boolean = false;
+
   isOutliersShow: boolean = true;
 
   originalData: any[] | undefined;
@@ -35,7 +48,7 @@ export class ChartsRankingsComponent implements OnInit {
   originalDataSource: number[] | undefined;
   outliersData: number[] | undefined;
 
-  selectedColor: string = '#0000';
+
 
   constructor(
     private elRef: ElementRef,
@@ -44,18 +57,8 @@ export class ChartsRankingsComponent implements OnInit {
     private rankingService: RankingService
   ) {}
 
-  configurationsChart() {
-    let color: string;
-    let borderColor: string;
-    let typeChart: string;
-    let standardDeviation: number;
-    let exponentialValue: number;
-    let maxOutlierValue: number;
-    let minOutlierValue:number;
-    let rangeOutlierValue: { min: number, max: number }[] = [{ min: 0, max: 1 }];
 
-    }
-
+  
   ngAfterViewInit() {
     const canvas = this.elRef.nativeElement.querySelector(
       '#canvas'
@@ -67,26 +70,70 @@ export class ChartsRankingsComponent implements OnInit {
 
   ngOnInit() {
     const mediaExpression = this.katexService.getSimpleArithmethicMeanFormula();
-    const tendencyExpression =
-      this.katexService.getExponentialTrendLineFormula();
+    const tendencyExpression = this.katexService.getExponentialTrendLineFormula();
 
     this.katexService.renderMathExpression(mediaExpression, 'media');
-    this.katexService.renderMathExpression(
-      tendencyExpression,
-      'linhaTendenciaFormula'
-    );    
-   
+    this.katexService.renderMathExpression(tendencyExpression,'linhaTendenciaFormula');
+
+    this.bar = localStorage.getItem('bar') || this.bar;
+    this.bordeBar = localStorage.getItem('bordeBar') || this.bordeBar;
+
     this.isBaseActive = true;
     this.originalDataSource = [...this.rankingService.baseDataSource];
+
+
+    this.barRGBA = this.hexToRGBA(this.bar, 0.5)
+    this.borderRGBA = this.hexToRGBA(this.bar, 0.5)
+
     this.showChart();
 
     const myModal = new bootstrap.Modal(this.exampleModal.nativeElement);
     myModal.show();
 
-
-
-
   }
+
+ 
+  saveConfig() {
+    localStorage.setItem('bar', this.bar);
+    localStorage.setItem('bordeBar', this.bordeBar);  
+      this.chart.data.datasets[0].backgroundColor = this.hexToRGBA(this.bar, 0.5);  
+      this.chart.data.datasets[0].borderColor =  this.hexToRGBA(this.bordeBar, 0.5); 
+      this.chart.data.datasets[0].type = this.tipoGraficoSelecionado;   
+      this.chart.update();
+  }
+
+  hexToRGBA(hexValue: string, opacity: number): string {
+    const hex = hexValue.replace('#', '');
+    const rgbValues = hex.match(/.{1,2}/g)?.map(val => parseInt(val, 16)) ?? [];
+    rgbValues.push(opacity);
+    return `rgba(${rgbValues.join(',')})`;
+  }
+
+
+  // rgbaToHex(rgbaValue: string): string {
+    
+  //   const rgbaMatch = rgbaValue.match(/(\d{1,3}),(\d{1,3}),(\d{1,3}),([\d.]+)/);
+  //   if (!rgbaMatch) {
+  //     throw new Error('Valor RGBA inválido.');
+  //   }
+  //   const [, r, g, b, a] = rgbaMatch.map(Number);  
+   
+  //   const rHex = r.toString(16).padStart(2, '0');
+  //   const gHex = g.toString(16).padStart(2, '0');
+  //   const bHex = b.toString(16).padStart(2, '0');
+  
+   
+  //   if (a === 1) {
+  //     return `#${rHex}${gHex}${bHex}`;
+  //   }
+  
+    
+  //   const aHex = Math.round(a * 255).toString(16).padStart(2, '0');
+  //   return `#${rHex}${gHex}${bHex}${aHex}`;
+  // }
+  
+
+
 
   showChart() {
     this.chart = new Chart('canvas', {
@@ -97,8 +144,8 @@ export class ChartsRankingsComponent implements OnInit {
           {
             label: 'Normal',
             data: this.originalDataSource,
-            backgroundColor: 'rgba(55, 169, 245,0.7)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor:this.barRGBA,
+            borderColor: this.borderRGBA,
             borderWidth: 1,
           },
           {
@@ -116,7 +163,7 @@ export class ChartsRankingsComponent implements OnInit {
             type: 'line',
             fill: false,
             borderColor: 'blue',
-            pointRadius: 1,
+            pointRadius: 2,
             borderWidth: 1,
           },
           {
@@ -163,10 +210,13 @@ export class ChartsRankingsComponent implements OnInit {
     this.originalLabels = JSON.parse( JSON.stringify([...this.chart.data.labels]));
   }
 
+  /////////////////////////////////////////////////////////
+
+
   //////////////////////////////////////////////////////////
 
   updateDataSourceBasedOnEvent(event: string) {
-    
+
     if (event === 'heavy') {
       this.isHaveyActive = true;
       this.isLightActive = false;
@@ -218,9 +268,9 @@ export class ChartsRankingsComponent implements OnInit {
     this.updateChartAndTrendLines()
     this.chart.update();
   }
-  
 
-  mostrarOriginal() { 
+
+  mostrarOriginal() {
 
     let data = this.chart.data.datasets[0].data;
     const labels = this.chart.data.labels;
@@ -232,29 +282,29 @@ export class ChartsRankingsComponent implements OnInit {
   updateChartAndTrendLines() {
 
     if (this.isExponentialTrendLineShow) {
-      this.adicionarLinhaTendenciaExponencial();    
+      this.adicionarLinhaTendenciaExponencial();
     }else{
-      this.removerLinhaTendenciaExponencial(); 
+      this.removerLinhaTendenciaExponencial();
     }
 
 
     if (this.isArithmeticTrendLineShow) {
-      this.adicionarLinhaTendenciaAritmetica();    
+      this.adicionarLinhaTendenciaAritmetica();
     }else{
-      this.removerLinhaTendenciaAritmetica(); 
+      this.removerLinhaTendenciaAritmetica();
     }
 
     if (this.isLogarithmLineDataTrendLineShow) {
-      this.adicionarLinhaTendenciaLogarithm();     
+      this.adicionarLinhaTendenciaLogarithm();
     } else {
       this.removerLinhaTendenciaLogarithm()
-    }  
+    }
 
     if (this.isAvaregeShow) {
-      this.adicionarMedia();     
+      this.adicionarMedia();
     } else {
       this.removerMedia()
-    }  
+    }
   }
 
   toggleOutliers() {
@@ -288,8 +338,8 @@ export class ChartsRankingsComponent implements OnInit {
 
 
   toggleTendenciaArithmetic() {
-    this.isArithmeticTrendLineShow = !this.isArithmeticTrendLineShow;   
-    this.updateChartAndTrendLines()   
+    this.isArithmeticTrendLineShow = !this.isArithmeticTrendLineShow;
+    this.updateChartAndTrendLines()
   }
 
   private adicionarLinhaTendenciaAritmetica() {
@@ -310,7 +360,7 @@ export class ChartsRankingsComponent implements OnInit {
 
   toggleTendenciaExponencial() {
     this.isExponentialTrendLineShow = !this.isExponentialTrendLineShow;
-    this.updateChartAndTrendLines()  
+    this.updateChartAndTrendLines()
   }
 
   private adicionarLinhaTendenciaExponencial() {
@@ -331,7 +381,7 @@ export class ChartsRankingsComponent implements OnInit {
 
   toggleTendenciaLogarithm() {
     this.isLogarithmLineDataTrendLineShow = !this.isLogarithmLineDataTrendLineShow;
-    this.updateChartAndTrendLines()  
+    this.updateChartAndTrendLines()
   }
 
   private adicionarLinhaTendenciaLogarithm() {
@@ -352,7 +402,7 @@ export class ChartsRankingsComponent implements OnInit {
 
   toggleMedia() {
     this.isAvaregeShow = !this.isAvaregeShow;
-    this.updateChartAndTrendLines()  
+    this.updateChartAndTrendLines()
   }
 
   private adicionarMedia() {

@@ -30,6 +30,7 @@ import { ExplanationCorrelationsComponent } from './explanations-module/explanat
 import { PagesHomeComponent } from './pages-module/pages-home/pages-home.component';
 import { PagesFormulaComponent } from './pages-module/pages-formula/pages-formula.component';
 import { ConfigurationsChartsRankingsComponent } from './configurations-module/configurations-charts-rankings/configurations-charts-rankings.component';
+import { ChartsOnionComponent } from './charts-module/charts-onion/charts-onion.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ConfigurationsChartsRankingsComponent } from './configurations-module/c
     ExplanationCorrelationsComponent,
     PagesHomeComponent,
     PagesFormulaComponent,
-    ConfigurationsChartsRankingsComponent  
+    ConfigurationsChartsRankingsComponent,
+    ChartsOnionComponent  
   ],
   imports: [
     CommonModule,
