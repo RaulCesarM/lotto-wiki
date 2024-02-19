@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as bootstrap from 'bootstrap';
 import Chart from 'chart.js/auto';
-import { KatexService } from 'src/app/katex-module/katex.service';
-import { EquationsSeviceService } from 'src/app/math-modules/equations-sevice.service';
-import { RankingService } from 'src/app/services-module/ranking.service';
+import { KatexService } from 'src/app/services/katex.service';
+import { EquationsService } from 'src/app/services/equations.service';
+import { RankingService } from 'src/app/services/ranking.service';
 
 @Component({
   selector: 'app-charts-rankings',
@@ -45,7 +45,7 @@ export class ChartsRankingsComponent implements OnInit {
   constructor(
     private elRef: ElementRef,
     private katexService: KatexService,
-    private mathService: EquationsSeviceService,
+    private mathService: EquationsService,
     private rankingService: RankingService
   ) {}
   

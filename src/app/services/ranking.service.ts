@@ -18,13 +18,5 @@ export class RankingService {
   reiterationDataSource =  [ 0, 0, 0, 5, 0, 3, 0, 0, 5, 2, 0, 0, 3, 5, 0, 0, 0, 3, 0, 0, 2, 0, 3, 2, 0 ]
 
 
-  originalBaseDataSource = this.baseDataSource.map(x => x);
-  originalHeavyDataSource = this.heavyDataSource.map(x => x);
-  originalLightDataSource = this.lightDataSource.map(x => x);
-  originalReiterationDataSource = this.reiterationDataSource.map(x => x);
-
-
-
-
 
 }

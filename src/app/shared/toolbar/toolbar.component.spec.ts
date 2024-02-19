@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PagesFormulaComponent } from './pages-formula.component';
+import { ToolbarComponent } from './toolbar.component';
 
-describe('PagesFormulaComponent', () => {
-  let component: PagesFormulaComponent;
-  let fixture: ComponentFixture<PagesFormulaComponent>;
+describe('ToolbarComponent', () => {
+  let component: ToolbarComponent;
+  let fixture: ComponentFixture<ToolbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PagesFormulaComponent ]
+      declarations: [ ToolbarComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PagesFormulaComponent);
+    fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

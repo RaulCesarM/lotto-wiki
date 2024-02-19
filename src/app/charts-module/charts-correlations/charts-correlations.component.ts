@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CorrelationsService } from 'src/app/services/correlations.service';
 
-import { KatexService } from 'src/app/katex-module/katex.service';
-import { CorrelationsService } from 'src/app/services-module/correlations.service';
+import { KatexService } from 'src/app/services/katex.service';
+// import { CorrelationsService } from 'src/app/services/correlations.service';
 
 
 

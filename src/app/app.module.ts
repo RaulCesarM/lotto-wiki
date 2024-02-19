@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -18,19 +17,12 @@ import { ChartsRankingsComponent } from './charts-module/charts-rankings/charts-
 import { ChartsMoonsComponent } from './charts-module/charts-moons/charts-moons.component';
 import { ChartsMapsComponent } from './charts-module/charts-maps/charts-maps.component';
 import { ChartsCorrelationsComponent } from './charts-module/charts-correlations/charts-correlations.component';
-import { DataCorrelationsRepositoryComponent } from './data-module/data-correlations-repository/data-correlations-repository.component';
-import { DataMoonsRepositoryComponent } from './data-module/data-moons-repository/data-moons-repository.component';
-import { DataMapsRepositoryComponent } from './data-module/data-maps-repository/data-maps-repository.component';
-import { DataRankingsRepositoryComponent } from './data-module/data-rankings-repository/data-rankings-repository.component';
-import { DataFormulasRepositoryComponent } from './data-module/data-formulas-repository/data-formulas-repository.component';
-
 import { FormsModule } from '@angular/forms';
-import { ExplanationRankingsComponent } from './explanations-module/explanation-rankings/explanation-rankings.component';
-import { ExplanationCorrelationsComponent } from './explanations-module/explanation-correlations/explanation-correlations.component';
-import { PagesHomeComponent } from './pages-module/pages-home/pages-home.component';
-import { PagesFormulaComponent } from './pages-module/pages-formula/pages-formula.component';
-import { ConfigurationsChartsRankingsComponent } from './configurations-module/configurations-charts-rankings/configurations-charts-rankings.component';
 import { ChartsOnionComponent } from './charts-module/charts-onion/charts-onion.component';
+import { ExplanationCorrelationsComponent } from './components/explanations/explanation-correlations/explanation-correlations.component';
+import { ExplanationRankingsComponent } from './components/explanations/explanation-rankings/explanation-rankings.component';
+import { PagesHomeComponent } from './pages/pages-home/pages-home.component';
+
 
 
 @NgModule({
@@ -43,17 +35,13 @@ import { ChartsOnionComponent } from './charts-module/charts-onion/charts-onion.
     ChartsMoonsComponent,
     ChartsMapsComponent,
     ChartsCorrelationsComponent,
-    DataCorrelationsRepositoryComponent,
-    DataMoonsRepositoryComponent,
-    DataMapsRepositoryComponent,
-    DataRankingsRepositoryComponent,
-    DataFormulasRepositoryComponent,
-    ExplanationRankingsComponent,
+    ChartsOnionComponent,
     ExplanationCorrelationsComponent,
+    ExplanationRankingsComponent,
     PagesHomeComponent,
-    PagesFormulaComponent,
-    ConfigurationsChartsRankingsComponent,
-    ChartsOnionComponent  
+
+    
+    
   ],
   imports: [
     CommonModule,
@@ -71,10 +59,6 @@ import { ChartsOnionComponent } from './charts-module/charts-onion/charts-onion.
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    
-
-
-
   ],
   providers: [
 

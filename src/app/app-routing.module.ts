@@ -4,7 +4,7 @@ import { ChartsCorrelationsComponent } from './charts-module/charts-correlations
 import { ChartsMapsComponent } from './charts-module/charts-maps/charts-maps.component';
 import { ChartsMoonsComponent } from './charts-module/charts-moons/charts-moons.component';
 import { ChartsRankingsComponent } from './charts-module/charts-rankings/charts-rankings.component';
-import { PagesHomeComponent } from './pages-module/pages-home/pages-home.component';
+import { PagesHomeComponent } from './pages/pages-home/pages-home.component';
 import { ChartsOnionComponent } from './charts-module/charts-onion/charts-onion.component';
 
 const routes: Routes = [

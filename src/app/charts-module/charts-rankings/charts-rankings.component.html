@@ -1,43 +1,29 @@
-
 <div class="container-fluid">
   <div class="row ">
 
     <fieldset>
-
-      <button mat-button (click)="updateDataSourceBasedOnEvent('base')"><span> <img src="assets/ver-lista.png" width="35px"></span> </button>
-
-      <button mat-button (click)="updateDataSourceBasedOnEvent('light')"><span> <img src="assets/pena.png" width="35px"></span> </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('heavy')"> <span> <img src="assets/peso.png" width="35px"></span></button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('repeated')"><span><img src="assets/atrasado.png" width="35px"></span></button>
-
-
-
+      <button mat-button (click)="updateDataSourceBasedOnEvent('base')"><span> <img src="assets/ver-lista.png"   width="35px"></span> </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('light')"><span> <img src="assets/pena.png"        width="35px"></span> </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('heavy')"> <span> <img src="assets/peso.png"         width="35px"></span></button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('repeated')"><span><img src="assets/atrasado.png"           width="35px"></span></button>
       <button mat-button (click)="toggleOutliers()"><span><img src="assets/data-out.png" width="35px"></span></button>
-      <button mat-button (click)="toggleMedia()"><span><img src="assets/arithmetic-mean.png"width="35px"></span></button>
-      <button mat-button (click)="toggleTendenciaExponencial()"><span><img src="assets/grafico.png"width="35px"></span></button>
-      <button mat-button (click)="toggleTendenciaArithmetic()"><span><img src="assets/crescimento.png" width="35px"></span></button>
-      <button mat-button (click)="toggleTendenciaLogarithm()"><span><img src="assets/outlier.png"width="35px"></span></button>
-
-
-
-
+      <button mat-button (click)="toggleMedia()"><span><img src="assets/arithmetic-mean.png"       width="35px"></span></button>
+      <button mat-button (click)="toggleTendenciaExponencial()"><span><img src="assets/grafico.png"           width="35px"></span></button>
+      <button mat-button (click)="toggleTendenciaArithmetic()"><span><img src="assets/crescimento.png"       width="35px"></span></button>
+      <button mat-button (click)="toggleTendenciaLogarithm()"><span><img src="assets/outlier.png"       width="35px"></span></button>
     </fieldset>
-
-
 
     <fieldset class="left-fieldset">
       <div class="chart-container">
         <canvas id="canvas" width="600px" height="400px">{{chart}}</canvas>
       </div>
       <div class="fieldset-container">
-
         <fieldset class="fieldset-inline">
-          <button mat-button (click)="toggleOrdenado()"><span><img src="assets/ordenar.png" width="35px"></span></button>
-          <button mat-button data-bs-toggle="modal" data-bs-target="#exampleModal"><span> <img src="assets/configuracoes.png" width="35px"></span> </button>
-
+          <button mat-button (click)="toggleOrdenado()"><span><img src="assets/ordenar.png"
+                width="35px"></span></button>
+          <button mat-button data-bs-toggle="modal" data-bs-target="#exampleModal"><span> <img
+                src="assets/configuracoes.png" width="35px"></span> </button>
         </fieldset>
-
-
       </div>
     </fieldset>
 
@@ -63,10 +49,8 @@
           <button mat-button data-bs-dismiss="modal" aria-label="Fechar"></button>
         </div>
         <div class="modal-body">
-
-          <div >
-
-            <fieldset >
+          <div>
+            <fieldset>
               <fieldset class="fieldset-inline">
                 <fieldset class="fieldset-inline">
                   <span><img src="assets/ver-lista.png" width="35px"> </span>
@@ -74,17 +58,20 @@
 
                 <fieldset class="fieldset-inline">
                   <img src="assets/paint-bucket.png" width="35px">
-                  <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px;" type="color" [(ngModel)]="bar">
+                  <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px;" type="color"
+                    [(ngModel)]="bar">
                 </fieldset>
 
                 <fieldset class="fieldset-inline">
                   <img src="assets/background.png" width="35px">
-                  <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px" type="color" [(ngModel)]="bordeBar">
+                  <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px" type="color"
+                    [(ngModel)]="bordeBar">
                 </fieldset>
 
                 <fieldset class="fieldset-inline">
 
-                  <select [(ngModel)]="tipoGraficoSelecionado"  style="height: 35px;width: 100px; border: 1px;padding-left: 5px">
+                  <select [(ngModel)]="tipoGraficoSelecionado"
+                    style="height: 35px;width: 100px; border: 1px;padding-left: 5px">
                     <option value="" disabled selected>Selecione</option>
                     <option value="line">line</option>
                     <option value="bubble">bubble</option>
@@ -94,117 +81,6 @@
 
 
               </fieldset>
-
-<!-- 
-              <fieldset class="fieldset-inline">
-                <fieldset class="fieldset-inline">
-                  <span><img src="assets/crescimento.png" width="35px"></span>
-                </fieldset>
-
-                <fieldset class="fieldset-inline">
-                  <img src="assets/paint-bucket.png" width="35px">
-                  <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px" type="color" [(ngModel)]="bar">
-                </fieldset>
-
-                <fieldset class="fieldset-inline">
-                  <img src="assets/background.png" width="35px">
-                  <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px" type="color" [(ngModel)]="bordeBar">
-                </fieldset>
-
-                <fieldset class="fieldset-inline">
-
-                  <select [(ngModel)]="tipoGraficoSelecionado">
-                    <option value="" disabled selected>Selecione</option>
-                    <option value="line">line</option>
-                    <option value="bubble">bubble</option>
-                    <option value="bar">bar</option>
-                  </select>
-                </fieldset>
-              </fieldset>
-
-
-              <fieldset class="fieldset-inline">
-                <fieldset class="fieldset-inline">
-                  <span><img src="assets/grafico.png"width="35px"></span>
-                </fieldset>
-
-                <fieldset class="fieldset-inline">
-                  <img src="assets/paint-bucket.png" width="35px">
-                  <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px" type="color" [(ngModel)]="bar">
-                </fieldset>
-
-                <fieldset class="fieldset-inline">
-                  <img src="assets/background.png" width="35px">
-                  <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px" type="color" [(ngModel)]="bordeBar">
-                </fieldset>
-
-                <fieldset class="fieldset-inline">
-
-                  <select [(ngModel)]="tipoGraficoSelecionado">
-                    <option value="" disabled selected>Selecione</option>
-                    <option value="line">line</option>
-                    <option value="bubble">bubble</option>
-                    <option value="bar">bar</option>
-                  </select>
-                </fieldset>
-              </fieldset>
-
-
-              <fieldset class="fieldset-inline">
-                <fieldset class="fieldset-inline">
-                  <span><img src="assets/outlier.png"width="35px"></span>
-                </fieldset>
-
-                <fieldset class="fieldset-inline">
-                  <img src="assets/paint-bucket.png" width="35px">
-                  <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px" type="color" [(ngModel)]="bar">
-                </fieldset>
-
-                <fieldset class="fieldset-inline">
-                  <img src="assets/background.png" width="35px">
-                  <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px" type="color" [(ngModel)]="bordeBar">
-                </fieldset>
-
-                <fieldset class="fieldset-inline">
-
-                  <select [(ngModel)]="tipoGraficoSelecionado">
-                    <option value="" disabled selected>Selecione</option>
-                    <option value="line">line</option>
-                    <option value="bubble">bubble</option>
-                    <option value="bar">bar</option>
-                  </select>
-                </fieldset>
-              </fieldset>
-
-
-              <fieldset class="fieldset-inline">
-                <fieldset class="fieldset-inline">
-                  <span><img src="assets/arithmetic-mean.png"width="35px"></span>
-                </fieldset>
-
-
-
-                <fieldset class="fieldset-inline">
-                  <img src="assets/paint-bucket.png" width="35px">
-                  <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px" type="color" [(ngModel)]="bar">
-                </fieldset>
-
-                <fieldset class="fieldset-inline">
-                  <img src="assets/background.png" width="35px">
-                  <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px" type="color" [(ngModel)]="bordeBar">
-                </fieldset>
-
-                <fieldset class="fieldset-inline">
-
-                  <select [(ngModel)]="tipoGraficoSelecionado">
-                    <option value="" disabled selected>Selecione</option>
-                    <option value="line">line</option>
-                    <option value="bubble">bubble</option>
-                    <option value="bar">bar</option>
-                  </select>
-                </fieldset>
-              </fieldset> -->
-
 
 
             </fieldset>
