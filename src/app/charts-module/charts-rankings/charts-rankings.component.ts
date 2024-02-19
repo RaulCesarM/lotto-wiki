@@ -15,13 +15,10 @@ export class ChartsRankingsComponent implements OnInit {
   exampleModal!: ElementRef;
 
   title = 'ng-chart';
-  chart: any = [];
-
-  
+  chart: any = [];  
 
   bar: string = '#37A9F5';
   bordeBar: string = '#37A9F5';
-
   barRGBA: string ='';
   borderRGBA: string ='';
 
@@ -37,10 +34,7 @@ export class ChartsRankingsComponent implements OnInit {
   isLightActive = false;
   isRepeatedActive = false;
   isBaseActive = false;
-
-
-  showGaussianChart: boolean = false;
-
+  
   isOutliersShow: boolean = true;
 
   originalData: any[] | undefined;
@@ -48,16 +42,12 @@ export class ChartsRankingsComponent implements OnInit {
   originalDataSource: number[] | undefined;
   outliersData: number[] | undefined;
 
-
-
   constructor(
     private elRef: ElementRef,
     private katexService: KatexService,
     private mathService: EquationsSeviceService,
     private rankingService: RankingService
   ) {}
-
-
   
   ngAfterViewInit() {
     const canvas = this.elRef.nativeElement.querySelector(
@@ -83,7 +73,7 @@ export class ChartsRankingsComponent implements OnInit {
 
 
     this.barRGBA = this.hexToRGBA(this.bar, 0.5)
-    this.borderRGBA = this.hexToRGBA(this.bar, 0.5)
+    this.borderRGBA = this.hexToRGBA(this.bordeBar, 0.5)
 
     this.showChart();
 
@@ -108,32 +98,6 @@ export class ChartsRankingsComponent implements OnInit {
     rgbValues.push(opacity);
     return `rgba(${rgbValues.join(',')})`;
   }
-
-
-  // rgbaToHex(rgbaValue: string): string {
-    
-  //   const rgbaMatch = rgbaValue.match(/(\d{1,3}),(\d{1,3}),(\d{1,3}),([\d.]+)/);
-  //   if (!rgbaMatch) {
-  //     throw new Error('Valor RGBA inválido.');
-  //   }
-  //   const [, r, g, b, a] = rgbaMatch.map(Number);  
-   
-  //   const rHex = r.toString(16).padStart(2, '0');
-  //   const gHex = g.toString(16).padStart(2, '0');
-  //   const bHex = b.toString(16).padStart(2, '0');
-  
-   
-  //   if (a === 1) {
-  //     return `#${rHex}${gHex}${bHex}`;
-  //   }
-  
-    
-  //   const aHex = Math.round(a * 255).toString(16).padStart(2, '0');
-  //   return `#${rHex}${gHex}${bHex}${aHex}`;
-  // }
-  
-
-
 
   showChart() {
     this.chart = new Chart('canvas', {
@@ -210,13 +174,7 @@ export class ChartsRankingsComponent implements OnInit {
     this.originalLabels = JSON.parse( JSON.stringify([...this.chart.data.labels]));
   }
 
-  /////////////////////////////////////////////////////////
-
-
-  //////////////////////////////////////////////////////////
-
   updateDataSourceBasedOnEvent(event: string) {
-
     if (event === 'heavy') {
       this.isHaveyActive = true;
       this.isLightActive = false;
@@ -252,32 +210,7 @@ export class ChartsRankingsComponent implements OnInit {
     this.chart.update();
   }
 
-  toggleOrdenado() {
-    this.isSorted = !this.isSorted;
-    if (this.isSorted) {
-      this.ordenar();
-    } else {
-      this.mostrarOriginal();
-    }
-  }
-
-  ordenar() {
-    let data = this.chart.data.datasets[0].data;
-    const labels = this.chart.data.labels;
-    let dataWithLabels = this.mathService.sort(data, labels);
-    this.updateChartAndTrendLines()
-    this.chart.update();
-  }
-
-
-  mostrarOriginal() {
-
-    let data = this.chart.data.datasets[0].data;
-    const labels = this.chart.data.labels;
-    let dataWithLabels = this.mathService.unSort(data, labels);
-   this.updateChartAndTrendLines();
-   this.chart.update();
-  }
+  //////////////////////////////////////////////////////////////////////
 
   updateChartAndTrendLines() {
 
@@ -286,7 +219,6 @@ export class ChartsRankingsComponent implements OnInit {
     }else{
       this.removerLinhaTendenciaExponencial();
     }
-
 
     if (this.isArithmeticTrendLineShow) {
       this.adicionarLinhaTendenciaAritmetica();
@@ -306,11 +238,11 @@ export class ChartsRankingsComponent implements OnInit {
       this.removerMedia()
     }
   }
-
+///////////////////////////////////////////////////////////////////////////
   toggleOutliers() {
     this.isOutliersShow = !this.isOutliersShow;
     if (this.isOutliersShow) {
-      this.sortOutlier();
+      this.adicionaOutliers();
     } else {
       this.removeOutliers();
     }
@@ -318,24 +250,20 @@ export class ChartsRankingsComponent implements OnInit {
 
   removeOutliers() {
     const originalData: number[] = this.originalData || [];
-    const dataWithOutliers = this.mathService.removeOutliers(originalData, 1.5);
+    const dataWithOutliers = this.mathService.removeOutliers(originalData, 1.0);
     this.chart.data.datasets[0].data = dataWithOutliers;
     this.outliersData = dataWithOutliers;
     this.chart.update();
+  } 
+
+  adicionaOutliers(){
+    this.chart.data.datasets[0].data = this.originalData;   
+   this.updateChartAndTrendLines();
+   this.chart.update();
+
   }
 
-  sortOutlier() {
-    const data = this.outliersData;
-    const labels = this.chart.data.labels;
-    const dataWithLabels = this.mathService.sort(data, labels);
-    this.chart.data.datasets[0].data = dataWithLabels.map(
-      (item: any) => item.data
-    );
-    this.chart.data.labels = dataWithLabels.map((item: any) => item.label);
-
-    this.updateChartAndTrendLines()
-  }
-
+  ///////////////////////////////////////////////////////////////////////////////
 
   toggleTendenciaArithmetic() {
     this.isArithmeticTrendLineShow = !this.isArithmeticTrendLineShow;
@@ -354,6 +282,33 @@ export class ChartsRankingsComponent implements OnInit {
     this.isArithmeticTrendLineShow = false;
     this.chart.data.datasets[3].data = [];
     this.chart.update();
+  }
+
+  //////////////////////////////////////////////////////////////////
+  toggleOrdenado() {
+    this.isSorted = !this.isSorted;
+    if (this.isSorted) {
+      this.ordenar();
+    } else {
+      this.mostrarOriginal();
+    }
+  }
+
+  ordenar() {
+    let data = this.chart.data.datasets[0].data;
+    const labels = this.chart.data.labels;
+    let dataWithLabels = this.mathService.sort(data, labels);
+    this.updateChartAndTrendLines()
+    this.chart.update();
+  }
+
+  mostrarOriginal() {
+
+    let data = this.chart.data.datasets[0].data;
+    const labels = this.chart.data.labels;
+    let dataWithLabels = this.mathService.unSort(data, labels);
+   this.updateChartAndTrendLines();
+   this.chart.update();
   }
 
   ////////////////////////////////////////////////////////////////////

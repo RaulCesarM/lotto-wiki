@@ -98,33 +98,33 @@ export class EquationsSeviceService {
   }
 
 
-  calculateAverage(data: number[]) {
+  calculateAverage(data: number[]): number {
     return data.reduce((acc, value) => acc + value, 0) / data.length;
-  }
+}
 
-  calculateStandardDeviation(data: number[], mean: number): number {
+calculateStandardDeviation(data: number[], mean: number): number {
     const squaredDifferences = data.map(value => Math.pow(value - mean, 2));
     const variance = this.calculateAverage(squaredDifferences);
     const standardDeviation = Math.sqrt(variance);
     return standardDeviation;
-  }
+}
 
-  calculateMedian(data: number[]): number {
+calculateMedian(data: number[]): number {
     data.sort((a, b) => a - b);
     const length = data.length;
     if (length % 2 === 1) {
-      return data[Math.floor(length / 2)];
+        return data[Math.floor(length / 2)];
     } else {
-      const middleIndex = length / 2;
-      return (data[middleIndex - 1] + data[middleIndex]) / 2;
+        const middleIndex = length / 2;
+        return (data[middleIndex - 1] + data[middleIndex]) / 2;
     }
-  }
+}
 
-  removeOutliers(data: number[], stdDevThreshold: number): number[] {
+removeOutliers(data: number[], stdDevThreshold: number): number[] {
     const mean = this.calculateAverage(data);
     const stdDev = this.calculateStandardDeviation(data, mean);
     const lowerBound = mean - stdDevThreshold * stdDev;
     const upperBound = mean + stdDevThreshold * stdDev;
     return data.filter(value => value >= lowerBound && value <= upperBound);
-  }
+}
 }
