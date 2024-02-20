@@ -6,6 +6,7 @@ import { ChartsMoonsComponent } from './charts-module/charts-moons/charts-moons.
 import { ChartsRankingsComponent } from './charts-module/charts-rankings/charts-rankings.component';
 import { PagesHomeComponent } from './pages/pages-home/pages-home.component';
 import { ChartsOnionComponent } from './charts-module/charts-onion/charts-onion.component';
+import { PagesRankingComponent } from './pages/pages-ranking/pages-ranking.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +16,9 @@ const routes: Routes = [
   { path: 'ranking', component: ChartsRankingsComponent},
   { path: 'maps', component: ChartsMapsComponent},
   { path: 'correl', component: ChartsCorrelationsComponent},
+  { path:'pg-ranking', component: PagesRankingComponent}
+
+
 ];
 
 @NgModule({

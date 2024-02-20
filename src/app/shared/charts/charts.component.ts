@@ -1,47 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import Chart from 'chart.js/auto';
-
 
 @Component({
   selector: 'app-charts',
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.css']
 })
-export class ChartsComponent implements OnInit {
+export class ChartsComponent implements OnInit, OnChanges {
+  @Input() dataSource: number[] = [];
 
-  title = 'ng-chart';
-  chart: any = [];
-
-
-
-  dataSource: number[] = []
-  type: "bar" | "line" | "scatter" | "bubble" | "pie" | "doughnut" | "polarArea" | "radar" | undefined;
-  fill: boolean = false
-  borderColor:string= ''
-  pointRadius: number =1
-  borderWidth: number =1
-
-
+  chart: any;
 
   ngOnInit() {
+    this.renderChart();
+  }
 
-    this.chart = new Chart('canvas', {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['dataSource'] && !changes['dataSource'].firstChange) {
+      this.updateChart();
+    }
+  }
+
+  renderChart() {
+    this.chart = new Chart('canvasaa', {
       type: 'bar',
       data: {
-        labels: [],
-        datasets: [
-          {
-            label: 'Média',
-            data: this.dataSource,
-            type: this.type,
-            fill: this.fill,
-            borderColor: this.borderColor,
-            pointRadius: this.pointRadius,
-            borderWidth: this.borderWidth,
-          },
-        ],
-      },
+        labels: ['1', '2', '3', '4', '5'], 
+        datasets: [{
+          label: 'Data',
+          data: this.dataSource,
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      }      ,
       options: {
+        responsive: true, 
+        maintainAspectRatio: false,
         scales: {
           x: {
             offset: true,
@@ -60,7 +55,12 @@ export class ChartsComponent implements OnInit {
         },
       },
     });
+
+   
+  }
+
+  updateChart() {
+    this.chart.data.datasets[0].data = this.dataSource;
+    this.chart.update();
   }
 }
-
-

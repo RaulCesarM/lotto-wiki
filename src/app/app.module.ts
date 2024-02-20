@@ -22,6 +22,8 @@ import { ChartsOnionComponent } from './charts-module/charts-onion/charts-onion.
 import { ExplanationCorrelationsComponent } from './components/explanations/explanation-correlations/explanation-correlations.component';
 import { ExplanationRankingsComponent } from './components/explanations/explanation-rankings/explanation-rankings.component';
 import { PagesHomeComponent } from './pages/pages-home/pages-home.component';
+import { PagesRankingComponent } from './pages/pages-ranking/pages-ranking.component';
+import { ChartsComponent } from './shared/charts/charts.component';
 
 
 
@@ -39,6 +41,8 @@ import { PagesHomeComponent } from './pages/pages-home/pages-home.component';
     ExplanationCorrelationsComponent,
     ExplanationRankingsComponent,
     PagesHomeComponent,
+    PagesRankingComponent,
+    ChartsComponent
 
     
     
