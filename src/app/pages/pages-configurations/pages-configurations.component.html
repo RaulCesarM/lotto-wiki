@@ -1,1 +1,36 @@
-<p>pages-configurations works!</p>
+<div>
+  <fieldset>
+    <fieldset class="fieldset-inline">
+      <fieldset class="fieldset-inline">
+        <span><img src="assets/ver-lista.png" width="35px"> </span>
+      </fieldset>
+
+      <fieldset class="fieldset-inline">
+        <img src="assets/paint-bucket.png" width="35px">
+        <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px;" type="color" [(ngModel)]="bar">
+      </fieldset>
+
+      <fieldset class="fieldset-inline">
+        <img src="assets/background.png" width="35px">
+        <input style="height: 20px;width: 20px; border: 1px;padding-left: 5px" type="color" [(ngModel)]="bordeBar">
+      </fieldset>
+
+      <fieldset class="fieldset-inline">
+
+        <select [(ngModel)]="tipoGraficoSelecionado"
+          style="height: 35px;width: 100px; border: 1px;padding-left: 5px">
+          <option value="" disabled selected>Selecione</option>
+          <option value="line">line</option>
+          <option value="bubble">bubble</option>
+          <option value="bar">bar</option>
+        </select>
+      </fieldset>
+
+
+    </fieldset>
+
+
+  </fieldset>
+
+
+</div>

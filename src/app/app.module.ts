@@ -24,6 +24,8 @@ import { ExplanationRankingsComponent } from './components/explanations/explanat
 import { PagesHomeComponent } from './pages/pages-home/pages-home.component';
 import { PagesRankingComponent } from './pages/pages-ranking/pages-ranking.component';
 import { ChartsComponent } from './shared/charts/charts.component';
+import { ToolbarComponent } from './shared/toolbar/toolbar.component';
+import { PagesConfigurationsComponent } from './pages/pages-configurations/pages-configurations.component';
 
 
 
@@ -42,7 +44,10 @@ import { ChartsComponent } from './shared/charts/charts.component';
     ExplanationRankingsComponent,
     PagesHomeComponent,
     PagesRankingComponent,
-    ChartsComponent
+    ChartsComponent,
+    ToolbarComponent,
+    ToolbarComponent,
+    PagesConfigurationsComponent
 
     
     
