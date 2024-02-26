@@ -8,6 +8,7 @@ select {
   width: 100%;
   padding: 1px;
   margin: 0px;
+  
 }
 
 input{
@@ -21,15 +22,21 @@ input{
 table{
   width: 100%;
 }
-.card{
-  padding: 5px;
-  margin: 5px;
-}
 
 @media screen and (max-width: 768px) {
   .col {
     flex-basis: 100%;
 
   }
+}
+
+.card {
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  padding: 5px;
+  margin: 5px;
+  max-width: 320px;
+  max-height: 300px;
 }
 

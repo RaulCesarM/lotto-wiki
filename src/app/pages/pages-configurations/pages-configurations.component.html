@@ -1,33 +1,33 @@
 <div class="row">
-  <!-- Linha 1 Coluna 1 -->
-  <div class="card" style="max-width: 300px;">
+  <!-- Linha 2 Coluna 3 -->
+  <div class="card">
     <div class="card-body">
-     <h5 class="card-title">Gráfico principal</h5>
+      <h5 class="card-title">Linha de tendência Potencia</h5>
       <table class="m-0">
         <tbody>
           <tr>
-            <td>barras</td>
+            <td>pontos</td>
             <td><input type="color" [(ngModel)]="bar"></td>
           </tr>
           <tr>
-            <td>Bordas</td>
-            <td><input type="color" [(ngModel)]="bordeBar"></td>
-          </tr>
-          <tr>
-            <td>Tipo</td>
+            <td>Tamanho</td>
             <td>
-              <select [(ngModel)]="tipoGraficoSelecionado">
-                <option value="" disabled selected>Selecione</option>
-                <option value="line">line</option>
-                <option value="bubble">bubble</option>
-                <option value="bar">bar</option>
+              <select [(ngModel)]="espessura">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
               </select>
             </td>
           </tr>
-
         </tbody>
       </table>
-
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
@@ -36,12 +36,10 @@
       </div>
     </div>
   </div>
-
-
   <!-- Linha 1 Coluna 2 -->
-  <div class="card" style="max-width: 300px;">
+  <div class="card">
     <div class="card-body">
-    <h5 class="card-title">Media aritmetica</h5>
+      <h5 class="card-title">Linha de tendência Exponencial</h5>
       <table class="m-0">
         <tbody>
           <tr>
@@ -65,11 +63,8 @@
               </select>
             </td>
           </tr>
-
         </tbody>
       </table>
-
-
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
@@ -78,10 +73,8 @@
       </div>
     </div>
   </div>
-
-
-  <!-- Linha 1 Coluna 3 -->
-  <div class="card" style="max-width: 300px;">
+  <!-- Linha 2 Coluna 3 -->
+  <div class="card">
     <div class="card-body">
       <h5 class="card-title">Linha de tendência logarítmica</h5>
       <table class="m-0">
@@ -107,11 +100,8 @@
               </select>
             </td>
           </tr>
-
         </tbody>
       </table>
-
-
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
@@ -120,57 +110,7 @@
       </div>
     </div>
   </div>
-
-
-  <div class="card" style="max-width: 300px;">
-    <div class="card-body">
-      <h5 class="card-title">Linha de tendência logarítmica</h5>
-      <table class="m-0">
-        <tbody>
-          <tr>
-            <td>pontos</td>
-            <td><input type="color" [(ngModel)]="bar"></td>
-          </tr>
-          <tr>
-            <td>Tamanho</td>
-            <td>
-              <select [(ngModel)]="espessura">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-              </select>
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
-
-
-    </div>
-    <div class="card-footer">
-      <div class="d-flex justify-content-center">
-        <button mat-button><img src="assets/reset.png" width="25px"></button>
-        <button mat-button (click)="saveConfigMain()"><img src="assets/save.png" width="25px"></button>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-<div class="row">
-
-
-  <!-- Linha 2 Coluna 1 -->
-  <div class="card" style="max-width: 300px;">
+  <div class="card">
     <div class="card-body">
       <h5 class="card-title">Linha de tendência linear</h5>
       <table class="m-0">
@@ -196,11 +136,8 @@
               </select>
             </td>
           </tr>
-
         </tbody>
       </table>
-
-
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
@@ -209,14 +146,12 @@
       </div>
     </div>
   </div>
-
-
-  <!-- Linha 2 Coluna 2 -->
-  <div class="card" style="max-width: 300px;">
+</div>
+<div class="row">
+  <!-- Linha 2 Coluna 1 -->
+  <div class="card">
     <div class="card-body">
       <h5 class="card-title">Tabela de correlação</h5>
-
-
       <table class="m-0">
         <tbody>
           <tr>
@@ -249,11 +184,8 @@
               </select></td>
             <td><input type="number"></td>
           </tr>
-
         </tbody>
       </table>
-
-
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
@@ -262,13 +194,45 @@
       </div>
     </div>
   </div>
-
-
+  <!-- Linha 2 Coluna 2 -->
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Gráfico principal</h5>
+      <table class="m-0">
+        <tbody>
+          <tr>
+            <td>barras</td>
+            <td><input type="color" [(ngModel)]="bar"></td>
+          </tr>
+          <tr>
+            <td>Bordas</td>
+            <td><input type="color" [(ngModel)]="bordeBar"></td>
+          </tr>
+          <tr>
+            <td>Tipo</td>
+            <td>
+              <select [(ngModel)]="tipoGraficoSelecionado">
+                <option value="" disabled selected>Selecione</option>
+                <option value="line">line</option>
+                <option value="bubble">bubble</option>
+                <option value="bar">bar</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex justify-content-center">
+        <button mat-button><img src="assets/reset.png" width="25px"></button>
+        <button mat-button (click)="saveConfigMain()"><img src="assets/save.png" width="25px"></button>
+      </div>
+    </div>
+  </div>
   <!-- Linha 2 Coluna 3 -->
-  <div class="card" style="max-width: 300px;">
+  <div class="card">
     <div class="card-body">
       <h5 class="card-title">Outlier</h5>
-
       <table class="m-0">
         <tbody>
           <tr>
@@ -277,8 +241,6 @@
           </tr>
         </tbody>
       </table>
-
-
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
@@ -287,198 +249,41 @@
       </div>
     </div>
   </div>
+
+  <!-- Linha 2 Coluna 4 -->
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Media aritmetica</h5>
+    <table class="m-0">
+      <tbody>
+        <tr>
+          <td>pontos</td>
+          <td><input type="color" [(ngModel)]="bar"></td>
+        </tr>
+        <tr>
+          <td>Tamanho</td>
+          <td>
+            <select [(ngModel)]="espessura">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <div class="d-flex justify-content-center">
+      <button mat-button><img src="assets/reset.png" width="25px"></button>
+      <button mat-button (click)="saveConfigMain()"><img src="assets/save.png" width="25px"></button>
+    </div>
+  </div>
 </div>
-
-
-<!--
-
- <div class="row">
-    <fieldset>
-      <legend>Grafico principal</legend>
-      <div style="display: flex;">
-        <fieldset class="fieldset-non-line">
-          <legend>barras</legend>
-          <input type="color" [(ngModel)]="bar">
-        </fieldset>
-        <fieldset class="fieldset-non-line">
-          <legend>bordas</legend>
-          <input type="color" [(ngModel)]="bordeBar">
-        </fieldset>
-        <fieldset class="fieldset-non-line">
-          <legend>tipo</legend>
-          <select [(ngModel)]="tipoGraficoSelecionado">
-            <option value="" disabled selected>Selecione</option>
-            <option value="line">line</option>
-            <option value="bubble">bubble</option>
-            <option value="bar">bar</option>
-          </select>
-        </fieldset>
-        <fieldset class="button-fieldset fieldset-non-line">
-          <legend></legend>
-          <div class="button-container">
-            <button mat-button><img src="assets/reset.png" width="25px"> </button>
-            <button mat-button (click)="saveConfigMain()"> <img  src="assets/save.png" width="25px"></button>
-        </div>
-        </fieldset>
-      </div>
-    </fieldset>
-  </div>
-
-  <div class="row">
-    <fieldset>
-      <legend>Linha de tendencia Linear</legend>
-      <div style="display: flex;">
-        <fieldset class="fieldset-non-line">
-          <legend>barras</legend>
-          <input type="color" [(ngModel)]="bar">
-        </fieldset>
-        <fieldset class="fieldset-non-line">
-          <legend>bordas</legend>
-          <input type="color" [(ngModel)]="bordeBar">
-        </fieldset>
-        <fieldset class="fieldset-non-line">
-          <legend>Espessura</legend>
-          <select [(ngModel)]="espessura">
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
-            <option value=11>11</option>
-          </select>
-        </fieldset>
-        <fieldset class="button-fieldset fieldset-non-line">
-          <legend></legend>
-          <div class="button-container">
-            <button mat-button><img src="assets/reset.png" width="25px"> </button>
-            <button mat-button (click)="saveConfigMain()"> <img  src="assets/save.png" width="25px"></button>
-        </div>
-        </fieldset>
-      </div>
-    </fieldset>
-  </div>
-
-  <div class="row">
-    <fieldset>
-      <legend>Linha de tendencia Exponencial</legend>
-      <div style="display: flex;">
-        <fieldset class="fieldset-non-line">
-          <legend>barras</legend>
-          <input type="color" [(ngModel)]="bar">
-        </fieldset>
-        <fieldset class="fieldset-non-line">
-          <legend>bordas</legend>
-          <input type="color" [(ngModel)]="bordeBar">
-        </fieldset>
-        <fieldset class="fieldset-non-line">
-          <legend>Espessura</legend>
-          <select [(ngModel)]="espessura">
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
-            <option value=11>11</option>
-          </select>
-        </fieldset>
-        <fieldset class="button-fieldset fieldset-non-line">
-          <legend></legend>
-          <div class="button-container">
-            <button mat-button><img src="assets/reset.png" width="25px"> </button>
-            <button mat-button (click)="saveConfigMain()"> <img  src="assets/save.png" width="25px"></button>
-        </div>
-        </fieldset>
-      </div>
-    </fieldset>
-  </div>
-
-
-
-
-
-
-<div class="row">
-    <fieldset>
-      <legend>Linha de tendencia Linear</legend>
-      <div style="display: flex;">
-        <fieldset class="fieldset-non-line">
-          <legend>barras</legend>
-          <input type="color" [(ngModel)]="bar">
-        </fieldset>
-        <fieldset class="fieldset-non-line">
-          <legend>bordas</legend>
-          <input type="color" [(ngModel)]="bordeBar">
-        </fieldset>
-        <fieldset class="fieldset-non-line">
-          <legend>Espessura</legend>
-          <select [(ngModel)]="espessura">
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
-            <option value=11>11</option>
-          </select>
-        </fieldset>
-        <fieldset class="button-fieldset fieldset-non-line">
-          <legend></legend>
-          <div class="button-container">
-            <button mat-button><img src="assets/reset.png" width="25px"> </button>
-            <button mat-button (click)="saveConfigMain()"> <img  src="assets/save.png" width="25px"></button>
-        </div>
-        </fieldset>
-      </div>
-    </fieldset>
-  </div>
-
-  <div class="row">
-    <fieldset>
-      <legend>Linha de tendencia Exponencial</legend>
-      <div style="display: flex;">
-        <fieldset class="fieldset-non-line">
-          <legend>barras</legend>
-          <input type="color" [(ngModel)]="bar">
-        </fieldset>
-        <fieldset class="fieldset-non-line">
-          <legend>bordas</legend>
-          <input type="color" [(ngModel)]="bordeBar">
-        </fieldset>
-        <fieldset class="fieldset-non-line">
-          <legend>Espessura</legend>
-          <select [(ngModel)]="espessura">
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
-            <option value=11>11</option>
-          </select>
-        </fieldset>
-        <fieldset class="button-fieldset fieldset-non-line">
-          <legend></legend>
-          <div class="button-container">
-            <button mat-button><img src="assets/reset.png" width="25px"> </button>
-            <button mat-button (click)="saveConfigMain()"> <img  src="assets/save.png" width="25px"></button>
-        </div>
-        </fieldset>
-      </div>
-    </fieldset>
-  </div>
-
- -->
