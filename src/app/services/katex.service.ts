@@ -9,8 +9,6 @@ export class KatexService {
   constructor() { }
 
   renderMathExpression(expression: string, element: string) {
-
-
     const mathContainer = document.getElementById(element);
     katex.render(expression, mathContainer as HTMLElement);
     mathContainer?.classList.add('custom-katex-font-size');
@@ -26,13 +24,11 @@ export class KatexService {
   }
 
   getExponentialTrendLineFormula(): string {
-    return `   
+    return `
    {y = ae^{bx}},
-    \\quad b = \\frac{{\\ln\\left(\\frac{{\\text{{data}}[\\text{{data.length}} - 1]}}{{a}}\\right)}}{{\\text{{data.length}} - 1}}, 
+    \\quad b = \\frac{{\\ln\\left(\\frac{{\\text{{data}}[\\text{{data.length}} - 1]}}{{a}}\\right)}}{{\\text{{data.length}} - 1}},
     \\quad\\text{{tl-exp}}[i] = a \\cdot e^{b \\cdot i}
     `;
 
   }
-
-
 }

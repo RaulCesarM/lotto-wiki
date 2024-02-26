@@ -38,40 +38,30 @@ export class ChartsCorrelationsComponent implements OnInit {
     this.calcularMin();
     const correlationExpression = this.katexService.getCorrelationFormula();
     this.katexService.renderMathExpression(correlationExpression, 'correlation');
-
   }
-
 
   calcularMedia(): void {
     this.media = this.correlationsService.calculateAverage();
-
   }
 
   calcularMax(): void {
     this.max = this.correlationsService.findMaxValue();
-
   }
 
   calcularMin(): void {
     this.min = this.correlationsService.findMinValue();
-
   }
-
 
   getCellColor(cellNumber: number): string {
     const max = this.max;
     const min = this.min;
-
-
     if (cellNumber === max) {
       return 'rgb(255, 165, 165)';
     } else if (cellNumber === min) {
       return 'rgb(255, 255, 0)';
     } else {
-
       return cellNumber > this.media ? 'rgb(126, 218, 249)' : 'rgb(255, 255, 255)' ;
     }
 
   }
-
 }
