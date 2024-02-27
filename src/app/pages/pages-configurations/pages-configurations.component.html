@@ -7,22 +7,22 @@
         <tbody>
           <tr>
             <td>pontos</td>
-            <td><input type="color" [(ngModel)]="bar"></td>
+            <td><input type="color" [(ngModel)]="trendLinePowerColor"></td>
           </tr>
           <tr>
             <td>Tamanho</td>
             <td>
-              <select [(ngModel)]="espessura">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
+              <select [(ngModel)]="trendLinePowerWidth">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+                <option value=9>9</option>
+                <option value=10>10</option>
               </select>
             </td>
           </tr>
@@ -31,8 +31,8 @@
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
-        <button mat-button><img src="assets/reset.png" width="25px"></button>
-        <button mat-button (click)="saveConfigMain()"><img src="assets/save.png" width="25px"></button>
+        <button mat-button (click)="restoreConfigPowerTrendLine()"><img src="assets/reset.png" width="25px"></button>
+        <button mat-button (click)="saveConfigPowerTrendLine()"><img src="assets/salvar.png" width="25px"></button>
       </div>
     </div>
   </div>
@@ -44,22 +44,22 @@
         <tbody>
           <tr>
             <td>pontos</td>
-            <td><input type="color" [(ngModel)]="bar"></td>
+            <td><input type="color" [(ngModel)]="exponentialTrendLineColor"></td>
           </tr>
           <tr>
             <td>Tamanho</td>
             <td>
-              <select [(ngModel)]="espessura">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
+              <select [(ngModel)]="exponentialTrendLineWidth">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+                <option value=9>9</option>
+                <option value=10>10</option>
               </select>
             </td>
           </tr>
@@ -68,8 +68,8 @@
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
-        <button mat-button><img src="assets/reset.png" width="25px"></button>
-        <button mat-button (click)="saveConfigMain()"><img src="assets/save.png" width="25px"></button>
+        <button mat-button (click)="restoreConfigExponentialTrendLine()"><img src="assets/reset.png" width="25px"></button>
+        <button mat-button (click)="saveConfigExponentialTrendLine()"><img src="assets/salvar.png" width="25px"></button>
       </div>
     </div>
   </div>
@@ -81,22 +81,22 @@
         <tbody>
           <tr>
             <td>pontos</td>
-            <td><input type="color" [(ngModel)]="bar"></td>
+            <td><input type="color" [(ngModel)]="logarithmicTrendLineColor"></td>
           </tr>
           <tr>
             <td>Tamanho</td>
             <td>
-              <select [(ngModel)]="espessura">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
+              <select [(ngModel)]="logarithmicTrendLineWidth">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+                <option value=9>9</option>
+                <option value=10>10</option>
               </select>
             </td>
           </tr>
@@ -105,8 +105,8 @@
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
-        <button mat-button><img src="assets/reset.png" width="25px"></button>
-        <button mat-button (click)="saveConfigMain()"><img src="assets/save.png" width="25px"></button>
+        <button mat-button (click)="restoreConfigLogarithmicTrendLine()"><img src="assets/reset.png" width="25px"></button>
+        <button mat-button (click)="saveConfigLogarithmicTrendLine()"><img src="assets/salvar.png" width="25px"></button>
       </div>
     </div>
   </div>
@@ -117,22 +117,22 @@
         <tbody>
           <tr>
             <td>pontos</td>
-            <td><input type="color" [(ngModel)]="bar"></td>
+            <td><input type="color" [(ngModel)]="trendLineLinearColor"></td>
           </tr>
           <tr>
             <td>Tamanho</td>
             <td>
-              <select [(ngModel)]="espessura">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
+              <select [(ngModel)]="trendLinePowerWidth">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+                <option value=9>9</option>
+                <option value=10>10</option>
               </select>
             </td>
           </tr>
@@ -141,8 +141,8 @@
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
-        <button mat-button><img src="assets/reset.png" width="25px"></button>
-        <button mat-button (click)="saveConfigMain()"><img src="assets/save.png" width="25px"></button>
+        <button mat-button (click)="restoreConfigLinearTrendLine()"><img src="assets/reset.png" width="25px"></button>
+        <button mat-button (click)="saveConfigLinearTrendLine()"><img src="assets/salvar.png" width="25px"></button>
       </div>
     </div>
   </div>
@@ -156,15 +156,15 @@
         <tbody>
           <tr>
             <td>Mínimo</td>
-            <td><input type="color" [(ngModel)]="bar"></td>
+            <td><input type="color" [(ngModel)]="correlationTableMinimumColor"></td>
           </tr>
           <tr>
             <td>Máximo</td>
-            <td><input type="color" [(ngModel)]="bar"></td>
+            <td><input type="color" [(ngModel)]="correlationTableMaximumColor"></td>
           </tr>
           <tr>
             <td>Filtro</td>
-            <td><input type="color" [(ngModel)]="bar"></td>
+            <td><input type="color" [(ngModel)]="correlationTableFilterColor"></td>
           </tr>
           <tr>
             <td><select>
@@ -173,7 +173,7 @@
                 <option value="<=">menor ou igual</option>
                 <option value=">=">maior ou igual</option>
               </select></td>
-            <td><input type="number"></td>
+            <td><input type="number"  [(ngModel)]="correlationTableFilterValueMinimum"></td>
           </tr>
           <tr>
             <td><select>
@@ -182,15 +182,15 @@
                 <option value="<=">menor ou igual</option>
                 <option value=">=">maior ou igual</option>
               </select></td>
-            <td><input type="number"></td>
+            <td><input type="number"  [(ngModel)]="CorrelationTableFilterValueMaximum"></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
-        <button mat-button><img src="assets/reset.png" width="25px"></button>
-        <button mat-button (click)="saveConfigMain()"><img src="assets/save.png" width="25px"></button>
+        <button mat-button (click)="restoreConfigCorrelationTable()"><img src="assets/reset.png" width="25px"></button>
+        <button mat-button (click)="saveConfigCorrelationTable()"><img src="assets/salvar.png" width="25px"></button>
       </div>
     </div>
   </div>
@@ -202,16 +202,16 @@
         <tbody>
           <tr>
             <td>barras</td>
-            <td><input type="color" [(ngModel)]="bar"></td>
+            <td><input type="color" [(ngModel)]="mainBar"></td>
           </tr>
           <tr>
             <td>Bordas</td>
-            <td><input type="color" [(ngModel)]="bordeBar"></td>
+            <td><input type="color" [(ngModel)]="mainBordeBar"></td>
           </tr>
           <tr>
             <td>Tipo</td>
             <td>
-              <select [(ngModel)]="tipoGraficoSelecionado">
+              <select [(ngModel)]="mainTypeChart">
                 <option value="" disabled selected>Selecione</option>
                 <option value="line">line</option>
                 <option value="bubble">bubble</option>
@@ -224,8 +224,8 @@
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
-        <button mat-button><img src="assets/reset.png" width="25px"></button>
-        <button mat-button (click)="saveConfigMain()"><img src="assets/save.png" width="25px"></button>
+        <button mat-button (click)="restoreConfigChartMain()"><img src="assets/reset.png" width="25px"></button>
+        <button mat-button (click)="saveConfigChartMain()"><img src="assets/salvar.png" width="25px"></button>
       </div>
     </div>
   </div>
@@ -237,15 +237,15 @@
         <tbody>
           <tr>
             <td>Desvio máximo</td>
-            <td><input type="number"></td>
+            <td><input type="number" [(ngModel)]="outlierDeviantMaximumValue"></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-center">
-        <button mat-button><img src="assets/reset.png" width="25px"></button>
-        <button mat-button (click)="saveConfigMain()"><img src="assets/save.png" width="25px"></button>
+        <button mat-button (click)="restoreConfigOutlier()"><img src="assets/reset.png" width="25px"></button>
+        <button mat-button (click)="saveConfigOutlier()"><img src="assets/salvar.png" width="25px"></button>
       </div>
     </div>
   </div>
@@ -258,22 +258,22 @@
       <tbody>
         <tr>
           <td>pontos</td>
-          <td><input type="color" [(ngModel)]="bar"></td>
+          <td><input type="color" [(ngModel)]="meanAritmethicColor"></td>
         </tr>
         <tr>
           <td>Tamanho</td>
           <td>
-            <select [(ngModel)]="espessura">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
+            <select [(ngModel)]="meanAritmethicWidth">
+              <option value=1>1</option>
+              <option value=2>2</option>
+              <option value=3>3</option>
+              <option value=4>4</option>
+              <option value=5>5</option>
+              <option value=6>6</option>
+              <option value=7>7</option>
+              <option value=8>8</option>
+              <option value=9>9</option>
+              <option value=10>10</option>
             </select>
           </td>
         </tr>
@@ -282,8 +282,8 @@
   </div>
   <div class="card-footer">
     <div class="d-flex justify-content-center">
-      <button mat-button><img src="assets/reset.png" width="25px"></button>
-      <button mat-button (click)="saveConfigMain()"><img src="assets/save.png" width="25px"></button>
+      <button mat-button (click)="restoreConfigMeanAritmethic()"><img src="assets/reset.png" width="25px"></button>
+      <button mat-button (click)="saveConfigMeanAritmethic()"><img src="assets/salvar.png" width="25px"></button>
     </div>
   </div>
 </div>

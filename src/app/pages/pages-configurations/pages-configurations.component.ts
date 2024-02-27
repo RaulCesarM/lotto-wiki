@@ -16,14 +16,107 @@ export class PagesConfigurationsComponent implements OnInit {
 
   tipoGraficoSelecionado: string = '';
 
+
+
+
+  /////////////////////////////////////////////////
+
+  mainBar: string='#fc08f4';
+  mainBordeBar: string ='#fc08f4';
+  mainTypeChart: string ='bar'
+
+//falta o tipo de grafico
+
+////
+
+  trendLinePowerColor:string ='#fc08f4';
+  trendLinePowerWidth: number = 1;
+
+  trendLineLinearColor: string = '#fca708'
+  trendLineLinearWidth:number =1
+  
+  logarithmicTrendLineColor: string ='#fc08f4';
+  logarithmicTrendLineWidth:number =1;
+
+  exponentialTrendLineColor: string ='#08fcc7';
+  exponentialTrendLineWidth:number =1;
+
+
+  ////////////////////////////////////////////////////////
+
+  correlationTableMinimumColor: string ='rgb(255, 165, 165)';
+
+  correlationTableMaximumColor:string ='rgb(255, 255, 0)';
+
+  correlationTableFilterColor: string ='rgb(255, 165, 165)';
+
+  correlationTableFilterValueMinimum: number= 1;
+
+  CorrelationTableFilterValueMaximum: number =1;
+
+  //falta o input dos maior e menor
+  // falta 
+
+
+  ///////////////////////////////////////////////////////////
+
+  outlierDeviantMaximumValue:number =5;
+
+  meanAritmethicColor: string ='#0810fc';
+  meanAritmethicWidth: number =1;
+
+
+
+
   ngOnInit() {
 
-    this.bar = localStorage.getItem('bar') || this.bar;
-    this.bordeBar = localStorage.getItem('bordeBar') || this.bordeBar;
+    this.mainBar = localStorage.getItem('mainBar') || this.mainBar;
+    this.mainBordeBar = localStorage.getItem('mainBordeBar') || this.mainBordeBar;
+    this.mainTypeChart = localStorage.getItem('mainTypeChart') || this.mainTypeChart;
 
     this.barRGBA = this.hexToRGBA(this.bar, 0.5)
     this.borderRGBA = this.hexToRGBA(this.bordeBar, 0.5)
+
+    this.trendLinePowerColor = localStorage.getItem('trendLinePowerColor') || this.trendLinePowerColor;   
+    this.trendLineLinearColor = localStorage.getItem('trendLineLinearColor') || this.trendLineLinearColor;
+    this.logarithmicTrendLineColor = localStorage.getItem('logarithmicTrendLineColor') || this.logarithmicTrendLineColor;
+    this.exponentialTrendLineColor = localStorage.getItem('exponentialTrendLineColor') || this.exponentialTrendLineColor;
+    this.correlationTableMinimumColor = localStorage.getItem('correlationTableMinimumColor') || this.correlationTableMinimumColor;
+    this.correlationTableMaximumColor = localStorage.getItem('correlationTableMaximumColor') || this.correlationTableMaximumColor;
+    this.correlationTableFilterColor = localStorage.getItem('correlationTableFilterColor') || this.correlationTableFilterColor;
+    this.meanAritmethicColor = localStorage.getItem('meanAritmethicColor') || this.meanAritmethicColor;
+
+    this. converterEmNumero()
+
   }
+
+  converterEmNumero() {
+    const trendLinePowerWidthString = localStorage.getItem('trendLinePowerWidth');
+    this.trendLinePowerWidth = trendLinePowerWidthString !== null ? parseInt(trendLinePowerWidthString) : this.trendLinePowerWidth;
+
+    const trendLineLinearWidthString = localStorage.getItem('trendLineLinearWidth');
+    this.trendLineLinearWidth = trendLineLinearWidthString !== null ? parseInt(trendLineLinearWidthString) : this.trendLineLinearWidth;
+
+    const logarithmicTrendLineWidthString = localStorage.getItem('logarithmicTrendLineWidth');
+    this.logarithmicTrendLineWidth = logarithmicTrendLineWidthString !== null ? parseInt(logarithmicTrendLineWidthString) : this.logarithmicTrendLineWidth;
+
+    const exponentialTrendLineWidthString = localStorage.getItem('exponentialTrendLineWidth');
+    this.exponentialTrendLineWidth = exponentialTrendLineWidthString !== null ? parseInt(exponentialTrendLineWidthString) : this.exponentialTrendLineWidth;
+
+    const correlationTableFilterValueMinimumString = localStorage.getItem('correlationTableFilterValueMinimum');
+    this.correlationTableFilterValueMinimum = correlationTableFilterValueMinimumString !== null ? parseInt(correlationTableFilterValueMinimumString) : this.correlationTableFilterValueMinimum;
+
+    const CorrelationTableFilterValueMaximumString = localStorage.getItem('CorrelationTableFilterValueMaximum');
+    this.CorrelationTableFilterValueMaximum = CorrelationTableFilterValueMaximumString !== null ? parseInt(CorrelationTableFilterValueMaximumString) : this.CorrelationTableFilterValueMaximum;
+
+    const meanAritmethicWidthString = localStorage.getItem('meanAritmethicWidth');
+    this.meanAritmethicWidth = meanAritmethicWidthString !== null ? parseInt(meanAritmethicWidthString) : this.meanAritmethicWidth;
+}
+
+
+
+
+
 
   hexToRGBA(hexValue: string, opacity: number): string {
     const hex = hexValue.replace('#', '');
@@ -32,40 +125,53 @@ export class PagesConfigurationsComponent implements OnInit {
     return `rgba(${rgbValues.join(',')})`;
   }
 
-  saveConfigMain(){}
+
   saveConfigChartMain(){
-    localStorage.setItem('MainBar', this.bar);
-    localStorage.setItem('MainBordeBar', this.bordeBar);
+    localStorage.setItem('mainBar', this.mainBar);
+    localStorage.setItem('mainBordeBar', this.mainBordeBar);
+    localStorage.setItem('mainTypeChart', this.mainTypeChart);
   }
 
   restoreConfigChartMain(){
-    localStorage.setItem('MainBar', this.bar);
-    localStorage.setItem('MainBordeBar', this.bordeBar);
+    localStorage.setItem('mainBar', '#37A9F5');
+    localStorage.setItem('mainBordeBar', '#37A9F5');
+    localStorage.setItem('mainTypeChart', 'bar');
   }
 
 
 
   saveConfigPowerTrendLine() {
-    localStorage.setItem('TrendLinePowerColor', this.bar);
-    localStorage.setItem('TrendLinePowerWidth', this.bordeBar);
+    localStorage.setItem('trendLinePowerColor', this.trendLinePowerColor);
+    localStorage.setItem('trendLinePowerWidth', this.trendLinePowerWidth.toString());
 
   }   
   restoreConfigPowerTrendLine() {
-    localStorage.setItem('TrendLinePowerColor', this.bar);
-    localStorage.setItem('TrendLinePowerWidth', this.bordeBar);
+    localStorage.setItem('trendLinePowerColor', '#fc0841');
+    localStorage.setItem('trendLinePowerWidth', (1).toString());
+
+  } 
+  
+  saveConfigLinearTrendLine() {
+    localStorage.setItem('trendLineLinearColor', this.trendLineLinearColor);
+    localStorage.setItem('trendLinePowerWidth', this.trendLinePowerWidth.toString());
+
+  }   
+  restoreConfigLinearTrendLine() {
+    localStorage.setItem('trendLineLinearColor', '#fca708');
+    localStorage.setItem('trendLineLinearWidth', (1).toString());
 
   } 
   
   
 
   saveConfigLogarithmicTrendLine(){
-    localStorage.setItem('LogarithmicTrendLineColor', this.bar);
-    localStorage.setItem('LogarithmicTrendLineWidth', this.bordeBar);
+    localStorage.setItem('logarithmicTrendLineColor', this.logarithmicTrendLineColor);
+    localStorage.setItem('logarithmicTrendLineWidth', this.logarithmicTrendLineWidth.toString());
   }
 
   restoreConfigLogarithmicTrendLine(){
-    localStorage.setItem('LogarithmicTrendLineColor', this.bar);
-    localStorage.setItem('LogarithmicTrendLineWidth', this.bordeBar);
+    localStorage.setItem('logarithmicTrendLineColor','#0865fc');
+    localStorage.setItem('logarithmicTrendLineWidth',  (1).toString());
   }
 
 
@@ -75,12 +181,12 @@ export class PagesConfigurationsComponent implements OnInit {
 
 
   saveConfigExponentialTrendLine(){
-    localStorage.setItem('ExponentialTrendLineColor', this.bar);
-    localStorage.setItem('ExponentialTrendLineWidth', this.bordeBar);
+    localStorage.setItem('exponentialTrendLineColor', this.exponentialTrendLineColor);
+    localStorage.setItem('exponentialTrendLineWidth', this.exponentialTrendLineWidth.toString());
   }
   restoreConfigExponentialTrendLine(){
-    localStorage.setItem('ExponentialTrendLineColor', this.bar);
-    localStorage.setItem('ExponentialTrendLineWidth', this.bordeBar);
+    localStorage.setItem('exponentialTrendLineColor', '##08fcc7');
+    localStorage.setItem('exponentialTrendLineWidth',  (1).toString());
   }
  
 
@@ -88,37 +194,37 @@ export class PagesConfigurationsComponent implements OnInit {
 
 
   saveConfigCorrelationTable(){
-    localStorage.setItem('CorrelationTableMinimum', this.bar);
-    localStorage.setItem('CorrelationTableMaximum', this.bordeBar);
-    localStorage.setItem('CorrelationTableFilter', this.bordeBar);
-    localStorage.setItem('CorrelationTableFilterValueMinimum', this.bordeBar);
-    localStorage.setItem('CorrelationTableFilterValueMaximum', this.bordeBar);
+    localStorage.setItem('correlationTableMinimumColor', this.correlationTableMinimumColor);
+    localStorage.setItem('correlationTableMaximumColor', this.correlationTableMaximumColor);
+    localStorage.setItem('correlationTableFilterColor', this.correlationTableFilterColor);
+    localStorage.setItem('correlationTableFilterValueMinimum', this.correlationTableFilterValueMinimum.toString());
+    localStorage.setItem('CorrelationTableFilterValueMaximum', this.CorrelationTableFilterValueMaximum.toString());
   }
   restoreConfigCorrelationTable(){
-    localStorage.setItem('CorrelationTableMinimum', this.bar);
-    localStorage.setItem('CorrelationTableMaximum', this.bordeBar);
-    localStorage.setItem('CorrelationTableFilter', this.bordeBar);
-    localStorage.setItem('CorrelationTableFilterValueMinimum', this.bordeBar);
-    localStorage.setItem('CorrelationTableFilterValueMaximum', this.bordeBar);
+    localStorage.setItem('correlationTableMinimumColor',"rgb(255, 165, 165)");
+    localStorage.setItem('correlationTableMaximumColor','rgb(255, 255, 0)');
+    localStorage.setItem('correlationTableFilterColor','rgb(255, 165, 165)');
+    localStorage.setItem('correlationTableFilterValueMinimum', (1).toString());
+    localStorage.setItem('CorrelationTableFilterValueMaximum', (1).toString());
   }
  
 
   saveConfigOutlier(){
-    localStorage.setItem('OutlierDeviantMaximumValue', this.bar);    
+    localStorage.setItem('outlierDeviantMaximumValue', this.outlierDeviantMaximumValue.toString());    
   }
   restoreConfigOutlier(){
-    localStorage.setItem('OutlierDeviantMaximumValue', this.bar);    
+    localStorage.setItem('outlierDeviantMaximumValue', (10).toString());    
   }
  
  
 
   saveConfigMeanAritmethic(){
-    localStorage.setItem('MeanAritmethicColor', this.bar);
-    localStorage.setItem('MeanAritmethicWidth', this.bordeBar);
+    localStorage.setItem('meanAritmethicColor', this.meanAritmethicColor);
+    localStorage.setItem('meanAritmethicWidth', this.meanAritmethicWidth.toString());
   }
   restoreConfigMeanAritmethic(){
-    localStorage.setItem('MeanAritmethicColor', this.bar);
-    localStorage.setItem('MeanAritmethicWidth', this.bordeBar);
+    localStorage.setItem('meanAritmethicColor', '#fc0841');
+    localStorage.setItem('meanAritmethicWidth', (1).toString());
   }
 
  
