@@ -7,12 +7,12 @@
         <tbody>
           <tr>
             <td>pontos</td>
-            <td><input type="color" [(ngModel)]="trendLinePowerColor"></td>
+            <td><input type="color" [(ngModel)]="powerTrendLineColor"></td>
           </tr>
           <tr>
             <td>Tamanho</td>
             <td>
-              <select [(ngModel)]="trendLinePowerWidth">
+              <select [(ngModel)]="powerTrendLineWidth">
                 <option value=1>1</option>
                 <option value=2>2</option>
                 <option value=3>3</option>
@@ -117,12 +117,12 @@
         <tbody>
           <tr>
             <td>pontos</td>
-            <td><input type="color" [(ngModel)]="trendLineLinearColor"></td>
+            <td><input type="color" [(ngModel)]="LinearTrendLineColor"></td>
           </tr>
           <tr>
             <td>Tamanho</td>
             <td>
-              <select [(ngModel)]="trendLinePowerWidth">
+              <select [(ngModel)]="powerTrendLineWidth">
                 <option value=1>1</option>
                 <option value=2>2</option>
                 <option value=3>3</option>
@@ -202,16 +202,16 @@
         <tbody>
           <tr>
             <td>barras</td>
-            <td><input type="color" [(ngModel)]="mainBar"></td>
+            <td><input type="color" [(ngModel)]="rankingChartBarColor"></td>
           </tr>
           <tr>
             <td>Bordas</td>
-            <td><input type="color" [(ngModel)]="mainBordeBar"></td>
+            <td><input type="color" [(ngModel)]="rankingChartBorderBarColor"></td>
           </tr>
           <tr>
             <td>Tipo</td>
             <td>
-              <select [(ngModel)]="mainTypeChart">
+              <select [(ngModel)]="rankingTypeChart">
                 <option value="" disabled selected>Selecione</option>
                 <option value="line">line</option>
                 <option value="bubble">bubble</option>

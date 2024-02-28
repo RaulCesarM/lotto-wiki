@@ -14,15 +14,63 @@ export class ChartsRankingsComponent implements OnInit {
   @ViewChild('exampleModal')
   exampleModal!: ElementRef;
 
+
+
+  mainBarToRGBA: string ='';
+  mainBorderToRGBA: string ='';
+
+  /////////////////////////////////////////////////
+
+  rankingChartBarColor: string='#fc08f4';
+  rankingChartBorderBarColor: string ='#fc08f4';
+  rankingTypeChart: string ='bar'
+
+
+
+  powerTrendLineColor:string ='#fc08f4';
+  powerTrendLineWidth: number = 1;
+
+  LinearTrendLineColor: string = '#fca708'
+  linearTrendLineWidth:number =1
+  
+  logarithmicTrendLineColor: string ='#fc08f4';
+  logarithmicTrendLineWidth:number =1;
+
+  exponentialTrendLineColor: string ='#08fcc7';
+  exponentialTrendLineWidth:number =1;
+
+
+
+  outlierDeviantMaximumValue:number =5;
+
+  meanAritmethicColor: string ='#0810fc';
+  meanAritmethicWidth: number =1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   title = 'ng-chart';
   chartRanking: any = [];  
-
-  bar: string = '#37A9F5';
-  bordeBar: string = '#37A9F5';
-  barRGBA: string ='';
-  borderRGBA: string ='';
-
-  tipoGraficoSelecionado: string = '';
 
   isSorted: boolean = false;
   isAvaregeShow: boolean = false;
@@ -58,23 +106,55 @@ export class ChartsRankingsComponent implements OnInit {
     }
   }
 
+
+  getValuesLocalStorage() {
+
+
+    this.rankingChartBarColor = localStorage.getItem('rankingChartBarColor') || this.rankingChartBarColor;
+    this.rankingChartBorderBarColor = localStorage.getItem('rankingChartBorderBarColor') || this.rankingChartBorderBarColor;
+    this.rankingTypeChart = localStorage.getItem('rankingTypeChart') || this.rankingTypeChart;
+
+
+    this.powerTrendLineColor = localStorage.getItem('trendLinePowerColor') || this.powerTrendLineColor;   
+    this.LinearTrendLineColor = localStorage.getItem('trendLineLinearColor') || this.LinearTrendLineColor;
+    this.logarithmicTrendLineColor = localStorage.getItem('logarithmicTrendLineColor') || this.logarithmicTrendLineColor;
+    this.exponentialTrendLineColor = localStorage.getItem('exponentialTrendLineColor') || this.exponentialTrendLineColor;   
+    this.meanAritmethicColor = localStorage.getItem('meanAritmethicColor') || this.meanAritmethicColor;
+
+
+    const powerTrendLineWidthString = localStorage.getItem('powerTrendLineWidth');
+    this.powerTrendLineWidth = powerTrendLineWidthString !== null ? parseInt(powerTrendLineWidthString) : this.powerTrendLineWidth;
+
+    const linearTrendLineWidthString = localStorage.getItem('linearTrendLineWidth');
+    this.linearTrendLineWidth = linearTrendLineWidthString !== null ? parseInt(linearTrendLineWidthString) : this.linearTrendLineWidth;
+
+
+    const logarithmicTrendLineWidthString = localStorage.getItem('logarithmicTrendLineWidth');
+    this.logarithmicTrendLineWidth = logarithmicTrendLineWidthString !== null ? parseInt(logarithmicTrendLineWidthString) : this.logarithmicTrendLineWidth;
+
+    const exponentialTrendLineWidthString = localStorage.getItem('exponentialTrendLineWidth');
+    this.exponentialTrendLineWidth = exponentialTrendLineWidthString !== null ? parseInt(exponentialTrendLineWidthString) : this.exponentialTrendLineWidth;
+    
+    const meanAritmethicWidthString = localStorage.getItem('meanAritmethicWidth');
+    this.meanAritmethicWidth = meanAritmethicWidthString !== null ? parseInt(meanAritmethicWidthString) : this.meanAritmethicWidth;
+}
+
+
+
   ngOnInit() {
+
+
+    this. getValuesLocalStorage()
+
     const mediaExpression = this.katexService.getSimpleArithmethicMeanFormula();
     const tendencyExpression = this.katexService.getExponentialTrendLineFormula();
 
     this.katexService.renderMathExpression(mediaExpression, 'media');
     this.katexService.renderMathExpression(tendencyExpression,'linhaTendenciaFormula');
 
-    this.bar = localStorage.getItem('bar') || this.bar;
-    this.bordeBar = localStorage.getItem('bordeBar') || this.bordeBar;
-
     this.isBaseActive = true;
     this.originalDataSource = [...this.rankingService.baseDataSource];
-
-
-    this.barRGBA = this.hexToRGBA(this.bar, 0.5)
-    this.borderRGBA = this.hexToRGBA(this.bordeBar, 0.5)
-
+   
     this.showChart();
 
     const myModal = new bootstrap.Modal(this.exampleModal.nativeElement);
@@ -83,21 +163,6 @@ export class ChartsRankingsComponent implements OnInit {
   }
 
  
-  saveConfig() {
-    localStorage.setItem('bar', this.bar);
-    localStorage.setItem('bordeBar', this.bordeBar);  
-      this.chartRanking.data.datasets[0].backgroundColor = this.hexToRGBA(this.bar, 0.5);  
-      this.chartRanking.data.datasets[0].borderColor =  this.hexToRGBA(this.bordeBar, 0.5); 
-      this.chartRanking.data.datasets[0].type = this.tipoGraficoSelecionado;   
-      this.chartRanking.update();
-  }
-
-  hexToRGBA(hexValue: string, opacity: number): string {
-    const hex = hexValue.replace('#', '');
-    const rgbValues = hex.match(/.{1,2}/g)?.map(val => parseInt(val, 16)) ?? [];
-    rgbValues.push(opacity);
-    return `rgba(${rgbValues.join(',')})`;
-  }
 
   showChart() {
     this.chartRanking = new Chart('canvas', {
@@ -108,8 +173,8 @@ export class ChartsRankingsComponent implements OnInit {
           {
             label: 'Normal',
             data: this.originalDataSource,
-            backgroundColor:this.barRGBA,
-            borderColor: this.borderRGBA,
+            backgroundColor:this.rankingChartBarColor,
+            borderColor: this.rankingChartBorderBarColor,
             borderWidth: 1,
           },
           {
@@ -117,8 +182,8 @@ export class ChartsRankingsComponent implements OnInit {
             data: [],
             type: 'line',
             fill: false,
-            borderColor: 'red',
-            pointRadius: 1,
+            borderColor: this.meanAritmethicColor,
+            pointRadius: this.meanAritmethicWidth,
             borderWidth: 1,
           },
           {
@@ -126,8 +191,8 @@ export class ChartsRankingsComponent implements OnInit {
             data: [],
             type: 'line',
             fill: false,
-            borderColor: 'blue',
-            pointRadius: 2,
+            borderColor: this.exponentialTrendLineColor,
+            pointRadius: this.exponentialTrendLineWidth,
             borderWidth: 1,
           },
           {
@@ -135,8 +200,8 @@ export class ChartsRankingsComponent implements OnInit {
             data: [],
             type: 'line',
             fill: false,
-            borderColor: 'RGB(11, 222, 99)',
-            pointRadius: 1,
+            borderColor: this.LinearTrendLineColor,
+            pointRadius: this.linearTrendLineWidth,
             borderWidth: 1,
           },
           {
@@ -144,8 +209,8 @@ export class ChartsRankingsComponent implements OnInit {
             data: [],
             type: 'line',
             fill: false,
-            borderColor: 'RGB(12, 131, 133)',
-            pointRadius: 1,
+            borderColor: this.logarithmicTrendLineColor,
+            pointRadius: this.linearTrendLineWidth,
             borderWidth: 1,
           },
         ],

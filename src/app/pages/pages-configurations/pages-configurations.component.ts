@@ -7,33 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesConfigurationsComponent implements OnInit {
 
-  bar: string = '#37A9F5';
-  bordeBar: string = '#37A9F5';
-  barRGBA: string ='';
-  borderRGBA: string ='';
-
-  espessura: number =1;
-
-  tipoGraficoSelecionado: string = '';
-
-
-
+  
+  
+  mainBarToRGBA: string ='';
+  mainBorderToRGBA: string ='';
 
   /////////////////////////////////////////////////
 
-  mainBar: string='#fc08f4';
-  mainBordeBar: string ='#fc08f4';
-  mainTypeChart: string ='bar'
+  rankingChartBarColor: string='#fc08f4';
+  rankingChartBorderBarColor: string ='#fc08f4';
+  rankingTypeChart: string ='bar'
 
-//falta o tipo de grafico
 
-////
 
-  trendLinePowerColor:string ='#fc08f4';
-  trendLinePowerWidth: number = 1;
+  powerTrendLineColor:string ='#fc08f4';
+  powerTrendLineWidth: number = 1;
 
-  trendLineLinearColor: string = '#fca708'
-  trendLineLinearWidth:number =1
+  LinearTrendLineColor: string = '#fca708'
+  linearTrendLineWidth:number =1
   
   logarithmicTrendLineColor: string ='#fc08f4';
   logarithmicTrendLineWidth:number =1;
@@ -70,15 +61,12 @@ export class PagesConfigurationsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.mainBar = localStorage.getItem('mainBar') || this.mainBar;
-    this.mainBordeBar = localStorage.getItem('mainBordeBar') || this.mainBordeBar;
-    this.mainTypeChart = localStorage.getItem('mainTypeChart') || this.mainTypeChart;
+    this.rankingChartBarColor = localStorage.getItem('rankingChartBarColor') || this.rankingChartBarColor;
+    this.rankingChartBorderBarColor = localStorage.getItem('rankingChartBorderBarColor') || this.rankingChartBorderBarColor;
+    this.rankingTypeChart = localStorage.getItem('rankingTypeChart') || this.rankingTypeChart;
 
-    this.barRGBA = this.hexToRGBA(this.bar, 0.5)
-    this.borderRGBA = this.hexToRGBA(this.bordeBar, 0.5)
-
-    this.trendLinePowerColor = localStorage.getItem('trendLinePowerColor') || this.trendLinePowerColor;   
-    this.trendLineLinearColor = localStorage.getItem('trendLineLinearColor') || this.trendLineLinearColor;
+    this.powerTrendLineColor = localStorage.getItem('trendLinePowerColor') || this.powerTrendLineColor;   
+    this.LinearTrendLineColor = localStorage.getItem('trendLineLinearColor') || this.LinearTrendLineColor;
     this.logarithmicTrendLineColor = localStorage.getItem('logarithmicTrendLineColor') || this.logarithmicTrendLineColor;
     this.exponentialTrendLineColor = localStorage.getItem('exponentialTrendLineColor') || this.exponentialTrendLineColor;
     this.correlationTableMinimumColor = localStorage.getItem('correlationTableMinimumColor') || this.correlationTableMinimumColor;
@@ -86,16 +74,42 @@ export class PagesConfigurationsComponent implements OnInit {
     this.correlationTableFilterColor = localStorage.getItem('correlationTableFilterColor') || this.correlationTableFilterColor;
     this.meanAritmethicColor = localStorage.getItem('meanAritmethicColor') || this.meanAritmethicColor;
 
-    this. converterEmNumero()
+    this. getValuesLocalStorage()
 
   }
 
-  converterEmNumero() {
-    const trendLinePowerWidthString = localStorage.getItem('trendLinePowerWidth');
-    this.trendLinePowerWidth = trendLinePowerWidthString !== null ? parseInt(trendLinePowerWidthString) : this.trendLinePowerWidth;
 
-    const trendLineLinearWidthString = localStorage.getItem('trendLineLinearWidth');
-    this.trendLineLinearWidth = trendLineLinearWidthString !== null ? parseInt(trendLineLinearWidthString) : this.trendLineLinearWidth;
+
+
+  getValuesLocalStorage() {
+
+
+    this.rankingChartBarColor = localStorage.getItem('rankingChartBarColor') || this.rankingChartBarColor;
+    this.rankingChartBorderBarColor = localStorage.getItem('rankingChartBorderBarColor') || this.rankingChartBorderBarColor;
+    this.rankingTypeChart = localStorage.getItem('rankingTypeChart') || this.rankingTypeChart;
+
+    this.mainBarToRGBA = this.hexToRGBA(this.rankingChartBarColor, 0.5)
+    this.mainBorderToRGBA = this.hexToRGBA(this.rankingChartBorderBarColor, 0.5)
+
+    this.powerTrendLineColor = localStorage.getItem('powerTrendLineColor') || this.powerTrendLineColor;   
+    this.LinearTrendLineColor = localStorage.getItem('LinearTrendLineColor') || this.LinearTrendLineColor;
+    this.logarithmicTrendLineColor = localStorage.getItem('logarithmicTrendLineColor') || this.logarithmicTrendLineColor;
+    this.exponentialTrendLineColor = localStorage.getItem('exponentialTrendLineColor') || this.exponentialTrendLineColor;
+
+
+
+    this.correlationTableMinimumColor = localStorage.getItem('correlationTableMinimumColor') || this.correlationTableMinimumColor;
+    this.correlationTableMaximumColor = localStorage.getItem('correlationTableMaximumColor') || this.correlationTableMaximumColor;
+    this.correlationTableFilterColor = localStorage.getItem('correlationTableFilterColor') || this.correlationTableFilterColor;
+    this.meanAritmethicColor = localStorage.getItem('meanAritmethicColor') || this.meanAritmethicColor;
+
+
+
+    const powerTrendLineWidthString = localStorage.getItem('powerTrendLineWidth');
+    this.powerTrendLineWidth = powerTrendLineWidthString !== null ? parseInt(powerTrendLineWidthString) : this.powerTrendLineWidth;
+
+    const linearTrendLineWidthString = localStorage.getItem('linearTrendLineWidth');
+    this.linearTrendLineWidth = linearTrendLineWidthString !== null ? parseInt(linearTrendLineWidthString) : this.linearTrendLineWidth;
 
     const logarithmicTrendLineWidthString = localStorage.getItem('logarithmicTrendLineWidth');
     this.logarithmicTrendLineWidth = logarithmicTrendLineWidthString !== null ? parseInt(logarithmicTrendLineWidthString) : this.logarithmicTrendLineWidth;
@@ -127,38 +141,38 @@ export class PagesConfigurationsComponent implements OnInit {
 
 
   saveConfigChartMain(){
-    localStorage.setItem('mainBar', this.mainBar);
-    localStorage.setItem('mainBordeBar', this.mainBordeBar);
-    localStorage.setItem('mainTypeChart', this.mainTypeChart);
+    localStorage.setItem('rankingChartBarColor', this.rankingChartBarColor);
+    localStorage.setItem('rankingChartBorderBarColor', this.rankingChartBorderBarColor);
+    localStorage.setItem('rankingTypeChart', this.rankingTypeChart);
   }
 
   restoreConfigChartMain(){
-    localStorage.setItem('mainBar', '#37A9F5');
-    localStorage.setItem('mainBordeBar', '#37A9F5');
-    localStorage.setItem('mainTypeChart', 'bar');
+    localStorage.setItem('rankingChartBarColor', '#37A9F5');
+    localStorage.setItem('rankingChartBorderBarColor', '#37A9F5');
+    localStorage.setItem('rankingTypeChart', 'bar');
   }
 
 
 
   saveConfigPowerTrendLine() {
-    localStorage.setItem('trendLinePowerColor', this.trendLinePowerColor);
-    localStorage.setItem('trendLinePowerWidth', this.trendLinePowerWidth.toString());
+    localStorage.setItem('powerTrendLineColor', this.powerTrendLineColor);
+    localStorage.setItem('powerTrendLineWidth', this.powerTrendLineWidth.toString());
 
   }   
   restoreConfigPowerTrendLine() {
-    localStorage.setItem('trendLinePowerColor', '#fc0841');
-    localStorage.setItem('trendLinePowerWidth', (1).toString());
+    localStorage.setItem('powerTrendLineColor', '#fc0841');
+    localStorage.setItem('powerTrendLineWidth', (1).toString());
 
   } 
   
   saveConfigLinearTrendLine() {
-    localStorage.setItem('trendLineLinearColor', this.trendLineLinearColor);
-    localStorage.setItem('trendLinePowerWidth', this.trendLinePowerWidth.toString());
+    localStorage.setItem('LinearTrendLineColor', this.LinearTrendLineColor);
+    localStorage.setItem('linearTrendLineWidth', this.linearTrendLineWidth.toString());
 
   }   
   restoreConfigLinearTrendLine() {
-    localStorage.setItem('trendLineLinearColor', '#fca708');
-    localStorage.setItem('trendLineLinearWidth', (1).toString());
+    localStorage.setItem('LinearTrendLineColor', '#fca708');
+    localStorage.setItem('linearTrendLineWidth', (1).toString());
 
   } 
   
