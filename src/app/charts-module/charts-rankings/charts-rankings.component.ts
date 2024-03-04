@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as bootstrap from 'bootstrap';
-import Chart from 'chart.js/auto';
+import Chart, { ChartTypeRegistry } from 'chart.js/auto';
 import { KatexService } from 'src/app/services/katex.service';
 import { EquationsService } from 'src/app/services/equations.service';
 import { RankingService } from 'src/app/services/ranking.service';
@@ -14,7 +14,7 @@ export class ChartsRankingsComponent implements OnInit {
   @ViewChild('exampleModal')
   exampleModal!: ElementRef;
 
-
+  typeChart: string ='bar'
 
   title = 'ng-chart';
   chartRanking: any = [];
@@ -79,11 +79,22 @@ export class ChartsRankingsComponent implements OnInit {
 
   }
 
+  // saveType(selectedValue: string) {     
+  //   console.log(selectedValue)  
+  //   this.chartRanking.data.datasets[0].type = this.typeChart; 
+  //   this.showChart();
+   
+  // }
+
+  saveType(selectedValue: string) {     
+   this.chartRanking.config.type = selectedValue;
+   (this.chartRanking as Chart).update();
+}
 
 
-  showChart() {
+  showChart(type?: string) {
     this.chartRanking = new Chart('canvas', {
-      type: 'bar',
+      type: type as keyof ChartTypeRegistry || 'bar',
       data: {
         labels: [...this.rankingService.labelsDataSource],
         datasets: [

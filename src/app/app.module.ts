@@ -27,7 +27,7 @@ import { ChartsComponent } from './shared/charts/charts.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -67,7 +67,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatIconModule,
     MatButtonModule,
     MatTabsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSelectModule
 
   ],
   providers: [

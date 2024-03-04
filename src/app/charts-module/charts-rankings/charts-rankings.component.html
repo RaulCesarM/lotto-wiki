@@ -2,34 +2,52 @@
   <div class="row ">
 
     <fieldset>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('base')" [class.clicked]="isBaseActive"
-        matTooltip="Dados  originais"><span> <img src="assets/ver-lista.png" width="20px"><span
-            class="dot"></span></span> </button>
       <button mat-button (click)="toggleOrdenado()" [class.clicked]="isSorted" matTooltip="Ordenar "><span><img
-            src="assets/ordenar.png" width="20px"><span class="dot"></span></span> </button>
+        src="assets/ordenar.png" width="25px"><span class="dot"></span></span> </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('base')" [class.clicked]="isBaseActive"
+        matTooltip="Dados  originais"><span> <img src="assets/ver-lista.png" width="25px"><span
+            class="dot"></span></span> </button>
+    
       <button mat-button (click)="updateDataSourceBasedOnEvent('light')" [class.clicked]="isLightActive"
-        matTooltip="MENOS QUEDAS"><span> <img src="assets/pena.png" width="20px"><span class="dot"></span></span>
+        matTooltip="MENOS QUEDAS"><span> <img src="assets/pena.png" width="25px"><span class="dot"></span></span>
       </button>
       <button mat-button (click)="updateDataSourceBasedOnEvent('heavy')" [class.clicked]="isHaveyActive"
-        matTooltip="MAIS QUEDAS"> <span> <img src="assets/peso.png" width="20px"><span
+        matTooltip="MAIS QUEDAS"> <span> <img src="assets/peso.png" width="25px"><span
             class="dot"></span></span></button>
       <button mat-button (click)="updateDataSourceBasedOnEvent('repeated')" [class.clicked]="isRepeatedActive"
-        matTooltip="MAIS TEMPO SEM CAIR"><span><img src="assets/atrasado.png" width="20px"><span
+        matTooltip="MAIS TEMPO SEM CAIR"><span><img src="assets/atrasado.png" width="25px"><span
             class="dot"></span></span></button>
       <button mat-button (click)="toggleOutliers()" [class.clicked]="!isOutliersShow"
-        matTooltip="Remover outliers"><span><img src="assets/data-out.png" width="20px"><span
+        matTooltip="Remover outliers"><span><img src="assets/data-out.png" width="25px"><span
             class="dot"></span></span></button>
       <button mat-button (click)="toggleMedia()" [class.clicked]="isAvaregeShow" matTooltip="Mostrar media"><span><img
             src="assets/arithmetic-mean.png" width="20px"><span class="dot"></span></span></button>
       <button mat-button (click)="toggleTendenciaExponencial()" [class.clicked]="isExponentialTrendLineShow"
-        matTooltip="Linha de tendencia Exponencial"><span><img src="assets/grafico.png" width="20px"><span
+        matTooltip="Linha de tendencia Exponencial"><span><img src="assets/grafico.png" width="25px"><span
             class="dot"></span></span></button>
       <button mat-button (click)="toggleTendenciaArithmetic()" [class.clicked]="isArithmeticTrendLineShow"
-        matTooltip="Linha de tendencia Aritmetica"><span><img src="assets/crescimento.png" width="20px"><span
+        matTooltip="Linha de tendencia Aritmetica"><span><img src="assets/crescimento.png" width="25px"><span
             class="dot"></span></span></button>
       <button mat-button (click)="toggleTendenciaLogarithm()" [class.clicked]="isLogarithmLineDataTrendLineShow"
-        matTooltip="Linha de tendencia logaritmica"><span><img src="assets/outlier.png" width="20px"><span
+        matTooltip="Linha de tendencia logaritmica"><span><img src="assets/outlier.png" width="25px"><span
             class="dot"></span></span></button>
+
+           
+            <!-- <select [(ngModel)]="typeChart" (ngModelChange)="saveType($event)" >  
+              <option value="bar"  disabled selected>Type</option>           
+              <option value="line" >line</option>
+              <option value="bubble">bubble</option>
+              <option value="bar">bar</option>
+            </select> -->
+
+           
+              <mat-label></mat-label>
+              <mat-select [(ngModel)]="typeChart" (ngModelChange)="saveType($event)">
+                <mat-option value="line">Line</mat-option>
+                <mat-option value="bubble">Bubble</mat-option>
+                <mat-option value="bar">Bar</mat-option>
+              </mat-select>
+          
 
 
     </fieldset>

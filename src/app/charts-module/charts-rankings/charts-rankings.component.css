@@ -132,6 +132,24 @@ legend{
   visibility: visible;
 }
 
+
+.mat-mdc-select {
+  width: 100px; 
+  padding: 0px;
+  margin: 0px;
+  right: 55px;
+}
+
+
+.mat-mdc-select-trigger {
+  background-color: #f0f0f0; 
+}
+
+
+.mat-mdc-select-value {
+  color: #e9dddd; 
+}
+
 /*
 **************************************************************/
 
