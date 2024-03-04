@@ -9,13 +9,17 @@
 html,
 body {
   height: 100%;
+
 }
 
 body {
+ 
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 1px;
+  overflow: hidden;
 }
+
 
 .spadding {
   padding: 15px;

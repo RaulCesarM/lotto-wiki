@@ -9,13 +9,15 @@ export class EquationsService {
 
   calculateExponentialTrendLine(data: number[]): number[] {
     const trendLine = [];
-    const a = data[0];
-    const b = Math.log(data[data.length - 1] / a) / (data.length - 1);
+    const filteredData = data.filter(value => value !== 0);
+    const a = filteredData[0];
+    const b = Math.log(filteredData[filteredData.length - 1] / a) / (filteredData.length - 1);
     for (let i = 0; i < data.length; i++) {
       trendLine.push(a * Math.exp(b * i));
     }
     return trendLine;
-  }
+}
+
 
   calculateArithmeticTrendLine(data: number[]): number[] {
     const n = data.length;

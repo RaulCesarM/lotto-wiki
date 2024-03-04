@@ -25,7 +25,8 @@ import { PagesHomeComponent } from './pages/pages-home/pages-home.component';
 import { PagesRankingComponent } from './pages/pages-ranking/pages-ranking.component';
 import { ChartsComponent } from './shared/charts/charts.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
-import { PagesConfigurationsComponent } from './pages/pages-configurations/pages-configurations.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -46,11 +47,8 @@ import { PagesConfigurationsComponent } from './pages/pages-configurations/pages
     PagesRankingComponent,
     ChartsComponent,
     ToolbarComponent,
-    ToolbarComponent,
-    PagesConfigurationsComponent
 
-    
-    
+
   ],
   imports: [
     CommonModule,
@@ -61,13 +59,16 @@ import { PagesConfigurationsComponent } from './pages/pages-configurations/pages
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
-    MatSidenavModule,  
+    MatSidenavModule,
     MatListModule,
     FormsModule,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    MatTabsModule,
+    MatTooltipModule
+
   ],
   providers: [
 

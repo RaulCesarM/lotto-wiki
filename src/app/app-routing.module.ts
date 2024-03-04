@@ -7,7 +7,7 @@ import { ChartsRankingsComponent } from './charts-module/charts-rankings/charts-
 import { PagesHomeComponent } from './pages/pages-home/pages-home.component';
 import { ChartsOnionComponent } from './charts-module/charts-onion/charts-onion.component';
 import { PagesRankingComponent } from './pages/pages-ranking/pages-ranking.component';
-import { PagesConfigurationsComponent } from './pages/pages-configurations/pages-configurations.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,9 +18,9 @@ const routes: Routes = [
   { path: 'maps', component: ChartsMapsComponent},
   { path: 'correl', component: ChartsCorrelationsComponent},
   { path:'pg-ranking', component: PagesRankingComponent},
-  { path:'pg-config', component: PagesConfigurationsComponent}
 
-  
+
+
 ];
 
 @NgModule({

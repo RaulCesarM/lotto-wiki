@@ -16,61 +16,8 @@ export class ChartsRankingsComponent implements OnInit {
 
 
 
-  mainBarToRGBA: string ='';
-  mainBorderToRGBA: string ='';
-
-  /////////////////////////////////////////////////
-
-  rankingChartBarColor: string='#fc08f4';
-  rankingChartBorderBarColor: string ='#fc08f4';
-  rankingTypeChart: string ='bar'
-
-
-
-  powerTrendLineColor:string ='#fc08f4';
-  powerTrendLineWidth: number = 1;
-
-  LinearTrendLineColor: string = '#fca708'
-  linearTrendLineWidth:number =1
-  
-  logarithmicTrendLineColor: string ='#fc08f4';
-  logarithmicTrendLineWidth:number =1;
-
-  exponentialTrendLineColor: string ='#08fcc7';
-  exponentialTrendLineWidth:number =1;
-
-
-
-  outlierDeviantMaximumValue:number =5;
-
-  meanAritmethicColor: string ='#0810fc';
-  meanAritmethicWidth: number =1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   title = 'ng-chart';
-  chartRanking: any = [];  
+  chartRanking: any = [];
 
   isSorted: boolean = false;
   isAvaregeShow: boolean = false;
@@ -81,8 +28,8 @@ export class ChartsRankingsComponent implements OnInit {
   isHaveyActive = false;
   isLightActive = false;
   isRepeatedActive = false;
-  isBaseActive = false;
-  
+  isBaseActive = true;
+
   isOutliersShow: boolean = true;
 
   originalData: any[] | undefined;
@@ -96,65 +43,35 @@ export class ChartsRankingsComponent implements OnInit {
     private mathService: EquationsService,
     private rankingService: RankingService
   ) {}
-  
-  ngAfterViewInit() {
-    const canvas = this.elRef.nativeElement.querySelector(
-      '#canvas'
-    ) as HTMLCanvasElement;
-    if (canvas && canvas.parentElement) {
-      canvas.width = canvas.parentElement.clientWidth;
-    }
-  }
+
+  // ngAfterViewInit() {
+  //   const canvas = this.elRef.nativeElement.querySelector(
+  //     '#canvas'
+  //   ) as HTMLCanvasElement;
+  //   if (canvas && canvas.parentElement) {
+  //     canvas.width = canvas.parentElement.clientWidth;
+  //   }
+  // }
 
 
-  getValuesLocalStorage() {
 
-
-    this.rankingChartBarColor = localStorage.getItem('rankingChartBarColor') || this.rankingChartBarColor;
-    this.rankingChartBorderBarColor = localStorage.getItem('rankingChartBorderBarColor') || this.rankingChartBorderBarColor;
-    this.rankingTypeChart = localStorage.getItem('rankingTypeChart') || this.rankingTypeChart;
-
-
-    this.powerTrendLineColor = localStorage.getItem('trendLinePowerColor') || this.powerTrendLineColor;   
-    this.LinearTrendLineColor = localStorage.getItem('trendLineLinearColor') || this.LinearTrendLineColor;
-    this.logarithmicTrendLineColor = localStorage.getItem('logarithmicTrendLineColor') || this.logarithmicTrendLineColor;
-    this.exponentialTrendLineColor = localStorage.getItem('exponentialTrendLineColor') || this.exponentialTrendLineColor;   
-    this.meanAritmethicColor = localStorage.getItem('meanAritmethicColor') || this.meanAritmethicColor;
-
-
-    const powerTrendLineWidthString = localStorage.getItem('powerTrendLineWidth');
-    this.powerTrendLineWidth = powerTrendLineWidthString !== null ? parseInt(powerTrendLineWidthString) : this.powerTrendLineWidth;
-
-    const linearTrendLineWidthString = localStorage.getItem('linearTrendLineWidth');
-    this.linearTrendLineWidth = linearTrendLineWidthString !== null ? parseInt(linearTrendLineWidthString) : this.linearTrendLineWidth;
-
-
-    const logarithmicTrendLineWidthString = localStorage.getItem('logarithmicTrendLineWidth');
-    this.logarithmicTrendLineWidth = logarithmicTrendLineWidthString !== null ? parseInt(logarithmicTrendLineWidthString) : this.logarithmicTrendLineWidth;
-
-    const exponentialTrendLineWidthString = localStorage.getItem('exponentialTrendLineWidth');
-    this.exponentialTrendLineWidth = exponentialTrendLineWidthString !== null ? parseInt(exponentialTrendLineWidthString) : this.exponentialTrendLineWidth;
-    
-    const meanAritmethicWidthString = localStorage.getItem('meanAritmethicWidth');
-    this.meanAritmethicWidth = meanAritmethicWidthString !== null ? parseInt(meanAritmethicWidthString) : this.meanAritmethicWidth;
-}
 
 
 
   ngOnInit() {
 
 
-    this. getValuesLocalStorage()
 
-    const mediaExpression = this.katexService.getSimpleArithmethicMeanFormula();
-    const tendencyExpression = this.katexService.getExponentialTrendLineFormula();
 
-    this.katexService.renderMathExpression(mediaExpression, 'media');
-    this.katexService.renderMathExpression(tendencyExpression,'linhaTendenciaFormula');
+    // const mediaExpression = this.katexService.getSimpleArithmethicMeanFormula();
+    // const tendencyExpression = this.katexService.getExponentialTrendLineFormula();
+
+    // this.katexService.renderMathExpression(mediaExpression, 'media');
+    // this.katexService.renderMathExpression(tendencyExpression,'linhaTendenciaFormula');
 
     this.isBaseActive = true;
     this.originalDataSource = [...this.rankingService.baseDataSource];
-   
+
     this.showChart();
 
     const myModal = new bootstrap.Modal(this.exampleModal.nativeElement);
@@ -162,7 +79,7 @@ export class ChartsRankingsComponent implements OnInit {
 
   }
 
- 
+
 
   showChart() {
     this.chartRanking = new Chart('canvas', {
@@ -173,8 +90,8 @@ export class ChartsRankingsComponent implements OnInit {
           {
             label: 'Normal',
             data: this.originalDataSource,
-            backgroundColor:this.rankingChartBarColor,
-            borderColor: this.rankingChartBorderBarColor,
+            backgroundColor:  'rgba(55, 169, 245,0.5)',
+            borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1,
           },
           {
@@ -182,8 +99,8 @@ export class ChartsRankingsComponent implements OnInit {
             data: [],
             type: 'line',
             fill: false,
-            borderColor: this.meanAritmethicColor,
-            pointRadius: this.meanAritmethicWidth,
+            borderColor:'rgba(255, 0, 0, 1)',
+            pointRadius:1,
             borderWidth: 1,
           },
           {
@@ -191,8 +108,8 @@ export class ChartsRankingsComponent implements OnInit {
             data: [],
             type: 'line',
             fill: false,
-            borderColor: this.exponentialTrendLineColor,
-            pointRadius: this.exponentialTrendLineWidth,
+            borderColor:'rgba(0, 120, 255, 1)',
+            pointRadius:1,
             borderWidth: 1,
           },
           {
@@ -200,23 +117,23 @@ export class ChartsRankingsComponent implements OnInit {
             data: [],
             type: 'line',
             fill: false,
-            borderColor: this.LinearTrendLineColor,
-            pointRadius: this.linearTrendLineWidth,
-            borderWidth: 1,
+            borderColor: 'rgba(0, 0, 0, 1)',
+            pointRadius: 1,
+            borderWidth: 2,
           },
           {
             label: 'Linha de Tendência Logaritmica',
             data: [],
             type: 'line',
             fill: false,
-            borderColor: this.logarithmicTrendLineColor,
-            pointRadius: this.linearTrendLineWidth,
+            borderColor: 'rgba(0, 0, 0, 1)',
+            pointRadius:1,
             borderWidth: 1,
           },
         ],
       },
       options: {
-        responsive: true, 
+        responsive: true,
         maintainAspectRatio: false,
         scales: {
           x: {
@@ -248,6 +165,7 @@ export class ChartsRankingsComponent implements OnInit {
       this.isRepeatedActive = false;
       this.isBaseActive = false;
       this.originalDataSource = [...this.rankingService.heavyDataSource];
+
     }
     if (event === 'light') {
       this.isLightActive = true;
@@ -255,6 +173,7 @@ export class ChartsRankingsComponent implements OnInit {
       this.isRepeatedActive = false;
       this.isBaseActive = false;
       this.originalDataSource = [...this.rankingService.lightDataSource];
+
     }
     if (event === 'repeated') {
       this.isRepeatedActive = true;
@@ -262,6 +181,7 @@ export class ChartsRankingsComponent implements OnInit {
       this.isHaveyActive = false;
       this.isBaseActive = false;
       this.originalDataSource = [...this.rankingService.reiterationDataSource];
+
     }
     if (event === 'base') {
       this.isBaseActive = true;
@@ -269,10 +189,16 @@ export class ChartsRankingsComponent implements OnInit {
       this.isLightActive = false;
       this.isHaveyActive = false;
       this.originalDataSource = [...this.rankingService.baseDataSource];
+
     }
 
     this.chartRanking.data.datasets[0].data = this.originalDataSource;
-    this.mostrarOriginal()
+    if (this.isOutliersShow) {
+      this.adicionaOutliers(this.chartRanking.data.datasets[0].data);
+    } else {
+      this.removeOutliers(this.chartRanking.data.datasets[0].data);
+    }
+    this.checkSorted()
     this.updateChartAndTrendLines()
     this.chartRanking.update();
   }
@@ -308,52 +234,41 @@ export class ChartsRankingsComponent implements OnInit {
 ///////////////////////////////////////////////////////////////////////////
   toggleOutliers() {
     this.isOutliersShow = !this.isOutliersShow;
+   this.checkOutliers()
+   this.checkSorted()
+  }
+
+  checkOutliers(){
     if (this.isOutliersShow) {
-      this.adicionaOutliers();
+      this.adicionaOutliers(this.originalDataSource as number[]);
     } else {
-      this.removeOutliers();
+      this.removeOutliers( this.chartRanking.data.datasets[0].data);
     }
   }
 
-  removeOutliers() {
-    const originalData: number[] = this.originalData || [];
-    const dataWithOutliers = this.mathService.removeOutliers(originalData, 1.0);
+
+  removeOutliers(data: number[]) {
+    const dataWithOutliers = this.mathService.removeOutliers(data as number[], 2.0);
     this.chartRanking.data.datasets[0].data = dataWithOutliers;
     this.outliersData = dataWithOutliers;
     this.chartRanking.update();
-  } 
+  }
 
-  adicionaOutliers(){
-    this.chartRanking.data.datasets[0].data = this.originalData;   
+  adicionaOutliers(data: number[]){
+    this.chartRanking.data.datasets[0].data = data;
    this.updateChartAndTrendLines();
    this.chartRanking.update();
 
   }
 
-  ///////////////////////////////////////////////////////////////////////////////
-
-  toggleTendenciaArithmetic() {
-    this.isArithmeticTrendLineShow = !this.isArithmeticTrendLineShow;
-    this.updateChartAndTrendLines()
-  }
-
-  private adicionarLinhaTendenciaAritmetica() {
-    const data = this.chartRanking.data.datasets[0].data;
-    this.isArithmeticTrendLineShow = true;
-    const trendLineData = this.mathService.calculateArithmeticTrendLine(data);
-    this.chartRanking.data.datasets[3].data = trendLineData;
-    this.chartRanking.update();
-  }
-
-  private removerLinhaTendenciaAritmetica() {
-    this.isArithmeticTrendLineShow = false;
-    this.chartRanking.data.datasets[3].data = [];
-    this.chartRanking.update();
-  }
 
   //////////////////////////////////////////////////////////////////
   toggleOrdenado() {
     this.isSorted = !this.isSorted;
+    this. checkSorted()
+  }
+
+  checkSorted(){
     if (this.isSorted) {
       this.ordenar();
     } else {
@@ -377,6 +292,28 @@ export class ChartsRankingsComponent implements OnInit {
    this.updateChartAndTrendLines();
    this.chartRanking.update();
   }
+
+  ///////////////////////////////////////////////////////////////////////////////
+
+  toggleTendenciaArithmetic() {
+    this.isArithmeticTrendLineShow = !this.isArithmeticTrendLineShow;
+    this.updateChartAndTrendLines()
+  }
+
+  private adicionarLinhaTendenciaAritmetica() {
+    const data = this.chartRanking.data.datasets[0].data;
+    this.isArithmeticTrendLineShow = true;
+    const trendLineData = this.mathService.calculateArithmeticTrendLine(data);
+    this.chartRanking.data.datasets[3].data = trendLineData;
+    this.chartRanking.update();
+  }
+
+  private removerLinhaTendenciaAritmetica() {
+    this.isArithmeticTrendLineShow = false;
+    this.chartRanking.data.datasets[3].data = [];
+    this.chartRanking.update();
+  }
+
 
   ////////////////////////////////////////////////////////////////////
 
@@ -408,7 +345,7 @@ export class ChartsRankingsComponent implements OnInit {
 
   private adicionarLinhaTendenciaLogarithm() {
     const data = this.chartRanking.data.datasets[0].data;
-    this.isLogarithmLineDataTrendLineShow = true; ///
+    this.isLogarithmLineDataTrendLineShow = true;
     const trendLogarithmLineData = this.mathService.calculateLogarirmicTrendLine(data);
     this.chartRanking.data.datasets[4].data = trendLogarithmLineData;
     this.chartRanking.update();
