@@ -44,10 +44,12 @@
 }
 
 .center-fieldset {
-  flex: 1;
+  position: relative;
+  flex: 3;
   margin-right: 20px;
   max-width: 100vw;
-  max-height: 70vh;
+  /* max-width: calc(100% - 10px);  */
+  max-height: 100vh;
   overflow-y: hidden;
   overflow-x: hidden;
 
@@ -62,16 +64,16 @@
   overflow-y: hidden;
   overflow-x: hidden;
 } */
-.right-fieldset {
+/* .right-fieldset {
   flex: 1;
   border: 0px solid #ebe0e0;
   padding: 10px;
   margin-right: 20px;
   text-align: left;
-  max-width: 100vw;
+  max-width: calc(100% - 90px);
   max-height: 70vh;
   overflow: auto;
-}
+} */
 
 
 fieldset{
@@ -113,9 +115,9 @@ legend{
   padding: 5px;
 }
 
-.fieldset-container {
+/* .fieldset-container {
   display: flex;
-}
+} */
 
  .dot {
   position: absolute;
@@ -134,20 +136,27 @@ legend{
 
 
 .mat-mdc-select {
-  width: 100px; 
-  padding: 0px;
+  width: 100px;
+  padding: 12px;
   margin: 0px;
-  right: 55px;
+
+}
+.mat-mdc-option {
+  padding-left: 3px;
+  padding-right: 16px;
 }
 
 
 .mat-mdc-select-trigger {
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
+
+  width: 100px;
 }
 
 
 .mat-mdc-select-value {
-  color: #e9dddd; 
+  color: #e9dddd;
+  width: 100px;
 }
 
 /*
@@ -165,3 +174,65 @@ legend{
   max-width: 50%;
   height: auto;
 } */
+
+.media-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 175%;
+  height: 20%;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+  background-color: rgba(161, 149, 149, 0);
+}
+
+
+.linhaTendenciaFormula-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 55%;
+  height: 20%;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+  background-color: rgba(161, 149, 149, 0);
+}
+
+
+.linhadetendenciaaritemtica-background{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 50%;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+  background-color: rgba(161, 149, 149, 0);
+}
+
+.linhadetendencialogaritmica-background{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 83%;
+  height: 80%;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+  background-color: rgba(161, 149, 149, 0);
+}

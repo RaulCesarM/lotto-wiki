@@ -3,11 +3,11 @@
 
     <fieldset>
       <button mat-button (click)="toggleOrdenado()" [class.clicked]="isSorted" matTooltip="Ordenar "><span><img
-        src="assets/ordenar.png" width="25px"><span class="dot"></span></span> </button>
+            src="assets/ordenar.png" width="25px"><span class="dot"></span></span> </button>
       <button mat-button (click)="updateDataSourceBasedOnEvent('base')" [class.clicked]="isBaseActive"
         matTooltip="Dados  originais"><span> <img src="assets/ver-lista.png" width="25px"><span
             class="dot"></span></span> </button>
-    
+
       <button mat-button (click)="updateDataSourceBasedOnEvent('light')" [class.clicked]="isLightActive"
         matTooltip="MENOS QUEDAS"><span> <img src="assets/pena.png" width="25px"><span class="dot"></span></span>
       </button>
@@ -32,45 +32,57 @@
         matTooltip="Linha de tendencia logaritmica"><span><img src="assets/outlier.png" width="25px"><span
             class="dot"></span></span></button>
 
-           
-            <!-- <select [(ngModel)]="typeChart" (ngModelChange)="saveType($event)" >  
-              <option value="bar"  disabled selected>Type</option>           
-              <option value="line" >line</option>
-              <option value="bubble">bubble</option>
-              <option value="bar">bar</option>
-            </select> -->
 
-           
-              <mat-label></mat-label>
-              <mat-select [(ngModel)]="typeChart" (ngModelChange)="saveType($event)">
-                <mat-option value="line">Line</mat-option>
-                <mat-option value="bubble">Bubble</mat-option>
-                <mat-option value="bar">Bar</mat-option>
-              </mat-select>
-          
+
+      <mat-select [(ngModel)]="typeChart" (ngModelChange)="saveType($event)">
+        <mat-option value="line">Line</mat-option>
+        <mat-option value="bubble">Bubble</mat-option>
+        <mat-option value="bar">Bar</mat-option>
+      </mat-select>
+
 
 
     </fieldset>
   </div>
   <div class="row ">
 
-  <div class="col">
-    <fieldset class="center-fieldset">
-      <p class="chart-container">
-        <canvas id="canvas" width="200px" height="180px">{{chartRanking}}</canvas>
-      </p>
+    <div class="col">
+      <fieldset class="center-fieldset">
+        <p class="chart-container">
+          <canvas id="canvas" width="400px" height="280px">{{chartRanking}}</canvas>
 
-    </fieldset>
+        </p>
+        <div class="linhaTendenciaFormula-background">
+          <div id="linhaTendenciaFormula"> </div>
+
+        </div>
+
+        <div class="media-background">
+          <div id="media"> </div>
+
+        </div>
+
+        <div class="linhadetendenciaaritemtica-background">
+          <div id="linhaDeTendenciaAritimetica"> </div>
+
+        </div>
+
+        <div class="linhadetendencialogaritmica-background">
+          <div id="linhaDeTendenciaLogaritmica"> </div>
+
+        </div>
+
+      </fieldset>
 
 
-  </div>
-  <div class="col">
-    <fieldset class="right-fieldset">
+    </div>
+    <div class="col">
+      <!-- <fieldset class="right-fieldset">
+
 
         <app-explanation-rankings></app-explanation-rankings>
-     
 
-    </fieldset>
+
+    </fieldset> -->
+    </div>
   </div>
-</div>
-

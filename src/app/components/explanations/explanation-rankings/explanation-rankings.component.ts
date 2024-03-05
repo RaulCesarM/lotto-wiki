@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { EquationsService } from 'src/app/services/equations.service';
 import { KatexService } from 'src/app/services/katex.service';
 
+
 @Component({
   selector: 'app-explanation-rankings',
   templateUrl: './explanation-rankings.component.html',
