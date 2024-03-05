@@ -14,8 +14,6 @@ export class ExplanationRankingsComponent implements OnInit{
 
   constructor(
     private elRef: ElementRef,
-    private katexService: KatexService,
-    private mathService: EquationsService,
 
   ) {}
 
@@ -31,14 +29,6 @@ export class ExplanationRankingsComponent implements OnInit{
 
 
   ngOnInit() {
-
-
-    const mediaExpression = this.katexService.getSimpleArithmethicMeanFormula();
-    const tendencyExpression = this.katexService.getExponentialTrendLineFormula();
-
-    this.katexService.renderMathExpression(mediaExpression, 'media');
-    this.katexService.renderMathExpression(tendencyExpression,'linhaTendenciaFormula');
-
   }
 
 

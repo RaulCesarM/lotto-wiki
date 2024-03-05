@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import * as bootstrap from 'bootstrap';
 import Chart, { ChartTypeRegistry } from 'chart.js/auto';
 import { KatexService } from 'src/app/services/katex.service';
 import { EquationsService } from 'src/app/services/equations.service';
@@ -25,6 +24,10 @@ export class ChartsRankingsComponent implements OnInit {
   isArithmeticTrendLineShow: boolean = false;
   isLogarithmLineDataTrendLineShow: boolean = false;
 
+
+  isFormulaShow = false
+
+
   isHaveyActive = false;
   isLightActive = false;
   isRepeatedActive = false;
@@ -49,6 +52,19 @@ export class ChartsRankingsComponent implements OnInit {
   arithmeticTrendLineExpression: string = '';
   logaritmicTrendLineExpression: string = '';
 
+  outlierInputValue: number = 5
+
+  setOutLierInput() {
+    if (!this.isOutliersShow && this.isFormulaShow) {
+      const expression = `\\text{Outlier} = ${this.outlierInputValue.toString()}`;
+      this.katexService.renderMathExpression(expression, 'outlierKatex');
+    } else {
+      this.katexService.renderMathExpression('', 'outlierKatex');
+    }
+  }
+
+
+
   ngOnInit() {
     this.isBaseActive = true;
     this.originalDataSource = [...this.rankingService.baseDataSource];
@@ -56,9 +72,9 @@ export class ChartsRankingsComponent implements OnInit {
   }
 
   setLogarithmicTrenLineExpression() {
-    if (this.isLogarithmLineDataTrendLineShow) {
+    if (this.isLogarithmLineDataTrendLineShow && this.isFormulaShow) {
       this.logaritmicTrendLineExpression = this.katexService.getLogarithmicTrendLineFormula();
-      this.katexService.renderMathExpression(this.logaritmicTrendLineExpression,'linhaDeTendenciaLogaritmica');
+      this.katexService.renderMathExpression(this.logaritmicTrendLineExpression, 'linhaDeTendenciaLogaritmica');
     } else {
       this.logaritmicTrendLineExpression = '';
       this.katexService.renderMathExpression('', 'linhaDeTendenciaLogaritmica');
@@ -66,9 +82,9 @@ export class ChartsRankingsComponent implements OnInit {
   }
 
   setAritmeticTrenLineExpression() {
-    if (this.isArithmeticTrendLineShow) {
+    if (this.isArithmeticTrendLineShow && this.isFormulaShow) {
       this.arithmeticTrendLineExpression = this.katexService.getArithmeticTrendLineFormula();
-      this.katexService.renderMathExpression(this.arithmeticTrendLineExpression,'linhaDeTendenciaAritimetica');
+      this.katexService.renderMathExpression(this.arithmeticTrendLineExpression, 'linhaDeTendenciaAritimetica');
     } else {
       this.arithmeticTrendLineExpression = '';
       this.katexService.renderMathExpression('', 'linhaDeTendenciaAritimetica');
@@ -76,9 +92,9 @@ export class ChartsRankingsComponent implements OnInit {
   }
 
   setExponentialTrenLineExpression() {
-    if (this.isExponentialTrendLineShow) {
+    if (this.isExponentialTrendLineShow && this.isFormulaShow) {
       this.exponetialTrendLineExpression = this.katexService.getExponentialTrendLineFormula();
-      this.katexService.renderMathExpression(this.exponetialTrendLineExpression, 'linhaTendenciaFormula' );
+      this.katexService.renderMathExpression(this.exponetialTrendLineExpression, 'linhaTendenciaFormula');
     } else {
       this.exponetialTrendLineExpression = '';
       this.katexService.renderMathExpression('', 'linhaTendenciaFormula');
@@ -86,9 +102,8 @@ export class ChartsRankingsComponent implements OnInit {
   }
 
   setAvaregeExpression() {
-    if (this.isAvaregeShow) {
-      this.avaregeExpression =
-        this.katexService.getSimpleArithmethicMeanFormula();
+    if (this.isAvaregeShow && this.isFormulaShow) {
+      this.avaregeExpression = this.katexService.getSimpleArithmethicMeanFormula();
       this.katexService.renderMathExpression(this.avaregeExpression, 'media');
     } else {
       this.avaregeExpression = '';
@@ -251,11 +266,24 @@ export class ChartsRankingsComponent implements OnInit {
       this.removerMedia();
     }
   }
+
+  ///////////////////////////////////////////////////////////////////////////////
+
+  toggleShowFormula() {
+    this.isFormulaShow = !this.isFormulaShow;
+    this.setAritmeticTrenLineExpression()
+    this.setLogarithmicTrenLineExpression()
+    this.setAvaregeExpression()
+    this.setExponentialTrenLineExpression()
+    this.setOutLierInput()
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   toggleOutliers() {
     this.isOutliersShow = !this.isOutliersShow;
     this.checkOutliers();
     this.checkSorted();
+    this.setOutLierInput()
   }
 
   checkOutliers() {
@@ -267,10 +295,7 @@ export class ChartsRankingsComponent implements OnInit {
   }
 
   removeOutliers(data: number[]) {
-    const dataWithOutliers = this.mathService.removeOutliers(
-      data as number[],
-      2.0
-    );
+    const dataWithOutliers = this.mathService.removeOutliers(data as number[], 2.0 );
     this.chartRanking.data.datasets[0].data = dataWithOutliers;
     this.outliersData = dataWithOutliers;
     this.chartRanking.update();
