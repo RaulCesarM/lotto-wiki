@@ -1,27 +1,15 @@
 <div class="container-fluid">
-  <div class="row">
-
-    <div class="col-sm-auto">
-      <div class="row">
-        <nav class="side-nav ">
+      <div class="row">        
           <fieldset>
-            <button mat-button class="nav-button">
-              <span> <img src="assets/matrix.png" width="22px"></span>
-            </button>
-            <button mat-button class="nav-button">
-              <span> <img src="assets/correlation.png" width="22px"></span>
-            </button>
-            <button mat-button class="nav-button">
-              <span> <img src="assets/logistic-regression.png" width="22px"></span>
-            </button>
-            <button mat-button class="nav-button">
-              <span> <img src="assets/configuracoes.png" width="22px"></span>
-            </button>
-          </fieldset>
-        </nav>
-
-        <fieldset class="left-fieldset">
-          <div style="overflow: auto;">
+            <button mat-button > <span> <img src="assets/matrix.png" width="22px"></span> </button>
+            <button mat-button ><span> <img src="assets/correlation.png" width="22px"></span></button>
+            <button mat-button ><span> <img src="assets/logistic-regression.png" width="22px"></span> </button>
+            <button mat-button > <span> <img src="assets/configuracoes.png" width="22px"></span></button>
+          </fieldset>      
+        </div>
+        <div class="row">
+        <!-- <fieldset class="left-fieldset"> -->
+          <div class="center-Table">
             <table>
               <thead></thead>
               <tbody>
@@ -56,17 +44,16 @@
             <button mat-button><i>Minimo : {{ min }}</i></button>
             <button mat-button><i>Maximo :{{ max }}</i></button>
           </fieldset>
-        </fieldset>
+        <!-- </fieldset> -->
       </div>
-    </div>
+   
 
 
     <div class="col">
-      <fieldset class="right-fieldset">      
-        <div class="text-container">
+      <!-- <fieldset class="right-fieldset">       -->
+       
         <app-explanation-correlations></app-explanation-correlations>
-        </div>
-      </fieldset>
+        
+      <!-- </fieldset> -->
     </div>
   </div>
-</div>

@@ -174,7 +174,7 @@ export class ChartsRankingsComponent implements OnInit {
           x: {
             offset: true,
             grid: {
-              display: true,
+              display: false,
             },
           },
           y: {

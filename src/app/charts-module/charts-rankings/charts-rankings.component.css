@@ -1,21 +1,9 @@
 
 .container-fluid {
-  max-height: 80vh;
+  max-height: 90vh;
   overflow-y: hidden;
   overflow-x: hidden;
  
-}
-
-
-
-
-
-
-.bottom-container {
-  width: 80%;
-  height: 5px;
-  margin-top: 0;
-  border-radius: 0%;
 }
 
 .chart-container {
@@ -28,15 +16,6 @@
   height:100%;
 }
 
-.modal-content {
-  border-radius: 0px;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-}
-
-.modal-dialog {
-  border: 0px !important;
-}
 
 .center-fieldset {
   position: relative;
@@ -44,7 +23,7 @@
   margin-right: 20px;
 
   height: 80vh;
-  max-width: calc(80vw - 10px);
+  max-width: calc(80vw - 20px);
   max-height:calc(70vh - 55px);  
  
   overflow-y: hidden;
@@ -85,14 +64,7 @@ fieldset{
   box-sizing: border-box;
 }
 
-.nav-button {
-  display: block;
-  width: 15px;
-  margin-bottom: 0px;
-}
-.button{
-  border-radius: 0%;
-}
+
 
 
 legend{
@@ -106,9 +78,6 @@ legend{
   margin-right: 5px;
   padding: 5px;
 }
- .fieldset-container {
-  display: flex;
-} 
 
  .dot {
   position: absolute;
@@ -150,21 +119,6 @@ legend{
   width: 100px;
 }
 
-/*
-**************************************************************/
-
-/* .container {
-  display: flex;
-  align-items: center;
-}
-.texto {
-  flex: 1;
-  margin-left: 20px;
-}
- canvas {
-  max-width: 50%;
-  height: auto;
-} */
 
 .media-background {
   position: absolute;
