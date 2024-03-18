@@ -17,7 +17,7 @@
         <mat-option value="line">Line</mat-option>
         <mat-option value="bubble">Bubble</mat-option>
         <mat-option value="bar">Bar</mat-option>
-      </mat-select>     
+      </mat-select>
       <input type="number" [(ngModel)]="outlierInputValue" (ngModelChange)="setOutLierInput()">
     </fieldset>
   </div>
@@ -28,26 +28,11 @@
         <p class="chart-container">
           <canvas id="canvas" width="350px" height="300px">{{chartRanking}}</canvas>
         </p>
-
         <div class="linhaTendenciaFormula-background"> <div id="linhaTendenciaFormula"> </div></div>
-
         <div class="media-background"> <div id="media"> </div> </div>
-
         <div class="linhadetendenciaaritemtica-background"> <div id="linhaDeTendenciaAritimetica"> </div></div>
-
         <div class="linhadetendencialogaritmica-background"><div id="linhaDeTendenciaLogaritmica"> </div></div>
-
         <div class="outlierInputValue-background"><div id="outlierKatex"> </div></div>
-
       </fieldset>
-
-
-    </div>
-
-
-    <div class="col">
-      <fieldset class="right-fieldset">
-        <app-explanation-rankings></app-explanation-rankings>
-    </fieldset>
     </div>
   </div>

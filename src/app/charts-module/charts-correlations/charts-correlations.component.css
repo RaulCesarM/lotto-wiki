@@ -1,7 +1,7 @@
 .container-fluid {
   max-height: 90vh;
-  overflow-y: auto;
-  overflow-x: hidden; 
+  overflow-y: hidden;
+  overflow-x: hidden;
   padding-bottom: 50px;
 }
 
@@ -12,8 +12,8 @@ div {
 
 table {
   width: 100%;
-  height: 100%;  
-  margin: 0px;  
+  height: 100%;
+  margin: 0px;
   overflow-y: hidden;
   overflow-x: hidden;
   table-layout: fixed;
@@ -24,7 +24,7 @@ table {
 td {
   border: 1px solid #959595;
   text-align: center;
-  font-size: 7px;   
+  font-size: 10px;
   color: #000;
 }
 
@@ -36,7 +36,7 @@ th {
 }
 
 td:hover {
-  transform: scale(1.8);
+  transform: scale(2);
   background-color: rgb(246, 77, 77) !important;
   color: #000 !important;
 }
@@ -65,45 +65,15 @@ td:hover::after {
 }
 .center-Table {
   position: relative;
-  max-width: 900px; /* Define a largura máxima */
- 
-  margin: 0 auto; /* Centraliza horizontalmente */
- 
-  padding: 20px; /* Adiciona um espaçamento interno */
-  display: flex; /* Permite alinhamento vertical */
-  align-items: center; /* Centraliza verticalmente */
-}
-
-/* Media query para telas maiores que 900px */
-@media (min-width: 1200px) {
-  .center-Table {
-    width: auto; 
-  
-    margin: 0 auto; /* Mantém o elemento centralizado */
-  }
-}
-
-/* .left-fieldset {
-  position: relative;
-  flex: 1;
-  border: 1px solid #4f4d4d;
-  margin-right: 20px;     
-  max-width: 100vw;
-  max-height: 100vh;     
+  max-width:100vw;
+  height: 80vh;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
   overflow-y: hidden;
-  overflow-x: hidden;  
-}  */
-
-/* .right-fieldset {
-  flex: 1;
-  border: 1px solid #4f4d4d;
-  padding: 10px;
-  margin-right: 20px;   
-  max-width: 100vw;
-  max-height: 100vh;    
-  overflow-y: hidden;
-  overflow-x: hidden; 
-} */
+  overflow-x: hidden;
+}
 
 fieldset {
   border: 1px solid #ebe0e0;
@@ -111,14 +81,8 @@ fieldset {
   margin-left: 3px;
 }
 
-/* Media query para telas com largura superior a 600px */
-/* @media (min-width: 600px) {
-  .left-fieldset {
-    width: 50%;
-    float: left;
+@media (max-width: 600px) {
+ td{
+    font-size: 7px;
   }
-  .right-fieldset {
-    width: 50%;
-    float: right;
-  }
-} */
+}
