@@ -20,7 +20,7 @@
   position: relative;
   flex: 1;
   max-width: 100vw;
-  max-height:calc(70vh - 20px);
+  max-height:80vh;
   margin: 0 auto;
   padding: 20px;
   display: flex;
