@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CorrelationsRepository } from 'src/app/data/repositories/correlationsRepository';
 import { CorrelationsService } from 'src/app/services/correlations.service';
 
 import { KatexService } from 'src/app/services/katex.service';
@@ -24,20 +25,38 @@ export class ChartsCorrelationsComponent implements OnInit {
   indexRow: number[] = Array.from({ length: 25 }, (_, index) => index + 1);
 
 
-  cells: number[][] = this.correlationsService.getData();
+ // cells: number[][] = this.correlationsService.getData();
 
+
+ cells: number[][] = this.correlationsService.getData();
+ 
   constructor(
      private correlationsService: CorrelationsService,
      private katexService : KatexService,
 
-     ) {  }
+     private repository : CorrelationsRepository
+
+     ) {
+    console.log('0');
+
+       }
 
   ngOnInit(){
+    console.log('1');
+    
     this.calcularMedia();
     this.calcularMax();
     this.calcularMin();
     const correlationExpression = this.katexService.getCorrelationFormula();
     this.katexService.renderMathExpression(correlationExpression, 'correlation');
+  }
+
+  loadCellsData() {
+    // this.correlationsService.getData().subscribe(data => {
+    //   console.log(this.cells); 
+    //   this.cells = data;
+    // });
+    
   }
 
   calcularMedia(): void {
