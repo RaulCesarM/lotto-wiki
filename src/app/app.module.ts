@@ -28,6 +28,7 @@ import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatTabsModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
 
   ],
   providers: [

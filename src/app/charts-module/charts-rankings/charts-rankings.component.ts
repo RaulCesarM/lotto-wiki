@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import Chart, { ChartTypeRegistry } from 'chart.js/auto';
 import { KatexService } from 'src/app/services/katex.service';
-import { EquationsService } from 'src/app/services/equations.service';
+import { MathService } from 'src/app/services/math.service';
 import { RankingService } from 'src/app/services/ranking.service';
+
 
 @Component({
   selector: 'app-charts-rankings',
@@ -25,13 +26,13 @@ export class ChartsRankingsComponent implements OnInit {
   isLogarithmLineDataTrendLineShow: boolean = false;
 
 
-  isFormulaShow = false
+  isFormulaShow: boolean = false
 
 
-  isHaveyActive = false;
-  isLightActive = false;
-  isRepeatedActive = false;
-  isBaseActive = true;
+  isHaveyActive: boolean = false;
+  isLightActive: boolean = false;
+  isRepeatedActive: boolean = false;
+  isBaseActive: boolean = true;
 
   isOutliersShow: boolean = true;
 
@@ -43,7 +44,7 @@ export class ChartsRankingsComponent implements OnInit {
   constructor(
     private elRef: ElementRef,
     private katexService: KatexService,
-    private mathService: EquationsService,
+    private mathService: MathService,
     private rankingService: RankingService
   ) {}
 
@@ -54,9 +55,9 @@ export class ChartsRankingsComponent implements OnInit {
 
   outlierInputValue: number = 5
 
-  setOutLierInput() {
+  setOutLierInput(): void {
     if (!this.isOutliersShow && this.isFormulaShow) {
-      const expression = `\\text{Outlier} = ${this.outlierInputValue.toString()}`;
+      const expression: string = `\\text{Outlier} = ${this.outlierInputValue.toString()}`;
       this.katexService.renderMathExpression(expression, 'outlierKatex');
     } else {
       this.katexService.renderMathExpression('', 'outlierKatex');
@@ -71,7 +72,7 @@ export class ChartsRankingsComponent implements OnInit {
     this.showChart();
   }
 
-  setLogarithmicTrenLineExpression() {
+  setLogarithmicTrenLineExpression(): void {
     if (this.isLogarithmLineDataTrendLineShow && this.isFormulaShow) {
       this.logaritmicTrendLineExpression = this.katexService.getLogarithmicTrendLineFormula();
       this.katexService.renderMathExpression(this.logaritmicTrendLineExpression, 'linhaDeTendenciaLogaritmica');
@@ -81,7 +82,7 @@ export class ChartsRankingsComponent implements OnInit {
     }
   }
 
-  setAritmeticTrenLineExpression() {
+  setAritmeticTrenLineExpression(): void {
     if (this.isArithmeticTrendLineShow && this.isFormulaShow) {
       this.arithmeticTrendLineExpression = this.katexService.getArithmeticTrendLineFormula();
       this.katexService.renderMathExpression(this.arithmeticTrendLineExpression, 'linhaDeTendenciaAritimetica');
@@ -91,7 +92,7 @@ export class ChartsRankingsComponent implements OnInit {
     }
   }
 
-  setExponentialTrenLineExpression() {
+  setExponentialTrenLineExpression(): void {
     if (this.isExponentialTrendLineShow && this.isFormulaShow) {
       this.exponetialTrendLineExpression = this.katexService.getExponentialTrendLineFormula();
       this.katexService.renderMathExpression(this.exponetialTrendLineExpression, 'linhaTendenciaFormula');
@@ -101,7 +102,7 @@ export class ChartsRankingsComponent implements OnInit {
     }
   }
 
-  setAvaregeExpression() {
+  setAvaregeExpression(): void {
     if (this.isAvaregeShow && this.isFormulaShow) {
       this.avaregeExpression = this.katexService.getSimpleArithmethicMeanFormula();
       this.katexService.renderMathExpression(this.avaregeExpression, 'media');
@@ -111,7 +112,7 @@ export class ChartsRankingsComponent implements OnInit {
     }
   }
 
-  saveType(selectedValue: string) {
+  saveType(selectedValue: string): void {
     this.chartRanking.config.type = selectedValue;
     (this.chartRanking as Chart).update();
   }
@@ -193,15 +194,11 @@ export class ChartsRankingsComponent implements OnInit {
       },
     });
 
-    this.originalData = JSON.parse(
-      JSON.stringify(this.chartRanking.data.datasets[0].data)
-    );
-    this.originalLabels = JSON.parse(
-      JSON.stringify([...this.chartRanking.data.labels])
-    );
+    this.originalData = JSON.parse(JSON.stringify(this.chartRanking.data.datasets[0].data));
+    this.originalLabels = JSON.parse(JSON.stringify([...this.chartRanking.data.labels]));
   }
 
-  updateDataSourceBasedOnEvent(event: string) {
+  updateDataSourceBasedOnEvent(event: string): void {
     if (event === 'heavy') {
       this.isHaveyActive = true;
       this.isLightActive = false;
@@ -245,7 +242,7 @@ export class ChartsRankingsComponent implements OnInit {
 
   //////////////////////////////////////////////////////////////////////
 
-  updateChartAndTrendLines() {
+  updateChartAndTrendLines(): void {
     if (this.isExponentialTrendLineShow) {
       this.adicionarLinhaTendenciaExponencial();
     } else {
@@ -273,7 +270,7 @@ export class ChartsRankingsComponent implements OnInit {
 
   ///////////////////////////////////////////////////////////////////////////////
 
-  toggleShowFormula() {
+  toggleShowFormula(): void {
     this.isFormulaShow = !this.isFormulaShow;
     this.setAritmeticTrenLineExpression()
     this.setLogarithmicTrenLineExpression()
@@ -283,14 +280,14 @@ export class ChartsRankingsComponent implements OnInit {
   }
 
   ///////////////////////////////////////////////////////////////////////////
-  toggleOutliers() {
+  toggleOutliers(): void {
     this.isOutliersShow = !this.isOutliersShow;
     this.checkOutliers();
     this.checkSorted();
     this.setOutLierInput()
   }
 
-  checkOutliers() {
+  checkOutliers(): void {
     if (this.isOutliersShow) {
       this.adicionaOutliers(this.originalDataSource as number[]);
     } else {
@@ -298,66 +295,65 @@ export class ChartsRankingsComponent implements OnInit {
     }
   }
 
-  removeOutliers(data: number[]) {
-    const dataWithOutliers = this.mathService.removeOutliers(data as number[], 2.0 );
+  removeOutliers(data: number[]): void {
+    const dataWithOutliers: number[] = this.mathService.removeOutliers(data as number[], 2.0 );
     this.chartRanking.data.datasets[0].data = dataWithOutliers;
     this.outliersData = dataWithOutliers;
     this.chartRanking.update();
   }
 
-  adicionaOutliers(data: number[]) {
+  adicionaOutliers(data: number[]): void {
     this.chartRanking.data.datasets[0].data = data;
     this.updateChartAndTrendLines();
     this.chartRanking.update();
   }
 
   //////////////////////////////////////////////////////////////////
-  toggleOrdenado() {
+  toggleOrdenado(): void {
     this.isSorted = !this.isSorted;
     this.checkSorted();
   }
 
-  checkSorted() {
+  checkSorted(): void {
     if (this.isSorted) {
       this.ordenar();
     } else {
       this.mostrarOriginal();
     }
   }
-
-  ordenar() {
-    let data = this.chartRanking.data.datasets[0].data;
-    const labels = this.chartRanking.data.labels;
-    let dataWithLabels = this.mathService.sort(data, labels);
+  ordenar(): void {
+    let data : number[] = this.chartRanking.data.datasets[0].data;
+    const labels: string [] = this.chartRanking.data.labels;
+    this.mathService.sort(data, labels);
     this.updateChartAndTrendLines();
     this.chartRanking.update();
   }
 
-  mostrarOriginal() {
-    let data = this.chartRanking.data.datasets[0].data;
-    const labels = this.chartRanking.data.labels;
-    let dataWithLabels = this.mathService.unSort(data, labels);
+  mostrarOriginal(): void {
+    let data: number[] = this.chartRanking.data.datasets[0].data;
+    const labels: string[] = this.chartRanking.data.labels;
+    this.mathService.unSort(data, labels);
     this.updateChartAndTrendLines();
     this.chartRanking.update();
   }
 
   ///////////////////////////////////////////////////////////////////////////////
 
-  toggleTendenciaArithmetic() {
+  toggleTendenciaArithmetic(): void {
     this.isArithmeticTrendLineShow = !this.isArithmeticTrendLineShow;
     this.updateChartAndTrendLines();
     this.setAritmeticTrenLineExpression()
   }
 
-  private adicionarLinhaTendenciaAritmetica() {
-    const data = this.chartRanking.data.datasets[0].data;
+  private adicionarLinhaTendenciaAritmetica(): void {
+    const data: number[] = this.chartRanking.data.datasets[0].data;
     this.isArithmeticTrendLineShow = true;
-    const trendLineData = this.mathService.calculateArithmeticTrendLine(data);
+    const trendLineData: number[] = this.mathService.calculateArithmeticTrendLine(data);
     this.chartRanking.data.datasets[3].data = trendLineData;
     this.chartRanking.update();
   }
 
-  private removerLinhaTendenciaAritmetica() {
+  private removerLinhaTendenciaAritmetica(): void {
     this.isArithmeticTrendLineShow = false;
     this.chartRanking.data.datasets[3].data = [];
     this.chartRanking.update();
@@ -365,22 +361,21 @@ export class ChartsRankingsComponent implements OnInit {
 
   ////////////////////////////////////////////////////////////////////
 
-  toggleTendenciaExponencial() {
+  toggleTendenciaExponencial(): void {
     this.isExponentialTrendLineShow = !this.isExponentialTrendLineShow;
     this.updateChartAndTrendLines();
     this.setExponentialTrenLineExpression();
   }
 
-  private adicionarLinhaTendenciaExponencial() {
-    const data = this.chartRanking.data.datasets[0].data;
+  private adicionarLinhaTendenciaExponencial(): void {
+    const data: number[] = this.chartRanking.data.datasets[0].data;
     this.isExponentialTrendLineShow = true;
-    const trendExponetialLineData =
-      this.mathService.calculateExponentialTrendLine(data);
+    const trendExponetialLineData: number[] = this.mathService.calculateExponentialTrendLine(data);
     this.chartRanking.data.datasets[2].data = trendExponetialLineData;
     this.chartRanking.update();
   }
 
-  private removerLinhaTendenciaExponencial() {
+  private removerLinhaTendenciaExponencial(): void {
     this.isExponentialTrendLineShow = false;
     this.chartRanking.data.datasets[2].data = [];
     this.chartRanking.update();
@@ -388,22 +383,21 @@ export class ChartsRankingsComponent implements OnInit {
 
   ////////////////////////////////////////////////////////////
 
-  toggleTendenciaLogarithm() {
+  toggleTendenciaLogarithm(): void {
     this.isLogarithmLineDataTrendLineShow = !this.isLogarithmLineDataTrendLineShow;
     this.updateChartAndTrendLines();
     this.setLogarithmicTrenLineExpression()
   }
 
-  private adicionarLinhaTendenciaLogarithm() {
-    const data = this.chartRanking.data.datasets[0].data;
+  private adicionarLinhaTendenciaLogarithm(): void {
+    const data:number[] = this.chartRanking.data.datasets[0].data;
     this.isLogarithmLineDataTrendLineShow = true;
-    const trendLogarithmLineData =
-      this.mathService.calculateLogarirmicTrendLine(data);
+    const trendLogarithmLineData: number[] = this.mathService.calculateLogarithmicTrendLine(data);
     this.chartRanking.data.datasets[4].data = trendLogarithmLineData;
     this.chartRanking.update();
   }
 
-  private removerLinhaTendenciaLogarithm() {
+  private removerLinhaTendenciaLogarithm(): void {
     this.isLogarithmLineDataTrendLineShow = false;
     this.chartRanking.data.datasets[4].data = [];
     this.chartRanking.update();
@@ -411,25 +405,25 @@ export class ChartsRankingsComponent implements OnInit {
 
   ///////////////////////////////////////////////////
 
-  toggleMedia() {
+  toggleMedia(): void {
     this.isAvaregeShow = !this.isAvaregeShow;
     this.setAvaregeExpression();
     this.updateChartAndTrendLines();
   }
 
-  private adicionarMedia() {
-    const data = this.chartRanking.data.datasets[0].data;
-    const media = this.mathService.calculateAverage(data);
+  private adicionarMedia(): void {
+    const data: number[] = this.chartRanking.data.datasets[0].data;
+    const media: number = this.mathService.calculateAverage(data);
     this.chartRanking.data.datasets[1].data = Array(data.length).fill(media);
     this.chartRanking.update();
   }
 
-  private removerMedia() {
+  private removerMedia(): void {
     this.chartRanking.data.datasets[1].data = [];
     this.chartRanking.update();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.chartRanking) {
       this.chartRanking.destroy();
     }

@@ -8,7 +8,7 @@ export class KatexService {
   constructor() {}
 
   renderMathExpression(expression: string, element: string) {
-    const mathContainer = document.getElementById(element);
+    const mathContainer:  HTMLElement | null = document.getElementById(element);
     katex.render(expression, mathContainer as HTMLElement);
     mathContainer?.classList.add('custom-katex-font-size');
   }
@@ -30,13 +30,7 @@ export class KatexService {
     return ` y = m\\cdot x + b`;
   }
 
-   getLogarithmicTrendLineFormula() {
-    return` y = A\\cdot \\ln \\cdot(x) + B`;
-
-
-}
-
-
-
-
+  getLogarithmicTrendLineFormula() {
+    return ` y = A\\cdot \\ln \\cdot(x) + B`;
+  }
 }
