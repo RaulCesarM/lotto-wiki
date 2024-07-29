@@ -15,16 +15,11 @@ import { NavSidenavComponent } from './nav-modules/nav-sidenav/nav-sidenav.compo
 import { NavFooterComponent } from './nav-modules/nav-footer/nav-footer.component';
 import { ChartsRankingsComponent } from './charts-module/charts-rankings/charts-rankings.component';
 import { ChartsMoonsComponent } from './charts-module/charts-moons/charts-moons.component';
-import { ChartsMapsComponent } from './charts-module/charts-maps/charts-maps.component';
-import { ChartsCorrelationsComponent } from './charts-module/charts-correlations/charts-correlations.component';
+import { CorrelationsComponent } from './charts-module/correlations/correlations.component';
 import { FormsModule } from '@angular/forms';
 import { ChartsOnionComponent } from './charts-module/charts-onion/charts-onion.component';
 import { ExplanationCorrelationsComponent } from './components/explanations/explanation-correlations/explanation-correlations.component';
 import { ExplanationRankingsComponent } from './components/explanations/explanation-rankings/explanation-rankings.component';
-import { PagesHomeComponent } from './pages/pages-home/pages-home.component';
-import { PagesRankingComponent } from './pages/pages-ranking/pages-ranking.component';
-import { ChartsComponent } from './shared/charts/charts.component';
-import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
@@ -39,15 +34,10 @@ import { HttpClientModule } from '@angular/common/http';
     NavFooterComponent,
     ChartsRankingsComponent,
     ChartsMoonsComponent,
-    ChartsMapsComponent,
-    ChartsCorrelationsComponent,
+    CorrelationsComponent,
     ChartsOnionComponent,
     ExplanationCorrelationsComponent,
-    ExplanationRankingsComponent,
-    PagesHomeComponent,
-    PagesRankingComponent,
-    ChartsComponent,
-    ToolbarComponent,
+    ExplanationRankingsComponent, 
 
 
   ],

@@ -1,0 +1,43 @@
+.dot {
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  visibility: hidden;
+}
+
+.clicked .dot {
+  visibility: visible;
+}
+
+.container-fluid {
+  max-height: 90vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.mat-mdc-select {
+  width: 100px;
+  padding: 12px;
+  margin: 0px;
+
+}
+.mat-mdc-option {
+  padding-left: 3px;
+  padding-right: 16px;
+}
+
+
+.mat-mdc-select-trigger {
+  background-color: #f0f0f0;
+  width: 100px;
+}
+
+
+.mat-mdc-select-value {
+  color: #e9dddd;
+  width: 100px;
+}

@@ -1,1 +1,120 @@
-<p>charts-moons works!</p>
+<div class="container-fluid" style="max-height: 90vh;">
+  <div class="row ">
+    <fieldset>
+      <button mat-button (click)="toggleSorted()" [class.clicked]="isSorted" matTooltip="Ordenar ">
+        <span>
+          <img src="assets/ordenar.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+
+
+
+
+      <button mat-button (click)="updateDataSourceBasedOnEvent('newMoon')" [class.clicked]="isNewMoonActive"
+        matTooltip="Lua Nova">
+        <span>
+          <img src="assets/lua-nova.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('crescentMoon')" [class.clicked]="isCrescentMoonActive"
+        matTooltip="Crescente">
+        <span>
+          <img src="assets/lua-crescente.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('quarterCrescentMoon')"
+        [class.clicked]="isQuarterCrescentMoonActive" matTooltip="Quarto Crescente">
+        <span>
+          <img src="assets/lua-quarto-crescente.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('gibousCrescentMoon')"
+        [class.clicked]="isGiboseCrescentMoonActive" matTooltip="Gibosa crescente">
+        <span>
+          <img src="assets/lua-gibosa-crescente.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('fullMoon')" [class.clicked]="isFullMoonActive"
+        matTooltip="Lua Cheia">
+        <span>
+          <img src="assets/lua-cheia.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+
+      <button mat-button (click)="updateDataSourceBasedOnEvent('gibousWaningMoon')"
+        [class.clicked]="isGiboseWaningMoonActive" matTooltip="Gibosa minguante">
+        <span>
+          <img src="assets/lua-gibosa-minguante.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('quarterWaningMoon')"
+        [class.clicked]="isQuarterWaningActive" matTooltip="Quarto minguante">
+        <span>
+          <img src="assets/lua-quarto-minguante.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+
+      <button mat-button (click)="updateDataSourceBasedOnEvent('waningMoon')" [class.clicked]="isWanningMoonActive"
+        matTooltip="Minguante">
+        <span>
+          <img src="assets/lua-minguante.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="toggleAvarege()" [class.clicked]="isAvaregeShow" matTooltip="Mostrar media">
+        <span>
+          <img src="assets/arithmetic-mean.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+
+      <mat-select [(ngModel)]="typeChart" (ngModelChange)="saveType($event)">
+        <mat-option value="line">Line</mat-option>
+        <mat-option value="bubble">Bubble</mat-option>
+        <mat-option value="bar">Bar</mat-option>
+      </mat-select>
+    </fieldset>
+  </div>
+
+  <div class="row ">
+    <div class="col">
+      <fieldset class="center-fieldset">
+        <p class="chart-container">
+          <canvas id="canvas" width="350px" height="300px">{{chartMoon}}</canvas>
+        </p>
+        <div class="linhaTendenciaFormula-background">
+          <div id="linhaTendenciaFormula"> </div>
+        </div>
+        <div class="media-background">
+          <div id="media"> </div>
+        </div>
+        <div class="linhadetendenciaaritemtica-background">
+          <div id="linhaDeTendenciaAritimetica"> </div>
+        </div>
+        <div class="linhadetendencialogaritmica-background">
+          <div id="linhaDeTendenciaLogaritmica"> </div>
+        </div>
+        <div class="outlierInputValue-background">
+          <div id="outlierKatex"> </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>

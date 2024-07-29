@@ -11,19 +11,20 @@ export class CorrelationsService {
   matrix: number[][] = [];
 
   constructor(
-    private dataService: CorrelationsRepository,
+    private repository: CorrelationsRepository,
     private loading: LoadingService) {}
 
 
+ 
   async loadData(): Promise<void> {
-    this.dataService.getData().subscribe(console.log);
     this.loading.loadingOn();
     try {
-      this.matrix = await firstValueFrom(this.dataService.getData());
+      this.matrix = await firstValueFrom(this.repository.getData());
     } catch (error) {
-      console.error(error);
+      console.error('Erro ao carregar dados:', error);
+    } finally {
+      this.loading.loadingOff();
     }
-    this.loading.loadingOff();
   }
 
   getData(): number[][] {

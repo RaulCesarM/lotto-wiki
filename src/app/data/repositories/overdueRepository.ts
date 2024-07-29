@@ -3,14 +3,14 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
-export class CorrelationsRepository {
+export class OverdueRepository {
 
   constructor(private http: HttpClient) {}
 
-  private endPoint = 'https://localhost:7139/api/LotoFacilCorrelation/'; 
+  private endPointw = 'https://localhost:7139/api/LotoFacilOverDue/last/'; 
 
-  getData(): Observable<any> {      
-    return this.http.get<any>(this.endPoint);
+  getData(): Observable<any> {    
+    return this.http.get<any>(this.endPointw);
   } 
 
 }

@@ -1,17 +1,72 @@
 <div class="container-fluid" style="max-height: 90vh;">
-  <div class="row ">
+  <div class="row">
     <fieldset>
-      <button mat-button (click)="toggleOrdenado()" [class.clicked]="isSorted" matTooltip="Ordenar "><span><img src="assets/ordenar.png" width="25px"><span class="dot"></span></span> </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('base')" [class.clicked]="isBaseActive" matTooltip="Dados  originais"><span> <img src="assets/ver-lista.png" width="25px"><span class="dot"></span></span> </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('light')" [class.clicked]="isLightActive" matTooltip="MENOS QUEDAS"><span> <img src="assets/pena.png" width="25px"><span class="dot"></span></span> </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('heavy')" [class.clicked]="isHaveyActive" matTooltip="MAIS QUEDAS"> <span> <img src="assets/peso.png" width="25px"><span class="dot"></span></span></button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('repeated')" [class.clicked]="isRepeatedActive" matTooltip="MAIS TEMPO SEM CAIR"><span><img src="assets/atrasado.png" width="25px"><span class="dot"></span></span></button>
-      <button mat-button (click)="toggleOutliers()" [class.clicked]="!isOutliersShow" matTooltip="Remover outliers"><span><img src="assets/data-out.png" width="25px"><span class="dot"></span></span></button>
-      <button mat-button (click)="toggleMedia()" [class.clicked]="isAvaregeShow" matTooltip="Mostrar media"><span><img src="assets/arithmetic-mean.png" width="20px"><span class="dot"></span></span></button>
-      <button mat-button (click)="toggleTendenciaExponencial()" [class.clicked]="isExponentialTrendLineShow" matTooltip="Linha de tendencia Exponencial"><span><img src="assets/grafico.png" width="25px"><span class="dot"></span></span></button>
-      <button mat-button (click)="toggleTendenciaArithmetic()" [class.clicked]="isArithmeticTrendLineShow" matTooltip="Linha de tendencia Aritmetica"><span><img src="assets/crescimento.png" width="25px"><span class="dot"></span></span></button>
-      <button mat-button (click)="toggleTendenciaLogarithm()" [class.clicked]="isLogarithmLineDataTrendLineShow" matTooltip="Linha de tendencia logaritmica"><span><img src="assets/outlier.png" width="25px"><span class="dot"></span></span></button>
-      <button mat-button (click)="toggleShowFormula()" [class.clicked]="isFormulaShow" matTooltip="Linha de tendencia logaritmica"><span><img src="assets/simbolo-matematico-da-funcao.png" width="25px"><span class="dot"></span></span></button>
+      <button mat-button (click)="toggleSorted()" [class.clicked]="isSorted" matTooltip="Ordenar ">
+        <span><img src="assets/ordenar.png" width="25px"><span class="dot"></span></span>
+      </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('base')" [class.clicked]="isBaseActive" matTooltip="Dados  originais">
+        <span>
+          <img src="assets/ver-lista.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('ocurrences')" [class.clicked]="isOcurrenceActive" matTooltip="Ocorrencias">
+        <span>
+          <img src="assets/gravidade.png" width="35px">        
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="updateDataSourceBasedOnEvent('overdue')" [class.clicked]="isRepeatedActive" matTooltip="Atrasados">
+        <span>
+          <img src="assets/atrasado.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="toggleOutliers()" [class.clicked]="!isOutliersShow" matTooltip="Remover outliers">
+        <span>
+          <img src="assets/data-out.png" width="25px">
+          <span class="dot">
+          </span></span>
+      </button>
+      <button mat-button (click)="toggleAvarege()" [class.clicked]="isAvaregeShow" matTooltip="Mostrar media">
+        <span>
+          <img src="assets/arithmetic-mean.png" width="20px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="toggleExponentialTrendLine()" [class.clicked]="isExponentialTrendLineShow" matTooltip="Linha de tendencia Exponencial">
+        <span>
+          <img src="assets/grafico.png" width="25px">
+          <span class="dot">
+
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="toggleArithmeticTrendLine()" [class.clicked]="isArithmeticTrendLineShow" matTooltip="Linha de tendencia Aritmetica">
+        <span>
+          <img src="assets/crescimento.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="toggleLogarithmTrendLine()" [class.clicked]="isLogarithmLineDataTrendLineShow" matTooltip="Linha de tendencia logaritmica">
+        <span>
+          <img src="assets/outlier.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
+      <button mat-button (click)="toggleShowFormula()" [class.clicked]="isFormulaShow" matTooltip="Linha de tendencia logaritmica">
+        <span>
+          <img src="assets/simbolo-matematico-da-funcao.png" width="25px">
+          <span class="dot">
+          </span>
+        </span>
+      </button>
 
       <mat-select [(ngModel)]="typeChart" (ngModelChange)="saveType($event)">
         <mat-option value="line">Line</mat-option>
@@ -28,11 +83,21 @@
         <p class="chart-container">
           <canvas id="canvas" width="350px" height="300px">{{chartRanking}}</canvas>
         </p>
-        <div class="linhaTendenciaFormula-background"> <div id="linhaTendenciaFormula"> </div></div>
-        <div class="media-background"> <div id="media"> </div> </div>
-        <div class="linhadetendenciaaritemtica-background"> <div id="linhaDeTendenciaAritimetica"> </div></div>
-        <div class="linhadetendencialogaritmica-background"><div id="linhaDeTendenciaLogaritmica"> </div></div>
-        <div class="outlierInputValue-background"><div id="outlierKatex"> </div></div>
+        <div class="linhaTendenciaFormula-background">
+          <div id="linhaTendenciaFormula"> </div>
+        </div>
+        <div class="media-background">
+          <div id="media"> </div>
+        </div>
+        <div class="linhadetendenciaaritemtica-background">
+          <div id="linhaDeTendenciaAritimetica"> </div>
+        </div>
+        <div class="linhadetendencialogaritmica-background">
+          <div id="linhaDeTendenciaLogaritmica"> </div>
+        </div>
+        <div class="outlierInputValue-background">
+          <div id="outlierKatex"> </div>
+        </div>
       </fieldset>
     </div>
   </div>

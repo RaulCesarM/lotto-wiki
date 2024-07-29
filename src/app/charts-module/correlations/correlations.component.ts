@@ -1,22 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-
 import { CorrelationsService } from 'src/app/services/correlations.service';
-
 import { KatexService } from 'src/app/services/katex.service';
-// import { CorrelationsService } from 'src/app/services/correlations.service';
-
-
 
 @Component({
-  selector: 'app-charts-correlations',
-  templateUrl: './charts-correlations.component.html',
-  styleUrls: ['./charts-correlations.component.css']
+  selector: 'app-correlations',
+  templateUrl: './correlations.component.html',
+  styleUrls: ['./correlations.component.css']
 })
-export class ChartsCorrelationsComponent implements OnInit {
+export class CorrelationsComponent implements OnInit {
 
-  cores: string[][] = [];
-  media: number =0;
+  colors: string[][] = [];
+  avarege: number =0;
   max: number =0;
+  biggerAvarege: number =0;
   min: number =0;
 
   numero:  any | object | null | undefined;
@@ -32,27 +28,26 @@ export class ChartsCorrelationsComponent implements OnInit {
  async ngOnInit() { 
     await this.correlationsService.loadData()
     this.loadCellsData()
-    this.calcularMedia();
-    this.calcularMax();
-    this.calcularMin();
+    this.calculateAverage();
+    this.getMax();
+    this.getMin();
     const correlationExpression = this.katexService.getCorrelationFormula();
     this.katexService.renderMathExpression(correlationExpression, 'correlation');
   }
 
   loadCellsData() {
-   this.cells = this.correlationsService.matrix;
-   console.log(this.correlationsService.matrix);    
+   this.cells = this.correlationsService.matrix;  
   }
 
-  calcularMedia(): void {
-    this.media = this.correlationsService.calculateAverage();
+  calculateAverage(): void {
+    this.avarege = this.correlationsService.calculateAverage();
   }
 
-  calcularMax(): void {
+  getMax(): void {
     this.max = this.correlationsService.findMaxValue();
   }
 
-  calcularMin(): void {
+  getMin(): void {
     this.min = this.correlationsService.findMinValue();
   }
 
@@ -64,7 +59,7 @@ export class ChartsCorrelationsComponent implements OnInit {
     } else if (cellNumber === min) {
       return 'rgb(255, 255, 0)';
     } else {
-      return cellNumber > this.media ? 'rgb(126, 218, 249)' : 'rgb(255, 255, 255)' ;
+      return cellNumber > this.avarege ? 'rgb(126, 218, 249)' : 'rgb(255, 255, 255)' ;
     }
 
   }
