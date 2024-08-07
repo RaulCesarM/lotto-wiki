@@ -4,22 +4,15 @@
   margin:0px;
   border: none;
 }
-
-
-
-
-
 .cebola {
   position: relative;
   top:-15px;
   max-width:400px;
   max-height: 400px;
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   padding: 0px;
   margin:0px;
-
-
 }
 
 .camada {
@@ -43,7 +36,7 @@
 .numero {
   color: rgb(0, 0, 0);
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.6rem;
   position: absolute;
   top: 50%;
   left: 1%;
@@ -51,75 +44,110 @@
 }
 
 
+.numero-dado {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 0.6rem;
+  position: absolute;
+  bottom: -9%;
+  right: 50%;
+  transform: rotate(-0deg);
+}
+
+.numero-target {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 0.8rem;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(50%, -50%);
+}
+
+
+
+
 .camada-1 {
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   top: 10%;
-  left: 10%;
+  left: 10%; 
 
 }
 
 
-.camada-2 {
+/* .camada-2 {
   width: 80%;
   height: 80%;
   top: 15%;
   left: 15%;
 
-}
+} */
 
 .camada-3 {
-  width: 70%;
-  height: 70%;
+  width: 80%;
+  height: 80%;
   top: 20%;
   left: 20%;
 
 }
 
-.camada-4 {
+/* .camada-4 {
   width: 60%;
   height: 60%;
   top: 25%;
   left: 25%;
-}
+} */
 
 .camada-5 {
-  width: 50%;
-  height: 50%;
+  width: 60%;
+  height: 60%;
   top: 30%;
   left: 30%;
 
 }
 
-.camada-6 {
+/* .camada-6 {
   width: 40%;
   height: 40%;
   top: 35%;
-  left: 35%;
+  left: 35%; */
 
-}
+/* } */
 
 .camada-7 {
-  width: 30%;
-  height: 30%;
+  width: 40%;
+  height: 40%;
   top: 40%;
   left: 40%;
 
 }
 
-.camada-8 {
+/* .camada-8 {
   width: 20%;
   height: 20%;
   top: 45%;
   left: 45%;
 
-}
+} */
 
 .camada-9 {
-  width: 10%;
-  height: 10%;
-  top: 50%;
-  left: 50%;
+  width: 15%;
+  height: 15%;
+  top: 52%;
+  left: 52%;
 
+}
+
+.fieldset-inline{
+  margin-top: 10px;
+  padding-top: 10px;
+}
+.left-fieldset{
+  padding-top: 10px;
+  max-width:500px;
+  max-height: 500px;
+  width: 500px;
+  height: 500px;
 }
 

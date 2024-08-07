@@ -1,117 +1,112 @@
-
-
-
 <div class="container-fluid">
   <div class="row">
+    <app-nav-correlations></app-nav-correlations>
+  </div>
+  <div class="row">
+    <fieldset class="left-fieldset">
+      <div class="cebola ">
+        <div class="camada camada-1">
+          <span class="numero">{{placesRanking.fourthBiggest}}</span>
+          <span class="numero-dado">{{placesRanking.fourthBiggestValue}}</span>
+        </div>
+        <div class="camada camada-3">
+          <span class="numero">{{placesRanking.thirdBiggest}}</span>
+          <span class="numero-dado">{{placesRanking.thirdBiggestValue}}</span>
+        </div>
+        <div class="camada camada-5">
+          <span class="numero">{{placesRanking.secondBiggest}}</span>
+          <span class="numero-dado">{{placesRanking.secondBiggestValue}}</span>
+        </div>
+        <div class="camada camada-7">
+          <span class="numero">{{placesRanking.firstBiggest}}</span>
+          <span class="numero-dado">{{placesRanking.firstBiggestValue}}</span>
+        </div>
+        <div class="camada camada-9">
+          <span class="numero-target">{{placesRanking.target}}</span>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset class="right-fieldset">
+    </fieldset>
+  </div>
 
-   
-
-        <fieldset class="left-fieldset">
-          <div class="cebola ">
-            <div class="camada camada-1" ><span class="numero">1</span></div>
-            <div class="camada camada-2"><span class="numero">2</span></div>
-            <div class="camada camada-3"><span class="numero">3</span></div>
-            <div class="camada camada-4"><span class="numero">4</span></div>
-            <div class="camada camada-5"><span class="numero">5</span></div>
-            <div class="camada camada-6"><span class="numero">6</span></div>
-            <div class="camada camada-7"><span class="numero">7</span></div>
-            <div class="camada camada-8"><span class="numero">8</span></div>
-            <div class="camada camada-9"><span class="numero">9</span></div>
-            <!-- <div class="camada camada-10"><span class="numero">10</span></div>            -->
-          </div>   
-          
-          
-          <fieldset class="fieldset-inline">
-           
-            <button class="button-onion">
-              <i> <img src="assets/numero-um.png" width="15px"></i>
-            </button>
-            <button  class="button-onion">
-              <i> <img src="assets/numero-dois.png" width="15px"></i>
-            </button>
-            <button  class="button-onion" >
-              <span> <img src="assets/numero-tres.png" width="15px"></span>
-            </button>
-            <button  class="button-onion">
-              <span> <img src="assets/numero-quatro.png"width="15px"></span>
-            </button>
-            <button class="button-onion">
-              <span> <img src="assets/numero-cinco.png" width="15px"></span>
-            </button>
-            <button  class="button-onion">
-              <span> <img src="assets/numero-seis.png" width="15px"></span>
-            </button>
-            <button class="button-onion">
-              <span> <img src="assets/numero-sete.png" width="15px"></span>
-            </button>
-            <button class="button-onion">
-              <i> <img src="assets/numero-um.png" width="15px"></i>
-            </button>
-            <button  class="button-onion">
-              <i> <img src="assets/numero-dois.png" width="15px"></i>
-            </button>
-            <button  class="button-onion" >
-              <span> <img src="assets/numero-tres.png" width="15px"></span>
-            </button>
-            <button  class="button-onion">
-              <span> <img src="assets/numero-quatro.png"width="15px"></span>
-            </button>
-            <button class="button-onion">
-              <span> <img src="assets/numero-cinco.png" width="15px"></span>
-            </button>
-            <button  class="button-onion">
-              <span> <img src="assets/numero-seis.png" width="15px"></span>
-            </button>
-            <button class="button-onion">
-              <span> <img src="assets/numero-sete.png" width="15px"></span>
-            </button>
-            <button class="button-onion">
-              <i> <img src="assets/numero-um.png" width="15px"></i>
-            </button>
-            <button  class="button-onion">
-              <i> <img src="assets/numero-dois.png" width="15px"></i>
-            </button>
-            <button  class="button-onion" >
-              <span> <img src="assets/numero-tres.png" width="15px"></span>
-            </button>
-            <button  class="button-onion">
-              <span> <img src="assets/numero-quatro.png"width="15px"></span>
-            </button>
-            <button class="button-onion">
-              <span> <img src="assets/numero-cinco.png" width="15px"></span>
-            </button>
-            <button  class="button-onion">
-              <span> <img src="assets/numero-seis.png" width="15px"></span>
-            </button>
-            <button class="button-onion">
-              <span> <img src="assets/numero-sete.png" width="15px"></span>
-            </button>
-            <button  class="button-onion">
-              <span> <img src="assets/numero-quatro.png"width="15px"></span>
-            </button>
-            <button class="button-onion">
-              <span> <img src="assets/numero-cinco.png" width="15px"></span>
-            </button>
-            <button  class="button-onion">
-              <span> <img src="assets/numero-seis.png" width="15px"></span>
-            </button>
-            <button class="button-onion">
-              <span> <img src="assets/numero-sete.png" width="15px"></span>
-            </button>
-          
-           
-          </fieldset>
-        
-         
-      
-        </fieldset>
-    
-      <fieldset class="right-fieldset">    
-        
-       
-     
-       
-      </fieldset>
-   
+  <div class="row">
+    <fieldset class="fieldset-inline">
+      <button class="button-onion" (click)="setBall(1)">
+        <i> <img src="assets/numero-1.png" width="25px"></i>
+      </button>
+      <button class="button-onion" (click)="setBall(2)">
+        <i> <img src="assets/numero-2.png" width="25px"></i>
+      </button>
+      <button class="button-onion" (click)="setBall(3)">
+        <span> <img src="assets/numero-3.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(4)">
+        <span> <img src="assets/numero-4.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(5)">
+        <span> <img src="assets/numero-5.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(6)">
+        <span> <img src="assets/numero-6.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(7)">
+        <span> <img src="assets/numero-7.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(8)">
+        <i> <img src="assets/numero-8.png" width="25px"></i>
+      </button>
+      <button class="button-onion" (click)="setBall(9)">
+        <i> <img src="assets/numero-9.png" width="25px"></i>
+      </button>
+      <button class="button-onion" (click)="setBall(10)">
+        <span> <img src="assets/numero-10.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(11)">
+        <span> <img src="assets/numero-11.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(12)">
+        <span> <img src="assets/numero-12.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(13)">
+        <span> <img src="assets/numero-13.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(14)">
+        <span> <img src="assets/numero-14.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(15)">
+        <i> <img src="assets/numero-15.png" width="25px"></i>
+      </button>
+      <button class="button-onion" (click)="setBall(16)">
+        <i> <img src="assets/numero-16.png" width="25px"></i>
+      </button>
+      <button class="button-onion" (click)="setBall(17)">
+        <span> <img src="assets/numero-17.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(18)">
+        <i> <img src="assets/numero-18.png" width="25px"></i>
+      </button>
+      <button class="button-onion" (click)="setBall(19)">
+        <i> <img src="assets/numero-19.png" width="25px"></i>
+      </button>
+      <button class="button-onion" (click)="setBall(20)">
+        <span> <img src="assets/numero-20.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(21)">
+        <span> <img src="assets/numero-21.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(22)">
+        <span> <img src="assets/numero-22.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(23)">
+        <span> <img src="assets/numero-23.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(24)">
+        <span> <img src="assets/numero-24.png" width="25px"></span>
+      </button>
+      <button class="button-onion" (click)="setBall(25)">
+        <span> <img src="assets/numero-25.png" width="25px"></span>
+      </button>
+    </fieldset>
   </div>
 </div>

@@ -8,10 +8,9 @@ export class MathService {
 
   constructor() {}
 
-  calculateExponentialTrendLine(data: number[]): number[] {
+ async calculateExponentialTrendLine(data: number[]):Promise< number[]> {
     const trendLine: number[] = [];
     const filteredData: number[] = data.filter(value => value !== 0);
-
     if (filteredData.length === 0) {
         return trendLine;  
     }
@@ -24,9 +23,7 @@ export class MathService {
     return trendLine;
 }
 
-
-
-  calculateArithmeticTrendLine(data: number[]): number[] {
+async calculateArithmeticTrendLine(data: number[]): Promise< number[]> {
     const length: number = data.length;
     let sumX: number = 0;
     let sumY: number = 0;
@@ -49,8 +46,7 @@ export class MathService {
     return trendLine;
 }
 
-
-  calculateLogarithmicTrendLine(data: number[]): number[] {
+async calculateLogarithmicTrendLine(data: number[]): Promise< number[]>{
     const length: number = data.length;
     let sumXlnY: number = 0;
     let sumlnX: number = 0;
@@ -73,27 +69,7 @@ export class MathService {
     return trendLine;
 }
 
-
-  // sort(dataParam: any, LabelParam: any) {
-  //   let data = dataParam;
-  //   let labels = LabelParam;
-  //   let dataWithLabels = [];
-  //   for (let i = 0;i < data.length;i++) {
-  //     dataWithLabels.push({
-  //       data: data[i],
-  //       label: labels[i],
-  //     });
-  //   }
-  //   dataWithLabels.sort((first: any, second: any) => first.data - second.data);
-  //   for (let i = 0;i < dataWithLabels.length;i++) {
-  //     data[i] = dataWithLabels[i].data;
-  //     labels[i] = dataWithLabels[i].label;
-  //   }
-  //   return dataWithLabels
-  // }
-
-
-sort(dataArray: number[], labelsArray: string[]): DataLabelPair[] {   
+async sort(dataArray: number[], labelsArray: string[]):Promise< DataLabelPair[] >{   
     const dataWithLabels: DataLabelPair[] = dataArray.map((data, index) => ({
         data,
         label: labelsArray[index]
@@ -107,26 +83,7 @@ sort(dataArray: number[], labelsArray: string[]): DataLabelPair[] {
     return dataWithLabels;
 }
 
-
-  // unSort(dataParam: any, LabelParam: any) {
-  //   let data = dataParam;
-  //   let labels = LabelParam;
-  //   let dataWithLabels = [];
-  //   for (let i = 0;i < data.length;i++) {
-  //     dataWithLabels.push({
-  //       data: data[i],
-  //       label: labels[i],
-  //     });
-  //   }
-  //   dataWithLabels.sort((first: any, second: any) => first.label - second.label);
-  //   for (let i = 0;i < dataWithLabels.length;i++) {
-  //     data[i] = dataWithLabels[i].data;
-  //     labels[i] = dataWithLabels[i].label;
-  //   }
-  //   return dataWithLabels
-  // }
-
-  unSort(dataArray: number[], labelsArray: string[]): DataLabelPair[] { 
+async unSort(dataArray: number[], labelsArray: string[]):Promise< DataLabelPair[]> { 
     const dataWithLabels: DataLabelPair[] = dataArray.map((data, index) => ({
         data,
         label: labelsArray[index]
@@ -141,14 +98,19 @@ sort(dataArray: number[], labelsArray: string[]): DataLabelPair[] {
     return dataWithLabels;
 }
 
-
-  calculateAverage(data: number[]): number {
-    return data.reduce((acc, value) => acc + value, 0) / data.length;
+async  calculateAverage(data: number[] | number[][]): Promise< number> {
+    if (Array.isArray(data[0])) {    
+      const total = (data as number[][]).reduce((acc, array) => acc + array.reduce((subAcc, value) => subAcc + value, 0), 0);
+      const count = (data as number[][]).reduce((acc, array) => acc + array.length, 0);
+      return total / count;
+    } else {     
+      return (data as number[]).reduce((acc, value) => acc + value, 0) / data.length;
+    }
   }
 
-  calculateStandardDeviation(data: number[], mean: number): number {
+  async calculateStandardDeviation(data: number[], mean: number): Promise< number> {
     const squaredDifferences: number [] = data.map(value => Math.pow(value - mean, 2));
-    const variance: number = this.calculateAverage(squaredDifferences);
+    const variance: number = await this.calculateAverage(squaredDifferences);
     const standardDeviation: number = Math.sqrt(variance);
     return standardDeviation;
   }
@@ -164,11 +126,33 @@ sort(dataArray: number[], labelsArray: string[]): DataLabelPair[] {
     }
   }
 
-  removeOutliers(data: number[], stdDevThreshold: number): number[] {
-    const mean: number = this.calculateAverage(data);
-    const stdDev: number = this.calculateStandardDeviation(data, mean);
+  async removeOutliers(data: number[], stdDevThreshold: number):Promise< number[]> {
+    const mean: number = await this.calculateAverage(data);
+    const stdDev: number =await this.calculateStandardDeviation(data, mean);
     const lowerBound: number = mean - stdDevThreshold * stdDev;
     const upperBound: number = mean + stdDevThreshold * stdDev;
     return data.filter(value => value >= lowerBound && value <= upperBound);
+  }
+
+  async  findMaxValue(data: number[][]): Promise< number> {   
+    let maxValue = Number.MIN_SAFE_INTEGER;
+    for (const row of data) {
+      for (const cell of row) {
+        maxValue = Math.max(maxValue, cell);
+      }
+    }
+
+    return maxValue;
+  }
+
+  async findMinValue(data: number[][]): Promise< number> {   
+    let minValue = Number.MAX_SAFE_INTEGER;
+    for (const row of data) {
+      for (const cell of row) {
+        minValue = Math.min(minValue, cell);
+      }
+    }
+
+    return minValue;
   }
 }

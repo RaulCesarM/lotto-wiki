@@ -1,0 +1,14 @@
+.container-fluid{
+  margin: 0px;
+  align-items: center;
+  text-align: center;
+}
+
+.initial-text{
+ padding: 30px;
+}
+
+.style_h1{
+  color:rgb(30, 139, 195);
+  font-size:xx-large;
+}

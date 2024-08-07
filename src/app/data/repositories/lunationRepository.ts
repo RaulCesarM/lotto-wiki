@@ -11,29 +11,25 @@ export class LunationRepository {
 
   constructor(private http: HttpClient) {}
 
-  getCrescentMoon(): Observable<any> {
-    return this.http.get<any>(`${this.endPoint}Crescente`);
-  }
-
-  getFullMoon(): Observable<any> {  
-    return this.http.get<any>(`${this.endPoint}cheia`);
-  }
-
   getNewMoon(): Observable<any> {
     return this.http.get<any>(`${this.endPoint}Nova`);
   }
 
-  getWaningMoons(): Observable<any> {
-    return this.http.get<any>(`${this.endPoint}Minguante`);
+  getCrescentMoon(): Observable<any> {
+    return this.http.get<any>(`${this.endPoint}Crescente`);
   }
 
   getQuarterCrescenteMoon(): Observable<any> {
     return this.http.get<any>(`${this.endPoint}QuartoCrescente`);
   }
-
+  
   getGibbousCrescentMoon(): Observable<any> {
     return this.http.get<any>(`${this.endPoint}GibosaCrescente`);
   }
+
+  getFullMoon(): Observable<any> {  
+    return this.http.get<any>(`${this.endPoint}Cheia`);
+  } 
 
   getGibbousWaningMoon(): Observable<any> {
     return this.http.get<any>(`${this.endPoint}GibosaMinguante`);
@@ -42,4 +38,8 @@ export class LunationRepository {
   getQuarterWanningMoon(): Observable<any> {
     return this.http.get<any>(`${this.endPoint}QuartoMinguante`);
   }
+  getWaningMoon(): Observable<any> {
+    return this.http.get<any>(`${this.endPoint}Minguante`);
+  }
+
 }

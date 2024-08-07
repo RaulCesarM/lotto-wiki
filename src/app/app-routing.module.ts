@@ -4,14 +4,16 @@ import { CorrelationsComponent } from './charts-module/correlations/correlations
 import { ChartsMoonsComponent } from './charts-module/charts-moons/charts-moons.component';
 import { ChartsRankingsComponent } from './charts-module/charts-rankings/charts-rankings.component';
 import { ChartsOnionComponent } from './charts-module/charts-onion/charts-onion.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'onion', component: ChartsOnionComponent},
+  { path: 'home', component: HomeComponent },
   { path: 'lunations', component: ChartsMoonsComponent },
   { path: 'ranking', component: ChartsRankingsComponent},
-  { path: 'correl', component: CorrelationsComponent},
+   { path: 'correl', component: CorrelationsComponent},  
 ];
 
 @NgModule({

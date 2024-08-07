@@ -1,0 +1,10 @@
+.container-fluid {
+  max-height: 90vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+}
+
+fieldset{
+  margin-bottom: 10px;
+}

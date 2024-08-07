@@ -8,44 +8,35 @@
           </span>
         </span>
       </button>
-
-
-
-
-      <button mat-button (click)="updateDataSourceBasedOnEvent('newMoon')" [class.clicked]="isNewMoonActive"
-        matTooltip="Lua Nova">
+      <button mat-button (click)="updateDataSource(phase.NewMoon)" [class.clicked]="activeFlag.isNewMoonActive" matTooltip="Lua Nova">
         <span>
           <img src="assets/lua-nova.png" width="25px">
           <span class="dot">
           </span>
         </span>
       </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('crescentMoon')" [class.clicked]="isCrescentMoonActive"
-        matTooltip="Crescente">
+      <button mat-button (click)="updateDataSource(phase.CrescentMoon)" [class.clicked]="activeFlag.isCrescentMoonActive" matTooltip="Crescente">
         <span>
           <img src="assets/lua-crescente.png" width="25px">
           <span class="dot">
           </span>
         </span>
       </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('quarterCrescentMoon')"
-        [class.clicked]="isQuarterCrescentMoonActive" matTooltip="Quarto Crescente">
+      <button mat-button (click)="updateDataSource(phase.QuarterCrescentMoon)"  [class.clicked]="activeFlag.isQuarterCrescentMoonActive" matTooltip="Quarto Crescente">
         <span>
           <img src="assets/lua-quarto-crescente.png" width="25px">
           <span class="dot">
           </span>
         </span>
       </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('gibousCrescentMoon')"
-        [class.clicked]="isGiboseCrescentMoonActive" matTooltip="Gibosa crescente">
+      <button mat-button (click)="updateDataSource(phase.GibbousCrescentMoon)"  [class.clicked]="activeFlag.isGibbousCrescentMoonActive" matTooltip="Gibosa crescente">
         <span>
           <img src="assets/lua-gibosa-crescente.png" width="25px">
           <span class="dot">
           </span>
         </span>
       </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('fullMoon')" [class.clicked]="isFullMoonActive"
-        matTooltip="Lua Cheia">
+      <button mat-button (click)="updateDataSource(phase.FullMoon)" [class.clicked]="activeFlag.isFullMoonActive"  matTooltip="Lua Cheia">
         <span>
           <img src="assets/lua-cheia.png" width="25px">
           <span class="dot">
@@ -53,16 +44,14 @@
         </span>
       </button>
 
-      <button mat-button (click)="updateDataSourceBasedOnEvent('gibousWaningMoon')"
-        [class.clicked]="isGiboseWaningMoonActive" matTooltip="Gibosa minguante">
+      <button mat-button (click)="updateDataSource(phase.GibbousWaningMoon)" [class.clicked]="activeFlag.isGibbousWaningMoonActive" matTooltip="Gibosa minguante">
         <span>
           <img src="assets/lua-gibosa-minguante.png" width="25px">
           <span class="dot">
           </span>
         </span>
       </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('quarterWaningMoon')"
-        [class.clicked]="isQuarterWaningActive" matTooltip="Quarto minguante">
+      <button mat-button (click)="updateDataSource(phase.QuarterWaningMoon)" [class.clicked]="activeFlag.isQuarterWaningActive" matTooltip="Quarto minguante">
         <span>
           <img src="assets/lua-quarto-minguante.png" width="25px">
           <span class="dot">
@@ -70,8 +59,7 @@
         </span>
       </button>
 
-      <button mat-button (click)="updateDataSourceBasedOnEvent('waningMoon')" [class.clicked]="isWanningMoonActive"
-        matTooltip="Minguante">
+      <button mat-button (click)="updateDataSource(phase.WaningMoon)" [class.clicked]="activeFlag.isWanningMoonActive"   matTooltip="Minguante">
         <span>
           <img src="assets/lua-minguante.png" width="25px">
           <span class="dot">
@@ -99,22 +87,7 @@
       <fieldset class="center-fieldset">
         <p class="chart-container">
           <canvas id="canvas" width="350px" height="300px">{{chartMoon}}</canvas>
-        </p>
-        <div class="linhaTendenciaFormula-background">
-          <div id="linhaTendenciaFormula"> </div>
-        </div>
-        <div class="media-background">
-          <div id="media"> </div>
-        </div>
-        <div class="linhadetendenciaaritemtica-background">
-          <div id="linhaDeTendenciaAritimetica"> </div>
-        </div>
-        <div class="linhadetendencialogaritmica-background">
-          <div id="linhaDeTendenciaLogaritmica"> </div>
-        </div>
-        <div class="outlierInputValue-background">
-          <div id="outlierKatex"> </div>
-        </div>
+        </p>    
       </fieldset>
     </div>
   </div>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, ChartTypeRegistry } from 'chart.js';
+import { MoonPhase } from 'src/app/models/moonPhase';
+import { MoonPhasesFlags } from 'src/app/models/moonPhasesFlags';
 import { LunationService } from 'src/app/services/lunation.service';
+import { MathService } from 'src/app/services/math.service';
 
 @Component({
   selector: 'app-charts-moons',
@@ -8,85 +11,31 @@ import { LunationService } from 'src/app/services/lunation.service';
   styleUrls: ['./charts-moons.component.css']
 })
 export class ChartsMoonsComponent implements OnInit {
-  originalData: any[] | undefined;
-  originalLabels: any[] | undefined;
+  protected originalData: number[] = [];
+  protected originalLabels: string[] = [];
+  protected originalDataSource: number[] = [];
+  protected typeChart: string = 'bar';
+  protected chartMoon: any = [];
+  protected isAvaregeShow: boolean = false;
+  protected isSorted: boolean = false;
+  protected phase = MoonPhase;
+  protected activeFlag = MoonPhasesFlags;
 
-  originalDataSource: number[] | undefined;
+  constructor(private service: LunationService,
+    private mathService: MathService
+  ) {}
 
-
- 
-  newMoonDataSource: number[] =[];
-  crescenteMoonDataSource: number[] =[];
-  quarterCrescentMoonDataSource: number[] =[];  
-  gibousCrescentMoonDataSource: number[] =[];
-  fullMoonDataSource: number[] =[];
-  gibousWaningMoonDataSource: number[]=[];
-  quarterWaningDataSource:number[]=[];
-  waningMoonDataSource: number[] =[];
- 
-
-  typeChart: string = 'bar';
-  chartMoon: any = [];
-  isAvaregeShow: boolean = false;
-  isSorted: boolean = false;
-
-
-
-  isFullMoonActive: boolean = false;
-  isCrescentMoonActive: boolean = false;
-  isWanningMoonActive: boolean = false;
-  isNewMoonActive: boolean = false;
-
-  isQuarterCrescentMoonActive: boolean =false;  
-  isGiboseCrescentMoonActive: boolean =false;  
-  isGiboseWaningMoonActive:  boolean =false;  
-  isQuarterWaningActive: boolean =false;  
-
-
-  
-  
-
-  constructor(private service: LunationService) {}
-
-  async ngOnInit(): Promise<void> {
-    this.isFullMoonActive = true;
-    await this.service.loadData(); 
-  // this.originalDataSource =[...this.service.getFullMoon()]; 
-    this.fullMoonDataSource = [...this.service.getFullMoon()]; 
-    this.newMoonDataSource = [...this.service.getNewMoon()];
-    this.crescenteMoonDataSource = [...this.service.getCrescentMoon()];
-    this.waningMoonDataSource = [...this.service.getWaningMoons()];
-
-    this.quarterCrescentMoonDataSource = [...this.service.getQuarterCrescentMoon()]; 
-    this.quarterWaningDataSource = [...this.service.getQuarterWaningMoon()];
-    this.gibousCrescentMoonDataSource = [...this.service.getGibousCrescentMoon()];
-    this.gibousWaningMoonDataSource = [...this.service.getGibousWaningMoon()];
-    this.showChart();
+  async ngOnInit(): Promise<void> {      
+    this.setFlagsFalse();  
+   await this.showChart();
   }
 
-  showChart() {
+  protected async showChart(type?: string) {
     this.chartMoon = new Chart('canvas', {
-      type: 'bar',
+      type: (type as keyof ChartTypeRegistry) || 'bar',
       data: {
         labels: [...this.service.labelsDataSource],
-        datasets: [
-          {
-            label: 'Lua Cheia',
-            data: this.originalDataSource,
-            backgroundColor: 'rgba(55, 169, 245,0.5)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1,
-          },
-          {
-            label: 'Média',
-            data: [],
-            type: 'line',
-            fill: false,
-            borderColor: 'rgba(255, 0, 0, 1)',
-            pointRadius: 1,
-            borderWidth: 1,
-          },
-        ],
+        datasets:[... await this.service.GetDataSets()],
       },
       options: {
         responsive: true,
@@ -118,115 +67,118 @@ export class ChartsMoonsComponent implements OnInit {
     this.originalLabels = JSON.parse(JSON.stringify([...this.chartMoon.data.labels]));
   }
 
-  saveType($event: any) {
-    throw new Error('Method not implemented.');
-  }
-
-  toggleAvarege() {
-    throw new Error('Method not implemented.');
-  }
-
-  updateDataSourceBasedOnEvent(arg0: string) {
-    if (arg0 === 'newMoon') {
-      this.isNewMoonActive = true;
-      this.isWanningMoonActive = false;
-      this.isCrescentMoonActive = false;
-      this.isFullMoonActive = false;
-      this.isQuarterCrescentMoonActive = false;
-      this.isGiboseCrescentMoonActive = false;
-      this.isGiboseWaningMoonActive = false;
-      this.isQuarterWaningActive = false;
-      this.chartMoon.data.datasets[0].data = [...this.newMoonDataSource];
-    }
-    if (arg0 === 'crescentMoon') {
-      this.isCrescentMoonActive = true;
-      this.isFullMoonActive = false;    
-      this.isWanningMoonActive = false;
-      this.isNewMoonActive = false;
-      this.isQuarterCrescentMoonActive = false;
-      this.isGiboseCrescentMoonActive = false;
-      this.isGiboseWaningMoonActive = false;
-      this.isQuarterWaningActive = false;
-      this.chartMoon.data.datasets[0].data = [...this.crescenteMoonDataSource];
-    }
-    if (arg0 === 'fullMoon') {
-      this.isFullMoonActive = true;
-      this.isCrescentMoonActive = false;
-      this.isWanningMoonActive = false;
-      this.isNewMoonActive = false;
-
-      this.isQuarterCrescentMoonActive = false;
-      this.isGiboseCrescentMoonActive = false;
-      this.isGiboseWaningMoonActive = false;
-      this.isQuarterWaningActive = false;
-      this.chartMoon.data.datasets[0].data = [... this.fullMoonDataSource];
-    }
-
-    if (arg0 === 'quarterCrescentMoon') {
-      this.isNewMoonActive = false;
-      this.isWanningMoonActive = false;
-      this.isCrescentMoonActive = false;
-      this.isFullMoonActive = false;
-      this.isQuarterCrescentMoonActive = true;
-      this.isGiboseCrescentMoonActive = false;
-      this.isGiboseWaningMoonActive = false;
-      this.isQuarterWaningActive = false;
-      this.chartMoon.data.datasets[0].data = [...this.quarterCrescentMoonDataSource];
-    }
-
-    if (arg0 === 'gibousCrescentMoon') {
-      this.isNewMoonActive = false;
-      this.isWanningMoonActive = false;
-      this.isCrescentMoonActive = false;
-      this.isFullMoonActive = false;
-      this.isQuarterCrescentMoonActive = false;
-      this.isGiboseCrescentMoonActive = true;
-      this.isGiboseWaningMoonActive = false;
-      this.isQuarterWaningActive = false;
-      this.chartMoon.data.datasets[0].data = [...this.gibousCrescentMoonDataSource];
-    }
-
-    if (arg0 === 'gibousWaningMoon') {
-      this.isNewMoonActive = false;
-      this.isWanningMoonActive = false;
-      this.isCrescentMoonActive = false;
-      this.isFullMoonActive = false;
-      this.isQuarterCrescentMoonActive = false;
-      this.isGiboseCrescentMoonActive = false;
-      this.isGiboseWaningMoonActive = true;
-      this.isQuarterWaningActive = false;
-      this.chartMoon.data.datasets[0].data = [...this.gibousWaningMoonDataSource];
-    }
-
-   
-
-    if (arg0 === 'quarterWaningMoon') {
-      this.isNewMoonActive = false;
-      this.isWanningMoonActive = false;
-      this.isCrescentMoonActive = false;
-      this.isFullMoonActive = false;
-      this.isQuarterCrescentMoonActive = false;
-      this.isGiboseCrescentMoonActive = false;
-      this.isGiboseWaningMoonActive = false;
-      this.isQuarterWaningActive = true;
-      this.chartMoon.data.datasets[0].data = [...this.quarterWaningDataSource];
-    }
-
-    if (arg0 === 'waningMoon') {
-      this.isNewMoonActive = false;
-      this.isWanningMoonActive = true;
-      this.isCrescentMoonActive = false;
-      this.isFullMoonActive = false;
-      this.isQuarterCrescentMoonActive = false;
-      this.isGiboseCrescentMoonActive = false;
-      this.isGiboseWaningMoonActive = false;
-      this.isQuarterWaningActive = false;
-      this.chartMoon.data.datasets[0].data = [...this.quarterWaningDataSource];
-    }
+  protected async saveType(selectedValue: string) {
+   await this.service.saveTypeService(selectedValue)
+    this.chartMoon.data.datasets = [... await this.service.GetDataSets()];
+    this.updateChartAndTrendLines();
+    this.checkSorted();
     this.chartMoon.update();
   }
 
-  toggleSorted() {
-    throw new Error('Method not implemented.');
+  protected toggleAvarege(): void {
+    this.isAvaregeShow = !this.isAvaregeShow;
+    this.updateChartAndTrendLines();
   }
+
+  private updateChartAndTrendLines(): void {
+    if (this.isAvaregeShow) {
+      this.addAvarege();
+    } else {
+      this.removeAvarege();
+    }
+  }
+
+  private async addAvarege(): Promise<void> {
+    const data: number[] = this.chartMoon.data.datasets[0].data;
+    const media: number = await this.mathService.calculateAverage(data);
+    this.chartMoon.data.datasets[1].data = Array(data.length).fill(media);
+    this.chartMoon.update();
+  }
+
+  private removeAvarege(): void {
+    this.chartMoon.data.datasets[1].data = [];
+    this.chartMoon.update();
+  }
+
+  private setFlagsFalse(): void {
+    this.activeFlag.isNewMoonActive = false;
+    this.activeFlag.isCrescentMoonActive = false;
+    this.activeFlag.isQuarterCrescentMoonActive = false;
+    this.activeFlag.isGibbousCrescentMoonActive = false;
+    this.activeFlag.isFullMoonActive = false;
+    this.activeFlag.isGibbousWaningMoonActive = false;
+    this.activeFlag.isQuarterWaningActive = false;
+    this.activeFlag.isWanningMoonActive = false;
+  }
+
+  protected async updateDataSource(moonPhase: MoonPhase): Promise<void> {
+    // this.isSorted = false;
+    // this.checkSorted();
+    this.setFlagsFalse();
+    switch (moonPhase) {
+      case MoonPhase.NewMoon:
+        this.activeFlag.isNewMoonActive = true;
+        this.chartMoon.data.datasets[0].data = [...await this.service.getNewMoon()];
+        break;
+      case MoonPhase.CrescentMoon:
+        this.activeFlag.isCrescentMoonActive = true;
+        this.chartMoon.data.datasets[0].data = [...await this.service.getCrescentMoon()];
+        break;
+      case MoonPhase.QuarterCrescentMoon:
+        this.activeFlag.isQuarterCrescentMoonActive = true;
+        this.chartMoon.data.datasets[0].data = [...await this.service.getQuarterCrescentMoon()];
+        break;
+      case MoonPhase.GibbousCrescentMoon:
+        this.activeFlag.isGibbousCrescentMoonActive = true;
+        this.chartMoon.data.datasets[0].data = [...await this.service.getGibbousCrescentMoon()];
+        break;
+      case MoonPhase.FullMoon:
+        this.activeFlag.isFullMoonActive = true;
+        this.chartMoon.data.datasets[0].data = [...await this.service.getFullMoon()];
+        break;
+      case MoonPhase.GibbousWaningMoon:
+        this.activeFlag.isGibbousWaningMoonActive = true;
+        this.chartMoon.data.datasets[0].data = [...await this.service.getGibbousWaningMoon()];
+        break;
+      case MoonPhase.QuarterWaningMoon:
+        this.activeFlag.isQuarterWaningActive = true;
+        this.chartMoon.data.datasets[0].data = [...await this.service.getQuarterWaningMoon()];
+        break;
+      case MoonPhase.WaningMoon:
+        this.activeFlag.isWanningMoonActive = true;
+        this.chartMoon.data.datasets[0].data = [...await this.service.getWaningMoons()];
+        break;
+      default:
+    }
+    this.updateChartAndTrendLines();
+    this.checkSorted();
+    this.chartMoon.update();
+  }
+
+  protected toggleSorted(): void {
+    this.isSorted = !this.isSorted;
+    this.checkSorted();
+  }
+
+  private checkSorted(): void {
+    if (this.isSorted) {
+      this.sort();
+    } else {
+      this.unsort();
+    }
+  }
+  private sort(): void {
+    let data: number[] = this.chartMoon.data.datasets[0].data;
+    const labels: string[] = this.chartMoon.data.labels;
+    this.mathService.sort(data, labels);
+    this.chartMoon.update();
+  }
+
+  private unsort(): void {
+    let data: number[] = this.chartMoon.data.datasets[0].data;
+    const labels: string[] = this.chartMoon.data.labels;
+    this.mathService.unSort(data, labels);
+    this.chartMoon.update();
+  }
+
 }

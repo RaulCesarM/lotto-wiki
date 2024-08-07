@@ -3,14 +3,7 @@
     <fieldset>
       <button mat-button (click)="toggleSorted()" [class.clicked]="isSorted" matTooltip="Ordenar ">
         <span><img src="assets/ordenar.png" width="25px"><span class="dot"></span></span>
-      </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('base')" [class.clicked]="isBaseActive" matTooltip="Dados  originais">
-        <span>
-          <img src="assets/ver-lista.png" width="25px">
-          <span class="dot">
-          </span>
-        </span>
-      </button>
+      </button>      
       <button mat-button (click)="updateDataSourceBasedOnEvent('ocurrences')" [class.clicked]="isOcurrenceActive" matTooltip="Ocorrencias">
         <span>
           <img src="assets/gravidade.png" width="35px">        
@@ -18,18 +11,12 @@
           </span>
         </span>
       </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('overdue')" [class.clicked]="isRepeatedActive" matTooltip="Atrasados">
+      <button mat-button (click)="updateDataSourceBasedOnEvent('overdue')" [class.clicked]="isOverdueActive" matTooltip="Atrasados">
         <span>
           <img src="assets/atrasado.png" width="25px">
           <span class="dot">
           </span>
         </span>
-      </button>
-      <button mat-button (click)="toggleOutliers()" [class.clicked]="!isOutliersShow" matTooltip="Remover outliers">
-        <span>
-          <img src="assets/data-out.png" width="25px">
-          <span class="dot">
-          </span></span>
       </button>
       <button mat-button (click)="toggleAvarege()" [class.clicked]="isAvaregeShow" matTooltip="Mostrar media">
         <span>
@@ -66,14 +53,7 @@
           <span class="dot">
           </span>
         </span>
-      </button>
-
-      <mat-select [(ngModel)]="typeChart" (ngModelChange)="saveType($event)">
-        <mat-option value="line">Line</mat-option>
-        <mat-option value="bubble">Bubble</mat-option>
-        <mat-option value="bar">Bar</mat-option>
-      </mat-select>
-      <input type="number" [(ngModel)]="outlierInputValue" (ngModelChange)="setOutLierInput()">
+      </button>     
     </fieldset>
   </div>
 

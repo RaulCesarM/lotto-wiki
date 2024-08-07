@@ -24,7 +24,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
-
+import { HomeComponent } from './pages/home/home.component';
+import { NavCorrelationsComponent } from './nav-modules/nav-correlations/nav-correlations.component';
 
 @NgModule({
   declarations: [
@@ -37,9 +38,9 @@ import { HttpClientModule } from '@angular/common/http';
     CorrelationsComponent,
     ChartsOnionComponent,
     ExplanationCorrelationsComponent,
-    ExplanationRankingsComponent, 
-
-
+    ExplanationRankingsComponent,
+    HomeComponent,
+    NavCorrelationsComponent    
   ],
   imports: [
     CommonModule,
@@ -61,11 +62,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatTooltipModule,
     MatSelectModule,
     HttpClientModule
-
   ],
-  providers: [
-
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

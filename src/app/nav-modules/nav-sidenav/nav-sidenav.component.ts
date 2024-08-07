@@ -5,5 +5,4 @@ import { Component} from '@angular/core';
   templateUrl: './nav-sidenav.component.html',
   styleUrls: ['./nav-sidenav.component.css']
 })
-export class NavSidenavComponent {
-}
+export class NavSidenavComponent {}
